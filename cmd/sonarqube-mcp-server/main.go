@@ -49,7 +49,7 @@ func init() {
 	rootCmd.PersistentFlags().Uint16("port", 9000, "SonarQube server port number.")
 	rootCmd.PersistentFlags().String("user", "", "SonarQube server username.")
 	rootCmd.PersistentFlags().String("password", "", "SonarQube server password.")
-	rootCmd.PersistentFlags().String("token", "", "SonarQube user type token.")
+	rootCmd.PersistentFlags().String("token", "", "SonarQube server user type token.")
 	rootCmd.PersistentFlags().Bool("readonly", true, "HTTP GET method only.")
 
 	viper.BindPFlag("server", rootCmd.PersistentFlags().Lookup("server"))

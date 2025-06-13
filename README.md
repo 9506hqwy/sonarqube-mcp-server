@@ -30,7 +30,7 @@ Flags:
       --port uint16       SonarQube server port number. (default 9000)
       --readonly          HTTP GET method only. (default true)
       --server string     SonarQube server hostname or IP address. (default "127.0.0.1")
-      --token string      SonarQube user type token.
+      --token string      SonarQube server user type token.
       --user string       SonarQube server username.
 ```
 

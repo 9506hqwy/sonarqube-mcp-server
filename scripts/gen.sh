@@ -96,7 +96,7 @@ EOF
         cat >> "${FILE_PATH}" <<EOF
 		mcp.WithString("${NAME}",
 			mcp.Description("${DESCRIPTION//\"/\\\"}"),
-            ${REQUIRED}
+			${REQUIRED}
 		),
 EOF
     done
@@ -116,14 +116,14 @@ function write-handler-func() {
 
     TOOL_NAME=$(toolname "${OP_PATH}")
     API_NAME=$(capitalize "${TOOL_NAME}")
-	NUM_PARAMETER=$(yq -r '.parameters | length' <<<${DEFINITION})
+    NUM_PARAMETER=$(yq -r '.parameters | length' <<<${DEFINITION})
 
-	PARSE_STMT="params := parse${API_NAME}(request)"
-	PARAM_ARG="&params,"
-	if [[ ${NUM_PARAMETER} -eq 0 ]]; then
-		PARSE_STMT=""
-		PARAM_ARG=""
-	fi
+    PARSE_STMT="params := parse${API_NAME}(request)"
+    PARAM_ARG="&params,"
+    if [[ ${NUM_PARAMETER} -eq 0 ]]; then
+        PARSE_STMT=""
+        PARAM_ARG=""
+    fi
 
     FILE_PATH=$(filename "${OP_PATH}")
     cat >> "${FILE_PATH}" <<EOF
@@ -144,10 +144,10 @@ function write-parser-func() {
     OP_PATH="$1"
     DEFINITION="$2"
 
-	NUM_PARAMETER=$(yq -r '.parameters | length' <<<${DEFINITION})
-	if [[ ${NUM_PARAMETER} -eq 0 ]]; then
-		return
-	fi
+    NUM_PARAMETER=$(yq -r '.parameters | length' <<<${DEFINITION})
+    if [[ ${NUM_PARAMETER} -eq 0 ]]; then
+        return
+    fi
 
     TOOL_NAME=$(toolname "${OP_PATH}")
     API_NAME=$(capitalize "${TOOL_NAME}")
@@ -173,7 +173,7 @@ EOF
             VAR_NAME='_params'
         fi
         REF_NAME="&${VAR_NAME}"
-		PARAM_NAME=$(capitalize "${VAR_NAME}")
+        PARAM_NAME=$(capitalize "${VAR_NAME}")
         if [[ $(yq -r '.required' <<<"${PARAMETER}") == "true" ]]; then
             REF_NAME="${VAR_NAME}"
         fi
@@ -211,16 +211,16 @@ do
 
     OP_POST=$(yq '.post' <<<"${OP}")
     if [[ "$OP_POST" != 'null' ]]; then
-	    write-register-func "${OP_PATH}" "${OP_POST}"
-	    write-handler-func "${OP_PATH}" "${OP_POST}"
-	    write-parser-func "${OP_PATH}" "${OP_POST}"
+        write-register-func "${OP_PATH}" "${OP_POST}"
+        write-handler-func "${OP_PATH}" "${OP_POST}"
+        write-parser-func "${OP_PATH}" "${OP_POST}"
     fi
 
     OP_GET=$(yq '.get' <<<"${OP}")
     if [[ "$OP_GET" != 'null' ]]; then
-	    write-register-func "${OP_PATH}" "${OP_GET}"
-	    write-handler-func "${OP_PATH}" "${OP_GET}"
-	    write-parser-func "${OP_PATH}" "${OP_GET}"
+        write-register-func "${OP_PATH}" "${OP_GET}"
+        write-handler-func "${OP_PATH}" "${OP_GET}"
+        write-parser-func "${OP_PATH}" "${OP_GET}"
     fi
 done
 
@@ -245,12 +245,12 @@ do
 
     OP_POST=$(yq '.post' <<<"${OP}")
     if [[ "$OP_POST" != 'null' ]]; then
-	    echo "if !readonly { register${API_NAME}(s) }" >> "${TOOLS_PATH}"
+        echo "if !readonly { register${API_NAME}(s) }" >> "${TOOLS_PATH}"
     fi
 
     OP_GET=$(yq '.get' <<<"${OP}")
     if [[ "$OP_GET" != 'null' ]]; then
-	    echo "register${API_NAME}(s)" >> "${TOOLS_PATH}"
+        echo "register${API_NAME}(s)" >> "${TOOLS_PATH}"
     fi
 done
 

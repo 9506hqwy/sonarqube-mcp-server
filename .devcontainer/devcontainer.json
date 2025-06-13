@@ -12,6 +12,8 @@
         "label=disable",
         "seccomp=unconfined"
     ],
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": "${containerWorkspaceFolder}/.devcontainer/post-create.sh",
     // Uncomment to connect as root instead.
     //"remoteUser": "root",
     // Use default container `USER`,

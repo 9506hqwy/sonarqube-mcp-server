@@ -13,8 +13,7 @@ import (
 )
 
 func fromArgument(ctx context.Context) context.Context {
-	ctx = context.WithValue(ctx, sonarqube.ServerKey{}, viper.GetString("server"))
-	ctx = context.WithValue(ctx, sonarqube.PortKey{}, viper.GetUint16("port"))
+	ctx = context.WithValue(ctx, sonarqube.UrlKey{}, viper.GetString("url"))
 	ctx = context.WithValue(ctx, sonarqube.UserKey{}, viper.GetString("user"))
 	ctx = context.WithValue(ctx, sonarqube.PasswordKey{}, viper.GetString("password"))
 	ctx = context.WithValue(ctx, sonarqube.UserTokenKey{}, viper.GetString("token"))
@@ -45,15 +44,13 @@ var rootCmd = &cobra.Command{
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().String("server", "127.0.0.1", "SonarQube server hostname or IP address.")
-	rootCmd.PersistentFlags().Uint16("port", 9000, "SonarQube server port number.")
+	rootCmd.PersistentFlags().String("url", "http://127.0.0.1:9000", "SonarQube server URL.")
 	rootCmd.PersistentFlags().String("user", "", "SonarQube server username.")
 	rootCmd.PersistentFlags().String("password", "", "SonarQube server password.")
 	rootCmd.PersistentFlags().String("token", "", "SonarQube server user type token.")
 	rootCmd.PersistentFlags().Bool("readonly", true, "HTTP GET method only.")
 
-	viper.BindPFlag("server", rootCmd.PersistentFlags().Lookup("server"))
-	viper.BindPFlag("port", rootCmd.PersistentFlags().Lookup("port"))
+	viper.BindPFlag("url", rootCmd.PersistentFlags().Lookup("url"))
 	viper.BindPFlag("user", rootCmd.PersistentFlags().Lookup("user"))
 	viper.BindPFlag("password", rootCmd.PersistentFlags().Lookup("password"))
 	viper.BindPFlag("token", rootCmd.PersistentFlags().Lookup("token"))

@@ -2,6 +2,10 @@
 
 This repository provides model context protocol server for SonarQube server.
 
+## API Version
+
+* v9.9
+
 ## Build
 
 Build binary.
@@ -27,10 +31,9 @@ Usage:
 Flags:
   -h, --help              help for sonarqube-mcp-server
       --password string   SonarQube server password.
-      --port uint16       SonarQube server port number. (default 9000)
       --readonly          HTTP GET method only. (default true)
-      --server string     SonarQube server hostname or IP address. (default "127.0.0.1")
       --token string      SonarQube server user type token.
+      --url string        SonarQube server URL. (default "http://127.0.0.1:9000")
       --user string       SonarQube server username.
 ```
 
@@ -38,8 +41,7 @@ Set environment variable instead of arguments.
 
 | Argument   | Environment Variable |
 | :--------- | :------------------- |
-| --server   | SONARQUBE_SERVER     |
-| --port     | SONARQUBE_PORT       |
+| --url      | SONARQUBE_URL        |
 | --user     | SONARQUBE_USER       |
 | --password | SONARQUBE_PASSWORD   |
 | --token    | SONARQUBE_TOKEN      |

@@ -10,8 +10,7 @@ import (
 	"github.com/mark3labs/mcp-go/mcp"
 )
 
-type ServerKey struct{}
-type PortKey struct{}
+type UrlKey struct{}
 type UserKey struct{}
 type UserTokenKey struct{}
 type PasswordKey struct{}
@@ -52,17 +51,12 @@ func bearerAuth(ctx context.Context, req *http.Request) error {
 func newClient(ctx context.Context) (*client.ClientWithResponses, error) {
 	hc := http.Client{}
 
-	server, ok := ctx.Value(ServerKey{}).(string)
-	if !ok {
-		return nil, fmt.Errorf("missing server")
+	url, ok := ctx.Value(UrlKey{}).(string)
+	if !ok || url == "" {
+		return nil, fmt.Errorf("missing url")
 	}
 
-	port, ok := ctx.Value(PortKey{}).(uint16)
-	if !ok {
-		return nil, fmt.Errorf("missing port")
-	}
-
-	return client.NewClientWithResponses(fmt.Sprintf("http://%s:%d", server, port), client.WithHTTPClient(&hc))
+	return client.NewClientWithResponses(url, client.WithHTTPClient(&hc))
 }
 
 func toResult(response *http.Response, err error) (*mcp.CallToolResult, error) {

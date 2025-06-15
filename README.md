@@ -14,6 +14,12 @@ Build binary.
 go build -o bin/sonarqube-mcp-server ./cmd/sonarqube-mcp-server/main.go
 ```
 
+Or build docker image.
+
+```sh
+docker build -t sonarqube-mcp-server .
+```
+
 ## Usage
 
 Run application.
@@ -46,6 +52,12 @@ Set environment variable instead of arguments.
 | --password | SONARQUBE_PASSWORD   |
 | --token    | SONARQUBE_TOKEN      |
 | --readonly | SONARQUBE_READONLY   |
+
+Or run container.
+
+```sh
+docker run --rm -i -e SONARQUBE_URL=<URL> -e SONARQUBE_TOKEN=<TOKEN> sonarqube-mcp-server
+```
 
 ## Tools
 

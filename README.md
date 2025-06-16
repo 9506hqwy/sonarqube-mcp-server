@@ -14,11 +14,13 @@ Build binary.
 go build -o bin/sonarqube-mcp-server ./cmd/sonarqube-mcp-server/main.go
 ```
 
-Or build docker image.
+Or build contaienr image.
 
 ```sh
 docker build -t sonarqube-mcp-server .
 ```
+
+Add `Z` option at bind mount operation in *Dockerfile* if using podman with SELinux.
 
 ## Usage
 

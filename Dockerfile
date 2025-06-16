@@ -1,7 +1,9 @@
 FROM golang:1.24.3-bookworm AS build
 
+WORKDIR /build
+
 RUN --mount=type=cache,target=/go/pkg/mod \
-    --mount=type=bind,target=.,Z \
+    --mount=type=bind,target=. \
     CGO_ENABLED=0 go build -o /bin/sonarqube-mcp-server ./cmd/sonarqube-mcp-server/main.go
 
 FROM gcr.io/distroless/static-debian12

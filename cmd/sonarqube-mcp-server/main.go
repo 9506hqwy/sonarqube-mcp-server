@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"fmt"
 	"log"
 
 	"github.com/mark3labs/mcp-go/server"
@@ -11,6 +12,9 @@ import (
 
 	"github.com/9506hqwy/sonarqube-mcp-server/pkg/sonarqube"
 )
+
+var version = "<version>"
+var commit = "<commit>"
 
 func fromArgument(ctx context.Context) context.Context {
 	ctx = context.WithValue(ctx, sonarqube.UrlKey{}, viper.GetString("url"))
@@ -21,9 +25,10 @@ func fromArgument(ctx context.Context) context.Context {
 }
 
 var rootCmd = &cobra.Command{
-	Use:   "sonarqube-mcp-server",
-	Short: "SonarQube MCP Server",
-	Long:  "SonarQube MCP Server",
+	Use:     "sonarqube-mcp-server",
+	Short:   "SonarQube MCP Server",
+	Long:    "SonarQube MCP Server",
+	Version: fmt.Sprintf("%s\nCommit: %s", version, commit),
 	Run: func(cmd *cobra.Command, args []string) {
 		s := server.NewMCPServer(
 			"SonarQube MCP Server",

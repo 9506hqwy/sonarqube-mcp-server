@@ -43,6 +43,7 @@ Flags:
       --token string      SonarQube server user type token.
       --url string        SonarQube server URL. (default "http://127.0.0.1:9000")
       --user string       SonarQube server username.
+  -v, --version           version for sonarqube-mcp-server
 ```
 
 Set environment variable instead of arguments.
@@ -59,6 +60,40 @@ Or run container.
 
 ```sh
 docker run --rm -i -e SONARQUBE_URL=<URL> -e SONARQUBE_TOKEN=<TOKEN> sonarqube-mcp-server
+```
+
+### Usage with VS code
+
+Add `sonarqube-mcp-server` binary to `PATH` environment variable and configure VS code.
+If use user type token and SonarQube server 9.x or earlier, Specify token to `SONARQUBE_USER`.
+
+```json
+{
+    "servers": {
+        "sonarqube": {
+            "type": "stdio",
+            "command": "sonarqube-mcp-server",
+            "env": {
+                "SONARQUBE_URL": "${input:sonarqube_url}",
+                "SONARQUBE_TOKEN": "${input:sonarqube_token}",
+            }
+        }
+    },
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "sonarqube_url",
+            "description": "SonarQube Server URL",
+            "password": false
+        },
+        {
+            "type": "promptString",
+            "id": "sonarqube_token",
+            "description": "SonarQube Server TOKEN",
+            "password": true
+        }
+    ]
+}
 ```
 
 ## Tools

@@ -14,7 +14,7 @@ Build binary.
 go build -o bin/sonarqube-mcp-server ./cmd/sonarqube-mcp-server/main.go
 ```
 
-Or build contaienr image.
+Or build container image.
 
 ```sh
 docker build -t sonarqube-mcp-server .

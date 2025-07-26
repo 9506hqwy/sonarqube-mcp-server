@@ -314,3 +314,7 @@ If use user type token and SonarQube server 9.x or earlier, Specify token to `SO
 ## Testing
 
 TODO
+
+## Notes
+
+* Check off unused tools at [tool icon] in GitHub Copilot Chat panel bacause vscode limits max 128 tools.

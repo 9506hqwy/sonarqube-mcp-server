@@ -11,9 +11,9 @@ import (
 
 func registerDuplicationsShow(s *server.MCPServer) {
 	tool := mcp.NewTool("duplications_show",
-		mcp.WithDescription("Get duplications. Require Browse permission on file's project "),
+		mcp.WithDescription("Get duplications. Require Browse permission on file's project"),
 		mcp.WithString("key",
-			mcp.Description("File key "),
+			mcp.Description("File key"),
 			mcp.Required(),
 		),
 	)

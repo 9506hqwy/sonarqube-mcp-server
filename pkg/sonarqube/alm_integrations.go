@@ -11,13 +11,13 @@ import (
 
 func registerAlmIntegrationsImportGitlabProject(s *server.MCPServer) {
 	tool := mcp.NewTool("alm_integrations_import_gitlab_project",
-		mcp.WithDescription("Import a GitLab project to SonarQube, creating a new project and configuring MR decoration<br/>Requires the 'Create Projects' permission "),
+		mcp.WithDescription("Import a GitLab project to SonarQube, creating a new project and configuring MR decoration<br/>Requires the 'Create Projects' permission"),
 		mcp.WithString("almSetting",
-			mcp.Description("DevOps Platform setting key "),
+			mcp.Description("DevOps Platform setting key"),
 			mcp.Required(),
 		),
 		mcp.WithString("gitlabProjectId",
-			mcp.Description("GitLab project ID "),
+			mcp.Description("GitLab project ID"),
 			mcp.Required(),
 		),
 	)
@@ -53,9 +53,9 @@ func parseAlmIntegrationsImportGitlabProject(request mcp.CallToolRequest) client
 
 func registerAlmIntegrationsListAzureProjects(s *server.MCPServer) {
 	tool := mcp.NewTool("alm_integrations_list_azure_projects",
-		mcp.WithDescription("List Azure projects<br/>Requires the 'Create Projects' permission "),
+		mcp.WithDescription("List Azure projects<br/>Requires the 'Create Projects' permission"),
 		mcp.WithString("almSetting",
-			mcp.Description("DevOps Platform setting key "),
+			mcp.Description("DevOps Platform setting key"),
 			mcp.Required(),
 		),
 	)
@@ -86,9 +86,9 @@ func parseAlmIntegrationsListAzureProjects(request mcp.CallToolRequest) client.A
 
 func registerAlmIntegrationsListBitbucketserverProjects(s *server.MCPServer) {
 	tool := mcp.NewTool("alm_integrations_list_bitbucketserver_projects",
-		mcp.WithDescription("List the Bitbucket Server projects<br/>Requires the 'Create Projects' permission "),
+		mcp.WithDescription("List the Bitbucket Server projects<br/>Requires the 'Create Projects' permission"),
 		mcp.WithString("almSetting",
-			mcp.Description("DevOps Platform setting key "),
+			mcp.Description("DevOps Platform setting key"),
 			mcp.Required(),
 		),
 	)
@@ -119,16 +119,16 @@ func parseAlmIntegrationsListBitbucketserverProjects(request mcp.CallToolRequest
 
 func registerAlmIntegrationsSearchAzureRepos(s *server.MCPServer) {
 	tool := mcp.NewTool("alm_integrations_search_azure_repos",
-		mcp.WithDescription("Search the Azure repositories<br/>Requires the 'Create Projects' permission "),
+		mcp.WithDescription("Search the Azure repositories<br/>Requires the 'Create Projects' permission"),
 		mcp.WithString("almSetting",
-			mcp.Description("DevOps Platform setting key "),
+			mcp.Description("DevOps Platform setting key"),
 			mcp.Required(),
 		),
 		mcp.WithString("projectName",
-			mcp.Description("Project name filter "),
+			mcp.Description("Project name filter"),
 		),
 		mcp.WithString("searchQuery",
-			mcp.Description("Search query filter "),
+			mcp.Description("Search query filter"),
 		),
 	)
 
@@ -168,19 +168,19 @@ func parseAlmIntegrationsSearchAzureRepos(request mcp.CallToolRequest) client.Ap
 
 func registerAlmIntegrationsSearchBitbucketcloudRepos(s *server.MCPServer) {
 	tool := mcp.NewTool("alm_integrations_search_bitbucketcloud_repos",
-		mcp.WithDescription("Search the Bitbucket Cloud repositories<br/>Requires the 'Create Projects' permission "),
+		mcp.WithDescription("Search the Bitbucket Cloud repositories<br/>Requires the 'Create Projects' permission"),
 		mcp.WithString("almSetting",
-			mcp.Description("DevOps Platform setting key "),
+			mcp.Description("DevOps Platform setting key"),
 			mcp.Required(),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 100 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 100"),
 		),
 		mcp.WithString("repositoryName",
-			mcp.Description("Repository name filter "),
+			mcp.Description("Repository name filter"),
 		),
 	)
 
@@ -225,16 +225,16 @@ func parseAlmIntegrationsSearchBitbucketcloudRepos(request mcp.CallToolRequest) 
 
 func registerAlmIntegrationsSearchBitbucketserverRepos(s *server.MCPServer) {
 	tool := mcp.NewTool("alm_integrations_search_bitbucketserver_repos",
-		mcp.WithDescription("Search the Bitbucket Server repositories with REPO_ADMIN access<br/>Requires the 'Create Projects' permission "),
+		mcp.WithDescription("Search the Bitbucket Server repositories with REPO_ADMIN access<br/>Requires the 'Create Projects' permission"),
 		mcp.WithString("almSetting",
-			mcp.Description("DevOps Platform setting key "),
+			mcp.Description("DevOps Platform setting key"),
 			mcp.Required(),
 		),
 		mcp.WithString("projectName",
-			mcp.Description("Project name filter "),
+			mcp.Description("Project name filter"),
 		),
 		mcp.WithString("repositoryName",
-			mcp.Description("Repository name filter "),
+			mcp.Description("Repository name filter"),
 		),
 	)
 
@@ -274,19 +274,19 @@ func parseAlmIntegrationsSearchBitbucketserverRepos(request mcp.CallToolRequest)
 
 func registerAlmIntegrationsSearchGitlabRepos(s *server.MCPServer) {
 	tool := mcp.NewTool("alm_integrations_search_gitlab_repos",
-		mcp.WithDescription("Search the GitLab projects.<br/>Requires the 'Create Projects' permission "),
+		mcp.WithDescription("Search the GitLab projects.<br/>Requires the 'Create Projects' permission"),
 		mcp.WithString("almSetting",
-			mcp.Description("DevOps Platform setting key "),
+			mcp.Description("DevOps Platform setting key"),
 			mcp.Required(),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("projectName",
-			mcp.Description("Project name filter "),
+			mcp.Description("Project name filter"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 500 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 500"),
 		),
 	)
 
@@ -331,17 +331,17 @@ func parseAlmIntegrationsSearchGitlabRepos(request mcp.CallToolRequest) client.A
 
 func registerAlmIntegrationsSetPat(s *server.MCPServer) {
 	tool := mcp.NewTool("alm_integrations_set_pat",
-		mcp.WithDescription("Set a Personal Access Token for the given DevOps Platform setting<br/>Only valid for Azure DevOps, Bitbucket Server, GitLab and Bitbucket Cloud Setting<br/>Requires the 'Create Projects' permission "),
+		mcp.WithDescription("Set a Personal Access Token for the given DevOps Platform setting<br/>Only valid for Azure DevOps, Bitbucket Server, GitLab and Bitbucket Cloud Setting<br/>Requires the 'Create Projects' permission"),
 		mcp.WithString("almSetting",
-			mcp.Description("DevOps Platform setting key "),
+			mcp.Description("DevOps Platform setting key"),
 			mcp.Required(),
 		),
 		mcp.WithString("pat",
-			mcp.Description("Personal Access Token "),
+			mcp.Description("Personal Access Token"),
 			mcp.Required(),
 		),
 		mcp.WithString("username",
-			mcp.Description("Username "),
+			mcp.Description("Username"),
 		),
 	)
 

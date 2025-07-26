@@ -1,22 +1,25 @@
 #!/bin/bash
 set -euo pipefail
 
-BASE_DIR=$(dirname $(dirname "$0"))
+VERSION=v9.9
+
+BASE_DIR=$(dirname "$(dirname "$0")")
 TMP_DIR=/tmp
 BASE_DIR="${BASE_DIR}/pkg/sonarqube"
 
 curl -fsSL \
     -o "${TMP_DIR}/openapi.yml" \
-    https://github.com/9506hqwy/openapi-spec-sonarqube-v1/raw/refs/heads/main/openapi.yml
+     "https://github.com/9506hqwy/openapi-spec-sonarqube-v1/raw/refs/heads/${VERSION}/openapi.yml"
 
 function capitalize() {
     VALUE="$1"
+    # shellcheck disable=SC2206
     IFS=_ ARR=(${VALUE})
 
     CAP_ARR=()
-    for V in ${ARR[@]}
+    for V in "${ARR[@]}"
     do
-        CAP_ARR+=(${V^})
+        CAP_ARR+=("${V^}")
     done
 
     IFS='' CAP="${CAP_ARR[*]}"
@@ -26,12 +29,12 @@ function capitalize() {
 
 function groupname() {
     OP_PATH="$1"
-    echo $(echo "${OP_PATH}" | cut -d '/' -f 3)
+    echo "${OP_PATH}" | cut -d '/' -f 3
 }
 
 function apiname() {
     OP_PATH="$1"
-    echo $(echo "${OP_PATH}" | cut -d '/' -f 4)
+    echo "${OP_PATH}" | cut -d '/' -f 4
 }
 
 function filename() {
@@ -87,7 +90,7 @@ EOF
     # parameters
     yq '.parameters[] | . style="flow"' <<<"${DEFINITION}" | while read -r PARAMETER
     do
-        NAME=$(yq -r '.name' <<<${PARAMETER})
+        NAME=$(yq -r '.name' <<<"${PARAMETER}")
         DESCRIPTION=$(yq -r '.description' <<<"${PARAMETER}")
         REQUIRED=""
         if [[ $(yq -r '.required' <<<"${PARAMETER}") == "true" ]]; then
@@ -116,7 +119,7 @@ function write-handler-func() {
 
     TOOL_NAME=$(toolname "${OP_PATH}")
     API_NAME=$(capitalize "${TOOL_NAME}")
-    NUM_PARAMETER=$(yq -r '.parameters | length' <<<${DEFINITION})
+    NUM_PARAMETER=$(yq -r '.parameters | length' <<<"${DEFINITION}")
 
     PARSE_STMT="params := parse${API_NAME}(request)"
     PARAM_ARG="&params,"
@@ -144,7 +147,7 @@ function write-parser-func() {
     OP_PATH="$1"
     DEFINITION="$2"
 
-    NUM_PARAMETER=$(yq -r '.parameters | length' <<<${DEFINITION})
+    NUM_PARAMETER=$(yq -r '.parameters | length' <<<"${DEFINITION}")
     if [[ ${NUM_PARAMETER} -eq 0 ]]; then
         return
     fi
@@ -163,7 +166,7 @@ EOF
     # prameters
     yq '.parameters[] | . style="flow"' <<<"${DEFINITION}" | while read -r PARAMETER
     do
-        NAME=$(yq -r '.name' <<<${PARAMETER})
+        NAME=$(yq -r '.name' <<<"${PARAMETER}")
         VAR_NAME=${NAME//-/}
         VAR_NAME=${VAR_NAME//./}
         if [[ "${VAR_NAME}" == 'type' ]]; then

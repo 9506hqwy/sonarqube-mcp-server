@@ -11,22 +11,22 @@ import (
 
 func registerPermissionsAddGroup(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_add_group",
-		mcp.WithDescription("Add a permission to a group.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> The group name or group id must be provided. <br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Add a permission to a group.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> The group name or group id must be provided. <br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("groupId",
-			mcp.Description("Group id, use 'name' param instead "),
+			mcp.Description("Group id, use 'name' param instead"),
 		),
 		mcp.WithString("groupName",
-			mcp.Description("Group name or 'anyone' (case insensitive) "),
+			mcp.Description("Group name or 'anyone' (case insensitive)"),
 		),
 		mcp.WithString("permission",
-			mcp.Description("The permission you would like to grant to the group.<ul><li>Possible values for global permissions: admin, profileadmin, gateadmin, scan, provisioning</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("The permission you would like to grant to the group.<ul><li>Possible values for global permissions: admin, profileadmin, gateadmin, scan, provisioning</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("projectId",
-			mcp.Description("Project id "),
+			mcp.Description("Project id"),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 	)
 
@@ -76,22 +76,22 @@ func parsePermissionsAddGroup(request mcp.CallToolRequest) client.ApiPermissions
 
 func registerPermissionsAddGroupToTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_add_group_to_template",
-		mcp.WithDescription("Add a group to a permission template.<br /> The group id or group name must be provided. <br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Add a group to a permission template.<br /> The group id or group name must be provided. <br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("groupId",
-			mcp.Description("Group id, use 'name' param instead "),
+			mcp.Description("Group id, use 'name' param instead"),
 		),
 		mcp.WithString("groupName",
-			mcp.Description("Group name or 'anyone' (case insensitive) "),
+			mcp.Description("Group name or 'anyone' (case insensitive)"),
 		),
 		mcp.WithString("permission",
-			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -141,16 +141,16 @@ func parsePermissionsAddGroupToTemplate(request mcp.CallToolRequest) client.ApiP
 
 func registerPermissionsAddProjectCreatorToTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_add_project_creator_to_template",
-		mcp.WithDescription("Add a project creator to a permission template.<br>Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Add a project creator to a permission template.<br>Requires the following permission: 'Administer System'."),
 		mcp.WithString("permission",
-			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -190,20 +190,20 @@ func parsePermissionsAddProjectCreatorToTemplate(request mcp.CallToolRequest) cl
 
 func registerPermissionsAddUser(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_add_user",
-		mcp.WithDescription("Add permission to a user.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Add permission to a user.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 		mcp.WithString("permission",
-			mcp.Description("The permission you would like to grant to the user<ul><li>Possible values for global permissions: admin, profileadmin, gateadmin, scan, provisioning</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("The permission you would like to grant to the user<ul><li>Possible values for global permissions: admin, profileadmin, gateadmin, scan, provisioning</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("projectId",
-			mcp.Description("Project id "),
+			mcp.Description("Project id"),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 	)
 
@@ -248,20 +248,20 @@ func parsePermissionsAddUser(request mcp.CallToolRequest) client.ApiPermissionsA
 
 func registerPermissionsAddUserToTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_add_user_to_template",
-		mcp.WithDescription("Add a user to a permission template.<br /> Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Add a user to a permission template.<br /> Requires the following permission: 'Administer System'."),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 		mcp.WithString("permission",
-			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -306,18 +306,18 @@ func parsePermissionsAddUserToTemplate(request mcp.CallToolRequest) client.ApiPe
 
 func registerPermissionsApplyTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_apply_template",
-		mcp.WithDescription("Apply a permission template to one project.<br>The project id or project key must be provided.<br>The template id or name must be provided.<br>Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Apply a permission template to one project.<br>The project id or project key must be provided.<br>The template id or name must be provided.<br>Requires the following permission: 'Administer System'."),
 		mcp.WithString("projectId",
-			mcp.Description("Project id "),
+			mcp.Description("Project id"),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -362,27 +362,27 @@ func parsePermissionsApplyTemplate(request mcp.CallToolRequest) client.ApiPermis
 
 func registerPermissionsBulkApplyTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_bulk_apply_template",
-		mcp.WithDescription("Apply a permission template to several projects.<br />The template id or name must be provided.<br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Apply a permission template to several projects.<br />The template id or name must be provided.<br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("analyzedBefore",
-			mcp.Description("Filter the projects for which last analysis is older than the given date (exclusive).<br> Either a date (server timezone) or datetime can be provided. "),
+			mcp.Description("Filter the projects for which last analysis is older than the given date (exclusive).<br> Either a date (server timezone) or datetime can be provided."),
 		),
 		mcp.WithString("onProvisionedOnly",
-			mcp.Description("Filter the projects that are provisioned "),
+			mcp.Description("Filter the projects that are provisioned"),
 		),
 		mcp.WithString("projects",
-			mcp.Description("Comma-separated list of project keys "),
+			mcp.Description("Comma-separated list of project keys"),
 		),
 		mcp.WithString("q",
-			mcp.Description("Limit search to: <ul><li>project names that contain the supplied string</li><li>project keys that are exactly the same as the supplied string</li></ul> "),
+			mcp.Description("Limit search to: <ul><li>project names that contain the supplied string</li><li>project keys that are exactly the same as the supplied string</li></ul>"),
 		),
 		mcp.WithString("qualifiers",
-			mcp.Description("Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>TRK - Projects</li></ul> "),
+			mcp.Description("Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:<ul><li>TRK - Projects</li></ul>"),
 		),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -442,16 +442,16 @@ func parsePermissionsBulkApplyTemplate(request mcp.CallToolRequest) client.ApiPe
 
 func registerPermissionsCreateTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_create_template",
-		mcp.WithDescription("Create a permission template.<br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Create a permission template.<br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("description",
-			mcp.Description("Description "),
+			mcp.Description("Description"),
 		),
 		mcp.WithString("name",
-			mcp.Description("Name "),
+			mcp.Description("Name"),
 			mcp.Required(),
 		),
 		mcp.WithString("projectKeyPattern",
-			mcp.Description("Project key pattern. Must be a valid Java regular expression "),
+			mcp.Description("Project key pattern. Must be a valid Java regular expression"),
 		),
 	)
 
@@ -491,12 +491,12 @@ func parsePermissionsCreateTemplate(request mcp.CallToolRequest) client.ApiPermi
 
 func registerPermissionsDeleteTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_delete_template",
-		mcp.WithDescription("Delete a permission template.<br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Delete a permission template.<br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -531,22 +531,22 @@ func parsePermissionsDeleteTemplate(request mcp.CallToolRequest) client.ApiPermi
 
 func registerPermissionsRemoveGroup(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_remove_group",
-		mcp.WithDescription("Remove a permission from a group.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> The group id or group name must be provided, not both.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Remove a permission from a group.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> The group id or group name must be provided, not both.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("groupId",
-			mcp.Description("Group id, use 'name' param instead "),
+			mcp.Description("Group id, use 'name' param instead"),
 		),
 		mcp.WithString("groupName",
-			mcp.Description("Group name or 'anyone' (case insensitive) "),
+			mcp.Description("Group name or 'anyone' (case insensitive)"),
 		),
 		mcp.WithString("permission",
-			mcp.Description("The permission you would like to revoke from the group.<ul><li>Possible values for global permissions: admin, profileadmin, gateadmin, scan, provisioning</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("The permission you would like to revoke from the group.<ul><li>Possible values for global permissions: admin, profileadmin, gateadmin, scan, provisioning</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("projectId",
-			mcp.Description("Project id "),
+			mcp.Description("Project id"),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 	)
 
@@ -596,22 +596,22 @@ func parsePermissionsRemoveGroup(request mcp.CallToolRequest) client.ApiPermissi
 
 func registerPermissionsRemoveGroupFromTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_remove_group_from_template",
-		mcp.WithDescription("Remove a group from a permission template.<br /> The group id or group name must be provided. <br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Remove a group from a permission template.<br /> The group id or group name must be provided. <br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("groupId",
-			mcp.Description("Group id, use 'name' param instead "),
+			mcp.Description("Group id, use 'name' param instead"),
 		),
 		mcp.WithString("groupName",
-			mcp.Description("Group name or 'anyone' (case insensitive) "),
+			mcp.Description("Group name or 'anyone' (case insensitive)"),
 		),
 		mcp.WithString("permission",
-			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -661,16 +661,16 @@ func parsePermissionsRemoveGroupFromTemplate(request mcp.CallToolRequest) client
 
 func registerPermissionsRemoveProjectCreatorFromTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_remove_project_creator_from_template",
-		mcp.WithDescription("Remove a project creator from a permission template.<br>Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Remove a project creator from a permission template.<br>Requires the following permission: 'Administer System'."),
 		mcp.WithString("permission",
-			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -710,20 +710,20 @@ func parsePermissionsRemoveProjectCreatorFromTemplate(request mcp.CallToolReques
 
 func registerPermissionsRemoveUser(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_remove_user",
-		mcp.WithDescription("Remove permission from a user.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Remove permission from a user.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 		mcp.WithString("permission",
-			mcp.Description("The permission you would like to revoke from the user.<ul><li>Possible values for global permissions: admin, profileadmin, gateadmin, scan, provisioning</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("The permission you would like to revoke from the user.<ul><li>Possible values for global permissions: admin, profileadmin, gateadmin, scan, provisioning</li><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("projectId",
-			mcp.Description("Project id "),
+			mcp.Description("Project id"),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 	)
 
@@ -768,20 +768,20 @@ func parsePermissionsRemoveUser(request mcp.CallToolRequest) client.ApiPermissio
 
 func registerPermissionsRemoveUserFromTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_remove_user_from_template",
-		mcp.WithDescription("Remove a user from a permission template.<br /> Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Remove a user from a permission template.<br /> Requires the following permission: 'Administer System'."),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 		mcp.WithString("permission",
-			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul> "),
+			mcp.Description("Permission<ul><li>Possible values for project permissions admin, codeviewer, issueadmin, securityhotspotadmin, scan, user</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -826,9 +826,9 @@ func parsePermissionsRemoveUserFromTemplate(request mcp.CallToolRequest) client.
 
 func registerPermissionsSearchTemplates(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_search_templates",
-		mcp.WithDescription("List permission templates.<br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("List permission templates.<br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("q",
-			mcp.Description("Limit search to permission template names that contain the supplied string. "),
+			mcp.Description("Limit search to permission template names that contain the supplied string."),
 		),
 	)
 
@@ -858,15 +858,15 @@ func parsePermissionsSearchTemplates(request mcp.CallToolRequest) client.ApiPerm
 
 func registerPermissionsSetDefaultTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_set_default_template",
-		mcp.WithDescription("Set a permission template as default.<br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Set a permission template as default.<br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("qualifier",
-			mcp.Description("Project qualifier. Filter the results with the specified qualifier. Possible values are:<ul><li>TRK - Projects</li></ul> "),
+			mcp.Description("Project qualifier. Filter the results with the specified qualifier. Possible values are:<ul><li>TRK - Projects</li></ul>"),
 		),
 		mcp.WithString("templateId",
-			mcp.Description("Template id "),
+			mcp.Description("Template id"),
 		),
 		mcp.WithString("templateName",
-			mcp.Description("Template name "),
+			mcp.Description("Template name"),
 		),
 	)
 
@@ -906,19 +906,19 @@ func parsePermissionsSetDefaultTemplate(request mcp.CallToolRequest) client.ApiP
 
 func registerPermissionsUpdateTemplate(s *server.MCPServer) {
 	tool := mcp.NewTool("permissions_update_template",
-		mcp.WithDescription("Update a permission template.<br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Update a permission template.<br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("description",
-			mcp.Description("Description "),
+			mcp.Description("Description"),
 		),
 		mcp.WithString("id",
-			mcp.Description("Id "),
+			mcp.Description("Id"),
 			mcp.Required(),
 		),
 		mcp.WithString("name",
-			mcp.Description("Name "),
+			mcp.Description("Name"),
 		),
 		mcp.WithString("projectKeyPattern",
-			mcp.Description("Project key pattern. Must be a valid Java regular expression "),
+			mcp.Description("Project key pattern. Must be a valid Java regular expression"),
 		),
 	)
 

@@ -11,15 +11,15 @@ import (
 
 func registerUserGroupsAddUser(s *server.MCPServer) {
 	tool := mcp.NewTool("user_groups_add_user",
-		mcp.WithDescription("Add a user to a group.<br />'id' or 'name' must be provided.<br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Add a user to a group.<br />'id' or 'name' must be provided.<br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("id",
-			mcp.Description("Group id, use 'name' instead "),
+			mcp.Description("Group id, use 'name' instead"),
 		),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 		),
 		mcp.WithString("name",
-			mcp.Description("Group name "),
+			mcp.Description("Group name"),
 		),
 	)
 
@@ -59,12 +59,12 @@ func parseUserGroupsAddUser(request mcp.CallToolRequest) client.ApiUserGroupsAdd
 
 func registerUserGroupsCreate(s *server.MCPServer) {
 	tool := mcp.NewTool("user_groups_create",
-		mcp.WithDescription("Create a group.<br>Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Create a group.<br>Requires the following permission: 'Administer System'."),
 		mcp.WithString("description",
-			mcp.Description("Description for the new group. A group description cannot be larger than 200 characters. "),
+			mcp.Description("Description for the new group. A group description cannot be larger than 200 characters."),
 		),
 		mcp.WithString("name",
-			mcp.Description("Name for the new group. A group name cannot be larger than 255 characters and must be unique. The value 'anyone' (whatever the case) is reserved and cannot be used. "),
+			mcp.Description("Name for the new group. A group name cannot be larger than 255 characters and must be unique. The value 'anyone' (whatever the case) is reserved and cannot be used."),
 			mcp.Required(),
 		),
 	)
@@ -100,12 +100,12 @@ func parseUserGroupsCreate(request mcp.CallToolRequest) client.ApiUserGroupsCrea
 
 func registerUserGroupsDelete(s *server.MCPServer) {
 	tool := mcp.NewTool("user_groups_delete",
-		mcp.WithDescription("Delete a group. The default groups cannot be deleted.<br/>'id' or 'name' must be provided.<br />Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Delete a group. The default groups cannot be deleted.<br/>'id' or 'name' must be provided.<br />Requires the following permission: 'Administer System'."),
 		mcp.WithString("id",
-			mcp.Description("Group id, use 'name' instead "),
+			mcp.Description("Group id, use 'name' instead"),
 		),
 		mcp.WithString("name",
-			mcp.Description("Group name "),
+			mcp.Description("Group name"),
 		),
 	)
 
@@ -140,15 +140,15 @@ func parseUserGroupsDelete(request mcp.CallToolRequest) client.ApiUserGroupsDele
 
 func registerUserGroupsRemoveUser(s *server.MCPServer) {
 	tool := mcp.NewTool("user_groups_remove_user",
-		mcp.WithDescription("Remove a user from a group.<br />'id' or 'name' must be provided.<br>Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Remove a user from a group.<br />'id' or 'name' must be provided.<br>Requires the following permission: 'Administer System'."),
 		mcp.WithString("id",
-			mcp.Description("Group id, use 'name' instead "),
+			mcp.Description("Group id, use 'name' instead"),
 		),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 		),
 		mcp.WithString("name",
-			mcp.Description("Group name "),
+			mcp.Description("Group name"),
 		),
 	)
 
@@ -188,18 +188,18 @@ func parseUserGroupsRemoveUser(request mcp.CallToolRequest) client.ApiUserGroups
 
 func registerUserGroupsSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("user_groups_search",
-		mcp.WithDescription("Search for user groups.<br>Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Search for user groups.<br>Requires the following permission: 'Administer System'."),
 		mcp.WithString("f",
-			mcp.Description("Comma-separated list of the fields to be returned in response. All the fields are returned by default. "),
+			mcp.Description("Comma-separated list of the fields to be returned in response. All the fields are returned by default."),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 500 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 500"),
 		),
 		mcp.WithString("q",
-			mcp.Description("Limit search to names that contain the supplied string. "),
+			mcp.Description("Limit search to names that contain the supplied string."),
 		),
 	)
 
@@ -244,18 +244,18 @@ func parseUserGroupsSearch(request mcp.CallToolRequest) client.ApiUserGroupsSear
 
 func registerUserGroupsUpdate(s *server.MCPServer) {
 	tool := mcp.NewTool("user_groups_update",
-		mcp.WithDescription("Update a group.<br>Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Update a group.<br>Requires the following permission: 'Administer System'."),
 		mcp.WithString("currentName",
-			mcp.Description("Name of the group to be updated. Mandatory unless 'id' is used. "),
+			mcp.Description("Name of the group to be updated. Mandatory unless 'id' is used."),
 		),
 		mcp.WithString("description",
-			mcp.Description("New optional description for the group. A group description cannot be larger than 200 characters. If value is not defined, then description is not changed. "),
+			mcp.Description("New optional description for the group. A group description cannot be larger than 200 characters. If value is not defined, then description is not changed."),
 		),
 		mcp.WithString("id",
-			mcp.Description("Identifier of the group. Use 'currentName' instead. "),
+			mcp.Description("Identifier of the group. Use 'currentName' instead."),
 		),
 		mcp.WithString("name",
-			mcp.Description("New optional name for the group. A group name cannot be larger than 255 characters and must be unique. Value 'anyone' (whatever the case) is reserved and cannot be used. If value is empty or not defined, then name is not changed. "),
+			mcp.Description("New optional name for the group. A group name cannot be larger than 255 characters and must be unique. Value 'anyone' (whatever the case) is reserved and cannot be used. If value is empty or not defined, then name is not changed."),
 		),
 	)
 
@@ -300,24 +300,24 @@ func parseUserGroupsUpdate(request mcp.CallToolRequest) client.ApiUserGroupsUpda
 
 func registerUserGroupsUsers(s *server.MCPServer) {
 	tool := mcp.NewTool("user_groups_users",
-		mcp.WithDescription("Search for users with membership information with respect to a group.<br>Requires the following permission: 'Administer System'. "),
+		mcp.WithDescription("Search for users with membership information with respect to a group.<br>Requires the following permission: 'Administer System'."),
 		mcp.WithString("id",
-			mcp.Description("Group id, use 'name' instead "),
+			mcp.Description("Group id, use 'name' instead"),
 		),
 		mcp.WithString("name",
-			mcp.Description("Group name "),
+			mcp.Description("Group name"),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0. "),
+			mcp.Description("Page size. Must be greater than 0."),
 		),
 		mcp.WithString("q",
-			mcp.Description("Limit search to names or logins that contain the supplied string. "),
+			mcp.Description("Limit search to names or logins that contain the supplied string."),
 		),
 		mcp.WithString("selected",
-			mcp.Description("Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all). "),
+			mcp.Description("Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all)."),
 		),
 	)
 

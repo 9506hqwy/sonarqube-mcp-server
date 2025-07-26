@@ -11,36 +11,36 @@ import (
 
 func registerCeActivity(s *server.MCPServer) {
 	tool := mcp.NewTool("ce_activity",
-		mcp.WithDescription("Search for tasks.<br> Either componentId or component can be provided, but not both.<br> Requires the system administration permission, or project administration permission if componentId or component is set. "),
+		mcp.WithDescription("Search for tasks.<br> Either componentId or component can be provided, but not both.<br> Requires the system administration permission, or project administration permission if componentId or component is set."),
 		mcp.WithString("component",
-			mcp.Description("Key of the component (project) to filter on "),
+			mcp.Description("Key of the component (project) to filter on"),
 		),
 		mcp.WithString("componentId",
-			mcp.Description("Id of the component (project) to filter on "),
+			mcp.Description("Id of the component (project) to filter on"),
 		),
 		mcp.WithString("maxExecutedAt",
-			mcp.Description("Maximum date of end of task processing (inclusive) "),
+			mcp.Description("Maximum date of end of task processing (inclusive)"),
 		),
 		mcp.WithString("minSubmittedAt",
-			mcp.Description("Minimum date of task submission (inclusive) "),
+			mcp.Description("Minimum date of task submission (inclusive)"),
 		),
 		mcp.WithString("onlyCurrents",
-			mcp.Description("Filter on the last tasks (only the most recent finished task by project) "),
+			mcp.Description("Filter on the last tasks (only the most recent finished task by project)"),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 1000 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 1000"),
 		),
 		mcp.WithString("q",
-			mcp.Description("Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li><li>task ids that are exactly the same as the supplied string</li></ul>Must not be set together with componentId "),
+			mcp.Description("Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that are exactly the same as the supplied string</li><li>task ids that are exactly the same as the supplied string</li></ul>Must not be set together with componentId"),
 		),
 		mcp.WithString("status",
-			mcp.Description("Comma separated list of task statuses "),
+			mcp.Description("Comma separated list of task statuses"),
 		),
 		mcp.WithString("type",
-			mcp.Description("Task type "),
+			mcp.Description("Task type"),
 		),
 	)
 
@@ -115,12 +115,12 @@ func parseCeActivity(request mcp.CallToolRequest) client.ApiCeActivityParams {
 
 func registerCeActivityStatus(s *server.MCPServer) {
 	tool := mcp.NewTool("ce_activity_status",
-		mcp.WithDescription("Returns CE activity related metrics.<br>Requires 'Administer System' permission or 'Administer' rights on the specified project. "),
+		mcp.WithDescription("Returns CE activity related metrics.<br>Requires 'Administer System' permission or 'Administer' rights on the specified project."),
 		mcp.WithString("component",
-			mcp.Description("Key of the component (project) to filter on "),
+			mcp.Description("Key of the component (project) to filter on"),
 		),
 		mcp.WithString("componentId",
-			mcp.Description("Id of the component (project) to filter on "),
+			mcp.Description("Id of the component (project) to filter on"),
 		),
 	)
 
@@ -155,9 +155,9 @@ func parseCeActivityStatus(request mcp.CallToolRequest) client.ApiCeActivityStat
 
 func registerCeComponent(s *server.MCPServer) {
 	tool := mcp.NewTool("ce_component",
-		mcp.WithDescription("Get the pending tasks, in-progress tasks and the last executed task of a given component (usually a project).<br>Requires the following permission: 'Browse' on the specified component. "),
+		mcp.WithDescription("Get the pending tasks, in-progress tasks and the last executed task of a given component (usually a project).<br>Requires the following permission: 'Browse' on the specified component."),
 		mcp.WithString("component",
-			mcp.Description("null "),
+			mcp.Description("null"),
 			mcp.Required(),
 		),
 	)
@@ -188,12 +188,12 @@ func parseCeComponent(request mcp.CallToolRequest) client.ApiCeComponentParams {
 
 func registerCeTask(s *server.MCPServer) {
 	tool := mcp.NewTool("ce_task",
-		mcp.WithDescription("Give Compute Engine task details such as type, status, duration and associated component.<br />Requires 'Administer System' or 'Execute Analysis' permission.<br/>Since 6.1, field \"logs\" is deprecated and its value is always false. "),
+		mcp.WithDescription("Give Compute Engine task details such as type, status, duration and associated component.<br />Requires 'Administer System' or 'Execute Analysis' permission.<br/>Since 6.1, field \"logs\" is deprecated and its value is always false."),
 		mcp.WithString("additionalFields",
-			mcp.Description("Comma-separated list of the optional fields to be returned in response. "),
+			mcp.Description("Comma-separated list of the optional fields to be returned in response."),
 		),
 		mcp.WithString("id",
-			mcp.Description("Id of task "),
+			mcp.Description("Id of task"),
 			mcp.Required(),
 		),
 	)

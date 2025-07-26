@@ -11,12 +11,12 @@ import (
 
 func registerMetricsSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("metrics_search",
-		mcp.WithDescription("Search for metrics "),
+		mcp.WithDescription("Search for metrics"),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 500 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 500"),
 		),
 	)
 
@@ -51,7 +51,7 @@ func parseMetricsSearch(request mcp.CallToolRequest) client.ApiMetricsSearchPara
 
 func registerMetricsTypes(s *server.MCPServer) {
 	tool := mcp.NewTool("metrics_types",
-		mcp.WithDescription("List all available metric types. "),
+		mcp.WithDescription("List all available metric types."),
 	)
 
 	s.AddTool(tool, metricsTypesHandler)

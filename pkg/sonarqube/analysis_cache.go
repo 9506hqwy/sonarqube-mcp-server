@@ -11,12 +11,12 @@ import (
 
 func registerAnalysisCacheGet(s *server.MCPServer) {
 	tool := mcp.NewTool("analysis_cache_get",
-		mcp.WithDescription("Get the scanner's cached data for a branch. Requires scan permission on the project. Data is returned gzipped if the corresponding 'Accept-Encoding' header is set in the request. "),
+		mcp.WithDescription("Get the scanner's cached data for a branch. Requires scan permission on the project. Data is returned gzipped if the corresponding 'Accept-Encoding' header is set in the request."),
 		mcp.WithString("branch",
-			mcp.Description("Branch key. If not provided, main branch will be used. "),
+			mcp.Description("Branch key. If not provided, main branch will be used."),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)

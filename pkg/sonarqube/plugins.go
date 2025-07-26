@@ -11,7 +11,7 @@ import (
 
 func registerPluginsAvailable(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_available",
-		mcp.WithDescription("Get the list of all the plugins available for installation on the SonarQube instance, sorted by plugin name.<br/>Plugin information is retrieved from Update Center. Date and time at which Update Center was last refreshed is provided in the response.<br/>Update status values are: <ul><li>COMPATIBLE: plugin is compatible with current SonarQube instance.</li><li>INCOMPATIBLE: plugin is not compatible with current SonarQube instance.</li><li>REQUIRES_SYSTEM_UPGRADE: plugin requires SonarQube to be upgraded before being installed.</li><li>DEPS_REQUIRE_SYSTEM_UPGRADE: at least one plugin on which the plugin is dependent requires SonarQube to be upgraded.</li></ul>Require 'Administer System' permission. "),
+		mcp.WithDescription("Get the list of all the plugins available for installation on the SonarQube instance, sorted by plugin name.<br/>Plugin information is retrieved from Update Center. Date and time at which Update Center was last refreshed is provided in the response.<br/>Update status values are: <ul><li>COMPATIBLE: plugin is compatible with current SonarQube instance.</li><li>INCOMPATIBLE: plugin is not compatible with current SonarQube instance.</li><li>REQUIRES_SYSTEM_UPGRADE: plugin requires SonarQube to be upgraded before being installed.</li><li>DEPS_REQUIRE_SYSTEM_UPGRADE: at least one plugin on which the plugin is dependent requires SonarQube to be upgraded.</li></ul>Require 'Administer System' permission."),
 	)
 
 	s.AddTool(tool, pluginsAvailableHandler)
@@ -28,7 +28,7 @@ func pluginsAvailableHandler(ctx context.Context, request mcp.CallToolRequest) (
 
 func registerPluginsCancelAll(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_cancel_all",
-		mcp.WithDescription("Cancels any operation pending on any plugin (install, update or uninstall)<br/>Requires user to be authenticated with Administer System permissions "),
+		mcp.WithDescription("Cancels any operation pending on any plugin (install, update or uninstall)<br/>Requires user to be authenticated with Administer System permissions"),
 	)
 
 	s.AddTool(tool, pluginsCancelAllHandler)
@@ -45,9 +45,9 @@ func pluginsCancelAllHandler(ctx context.Context, request mcp.CallToolRequest) (
 
 func registerPluginsInstall(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_install",
-		mcp.WithDescription("Installs the latest version of a plugin specified by its key.<br/>Plugin information is retrieved from Update Center.<br/>Fails if used on commercial editions or plugin risk consent has not been accepted.<br/>Requires user to be authenticated with Administer System permissions "),
+		mcp.WithDescription("Installs the latest version of a plugin specified by its key.<br/>Plugin information is retrieved from Update Center.<br/>Fails if used on commercial editions or plugin risk consent has not been accepted.<br/>Requires user to be authenticated with Administer System permissions"),
 		mcp.WithString("key",
-			mcp.Description("The key identifying the plugin to install "),
+			mcp.Description("The key identifying the plugin to install"),
 			mcp.Required(),
 		),
 	)
@@ -78,9 +78,9 @@ func parsePluginsInstall(request mcp.CallToolRequest) client.ApiPluginsInstallPa
 
 func registerPluginsInstalled(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_installed",
-		mcp.WithDescription("Get the list of all the plugins installed on the SonarQube instance, sorted by plugin name.<br/>Requires authentication. "),
+		mcp.WithDescription("Get the list of all the plugins installed on the SonarQube instance, sorted by plugin name.<br/>Requires authentication."),
 		mcp.WithString("f",
-			mcp.Description("Comma-separated list of the additional fields to be returned in response. No additional field is returned by default. Possible values are:<ul><li>category - category as defined in the Update Center. A connection to the Update Center is needed</li></ul> "),
+			mcp.Description("Comma-separated list of the additional fields to be returned in response. No additional field is returned by default. Possible values are:<ul><li>category - category as defined in the Update Center. A connection to the Update Center is needed</li></ul>"),
 		),
 	)
 
@@ -110,7 +110,7 @@ func parsePluginsInstalled(request mcp.CallToolRequest) client.ApiPluginsInstall
 
 func registerPluginsPending(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_pending",
-		mcp.WithDescription("Get the list of plugins which will either be installed or removed at the next startup of the SonarQube instance, sorted by plugin name.<br/>Require 'Administer System' permission. "),
+		mcp.WithDescription("Get the list of plugins which will either be installed or removed at the next startup of the SonarQube instance, sorted by plugin name.<br/>Require 'Administer System' permission."),
 	)
 
 	s.AddTool(tool, pluginsPendingHandler)
@@ -127,9 +127,9 @@ func pluginsPendingHandler(ctx context.Context, request mcp.CallToolRequest) (*m
 
 func registerPluginsUninstall(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_uninstall",
-		mcp.WithDescription("Uninstalls the plugin specified by its key.<br/>Requires user to be authenticated with Administer System permissions. "),
+		mcp.WithDescription("Uninstalls the plugin specified by its key.<br/>Requires user to be authenticated with Administer System permissions."),
 		mcp.WithString("key",
-			mcp.Description("The key identifying the plugin to uninstall "),
+			mcp.Description("The key identifying the plugin to uninstall"),
 			mcp.Required(),
 		),
 	)
@@ -160,9 +160,9 @@ func parsePluginsUninstall(request mcp.CallToolRequest) client.ApiPluginsUninsta
 
 func registerPluginsUpdate(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_update",
-		mcp.WithDescription("Updates a plugin specified by its key to the latest version compatible with the SonarQube instance.<br/>Plugin information is retrieved from Update Center.<br/>Requires user to be authenticated with Administer System permissions "),
+		mcp.WithDescription("Updates a plugin specified by its key to the latest version compatible with the SonarQube instance.<br/>Plugin information is retrieved from Update Center.<br/>Requires user to be authenticated with Administer System permissions"),
 		mcp.WithString("key",
-			mcp.Description("The key identifying the plugin to update "),
+			mcp.Description("The key identifying the plugin to update"),
 			mcp.Required(),
 		),
 	)
@@ -193,7 +193,7 @@ func parsePluginsUpdate(request mcp.CallToolRequest) client.ApiPluginsUpdatePara
 
 func registerPluginsUpdates(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_updates",
-		mcp.WithDescription("Lists plugins installed on the SonarQube instance for which at least one newer version is available, sorted by plugin name.<br/>Each newer version is listed, ordered from the oldest to the newest, with its own update/compatibility status.<br/>Plugin information is retrieved from Update Center. Date and time at which Update Center was last refreshed is provided in the response.<br/>Update status values are: [COMPATIBLE, INCOMPATIBLE, REQUIRES_UPGRADE, DEPS_REQUIRE_UPGRADE].<br/>Require 'Administer System' permission. "),
+		mcp.WithDescription("Lists plugins installed on the SonarQube instance for which at least one newer version is available, sorted by plugin name.<br/>Each newer version is listed, ordered from the oldest to the newest, with its own update/compatibility status.<br/>Plugin information is retrieved from Update Center. Date and time at which Update Center was last refreshed is provided in the response.<br/>Update status values are: [COMPATIBLE, INCOMPATIBLE, REQUIRES_UPGRADE, DEPS_REQUIRE_UPGRADE].<br/>Require 'Administer System' permission."),
 	)
 
 	s.AddTool(tool, pluginsUpdatesHandler)

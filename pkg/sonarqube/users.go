@@ -11,9 +11,9 @@ import (
 
 func registerUsersAnonymize(s *server.MCPServer) {
 	tool := mcp.NewTool("users_anonymize",
-		mcp.WithDescription("Anonymize a deactivated user. Requires Administer System permission "),
+		mcp.WithDescription("Anonymize a deactivated user. Requires Administer System permission"),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 	)
@@ -44,17 +44,17 @@ func parseUsersAnonymize(request mcp.CallToolRequest) client.ApiUsersAnonymizePa
 
 func registerUsersChangePassword(s *server.MCPServer) {
 	tool := mcp.NewTool("users_change_password",
-		mcp.WithDescription("Update a user's password. Authenticated users can change their own password, provided that the account is not linked to an external authentication system. Administer System permission is required to change another user's password. "),
+		mcp.WithDescription("Update a user's password. Authenticated users can change their own password, provided that the account is not linked to an external authentication system. Administer System permission is required to change another user's password."),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 		mcp.WithString("password",
-			mcp.Description("New password "),
+			mcp.Description("New password"),
 			mcp.Required(),
 		),
 		mcp.WithString("previousPassword",
-			mcp.Description("Previous password. Required when changing one's own password. "),
+			mcp.Description("Previous password. Required when changing one's own password."),
 		),
 	)
 
@@ -94,26 +94,26 @@ func parseUsersChangePassword(request mcp.CallToolRequest) client.ApiUsersChange
 
 func registerUsersCreate(s *server.MCPServer) {
 	tool := mcp.NewTool("users_create",
-		mcp.WithDescription("Create a user.<br/>If a deactivated user account exists with the given login, it will be reactivated.<br/>Requires Administer System permission "),
+		mcp.WithDescription("Create a user.<br/>If a deactivated user account exists with the given login, it will be reactivated.<br/>Requires Administer System permission"),
 		mcp.WithString("email",
-			mcp.Description("User email "),
+			mcp.Description("User email"),
 		),
 		mcp.WithString("local",
-			mcp.Description("Specify if the user should be authenticated from SonarQube server or from an external authentication system. Password should not be set when local is set to false. "),
+			mcp.Description("Specify if the user should be authenticated from SonarQube server or from an external authentication system. Password should not be set when local is set to false."),
 		),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 		mcp.WithString("name",
-			mcp.Description("User name "),
+			mcp.Description("User name"),
 			mcp.Required(),
 		),
 		mcp.WithString("password",
-			mcp.Description("User password. Only mandatory when creating local user, otherwise it should not be set "),
+			mcp.Description("User password. Only mandatory when creating local user, otherwise it should not be set"),
 		),
 		mcp.WithString("scmAccount",
-			mcp.Description("List of SCM accounts. To set several values, the parameter must be called once for each value. "),
+			mcp.Description("List of SCM accounts. To set several values, the parameter must be called once for each value."),
 		),
 	)
 
@@ -168,12 +168,12 @@ func parseUsersCreate(request mcp.CallToolRequest) client.ApiUsersCreateParams {
 
 func registerUsersDeactivate(s *server.MCPServer) {
 	tool := mcp.NewTool("users_deactivate",
-		mcp.WithDescription("Deactivate a user. Requires Administer System permission "),
+		mcp.WithDescription("Deactivate a user. Requires Administer System permission"),
 		mcp.WithString("anonymize",
-			mcp.Description("Anonymize user in addition to deactivating it "),
+			mcp.Description("Anonymize user in addition to deactivating it"),
 		),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 	)
@@ -209,7 +209,7 @@ func parseUsersDeactivate(request mcp.CallToolRequest) client.ApiUsersDeactivate
 
 func registerUsersDismissSonarlintAd(s *server.MCPServer) {
 	tool := mcp.NewTool("users_dismiss_sonarlint_ad",
-		mcp.WithDescription("Dismiss SonarLint advertisement. Deprecated since 9.6, replaced api/users/dismiss_notice "),
+		mcp.WithDescription("Dismiss SonarLint advertisement. Deprecated since 9.6, replaced api/users/dismiss_notice"),
 	)
 
 	s.AddTool(tool, usersDismissSonarlintAdHandler)
@@ -226,22 +226,22 @@ func usersDismissSonarlintAdHandler(ctx context.Context, request mcp.CallToolReq
 
 func registerUsersGroups(s *server.MCPServer) {
 	tool := mcp.NewTool("users_groups",
-		mcp.WithDescription("Lists the groups a user belongs to. <br/>Requires Administer System permission. "),
+		mcp.WithDescription("Lists the groups a user belongs to. <br/>Requires Administer System permission."),
 		mcp.WithString("login",
-			mcp.Description("A user login "),
+			mcp.Description("A user login"),
 			mcp.Required(),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0. "),
+			mcp.Description("Page size. Must be greater than 0."),
 		),
 		mcp.WithString("q",
-			mcp.Description("Limit search to group names that contain the supplied string. "),
+			mcp.Description("Limit search to group names that contain the supplied string."),
 		),
 		mcp.WithString("selected",
-			mcp.Description("Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all). "),
+			mcp.Description("Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all)."),
 		),
 	)
 
@@ -291,21 +291,21 @@ func parseUsersGroups(request mcp.CallToolRequest) client.ApiUsersGroupsParams {
 
 func registerUsersSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("users_search",
-		mcp.WithDescription("Get a list of users. By default, only active users are returned.<br/>The following fields are only returned when user has Administer System permission or for logged-in in user :<ul> <li>'email'</li> <li>'externalIdentity'</li> <li>'externalProvider'</li> <li>'groups'</li> <li>'lastConnectionDate'</li> <li>'tokensCount'</li></ul>Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user authenticates many times in less than one hour. "),
+		mcp.WithDescription("Get a list of users. By default, only active users are returned.<br/>The following fields are only returned when user has Administer System permission or for logged-in in user :<ul> <li>'email'</li> <li>'externalIdentity'</li> <li>'externalProvider'</li> <li>'groups'</li> <li>'lastConnectionDate'</li> <li>'tokensCount'</li></ul>Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user authenticates many times in less than one hour."),
 		mcp.WithString("deactivated",
-			mcp.Description("Return deactivated users instead of active users "),
+			mcp.Description("Return deactivated users instead of active users"),
 		),
 		mcp.WithString("externalIdentity",
-			mcp.Description("Find a user by its external identity (ie. its login in the Identity Provider). This is case sensitive and only available with Administer System permission. "),
+			mcp.Description("Find a user by its external identity (ie. its login in the Identity Provider). This is case sensitive and only available with Administer System permission."),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 500 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 500"),
 		),
 		mcp.WithString("q",
-			mcp.Description("Filter on login, name and email.<br />This parameter can either be case sensitive and perform an exact match, or case insensitive and perform a partial match (contains), depending on the scenario:<br /><ul> <li> If the search query is <em>less or equal to 15 characters</em>, then the query is <em>case insensitive</em>, and will match any login, name, or email, that <em>contains</em> the search query. </li> <li> If the search query is <em>greater than 15 characters</em>, then the query becomes <em>case sensitive</em>, and will match any login, name, or email, that <em>exactly matches</em> the search query. </li></ul> "),
+			mcp.Description("Filter on login, name and email.<br />This parameter can either be case sensitive and perform an exact match, or case insensitive and perform a partial match (contains), depending on the scenario:<br /><ul> <li> If the search query is <em>less or equal to 15 characters</em>, then the query is <em>case insensitive</em>, and will match any login, name, or email, that <em>contains</em> the search query. </li> <li> If the search query is <em>greater than 15 characters</em>, then the query becomes <em>case sensitive</em>, and will match any login, name, or email, that <em>exactly matches</em> the search query. </li></ul>"),
 		),
 	)
 
@@ -355,19 +355,19 @@ func parseUsersSearch(request mcp.CallToolRequest) client.ApiUsersSearchParams {
 
 func registerUsersUpdate(s *server.MCPServer) {
 	tool := mcp.NewTool("users_update",
-		mcp.WithDescription("Update a user.<br/>Requires Administer System permission "),
+		mcp.WithDescription("Update a user.<br/>Requires Administer System permission"),
 		mcp.WithString("email",
-			mcp.Description("User email "),
+			mcp.Description("User email"),
 		),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 		mcp.WithString("name",
-			mcp.Description("User name "),
+			mcp.Description("User name"),
 		),
 		mcp.WithString("scmAccount",
-			mcp.Description("SCM accounts. To set several values, the parameter must be called once for each value. "),
+			mcp.Description("SCM accounts. To set several values, the parameter must be called once for each value."),
 		),
 	)
 
@@ -412,16 +412,16 @@ func parseUsersUpdate(request mcp.CallToolRequest) client.ApiUsersUpdateParams {
 
 func registerUsersUpdateIdentityProvider(s *server.MCPServer) {
 	tool := mcp.NewTool("users_update_identity_provider",
-		mcp.WithDescription("Update identity provider information. <br/>It's only possible to migrate to an installed identity provider. Be careful that as soon as this information has been updated for a user, the user will only be able to authenticate on the new identity provider. It is not possible to migrate external user to local one.<br/>Requires Administer System permission. "),
+		mcp.WithDescription("Update identity provider information. <br/>It's only possible to migrate to an installed identity provider. Be careful that as soon as this information has been updated for a user, the user will only be able to authenticate on the new identity provider. It is not possible to migrate external user to local one.<br/>Requires Administer System permission."),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 			mcp.Required(),
 		),
 		mcp.WithString("newExternalIdentity",
-			mcp.Description("New external identity, usually the login used in the authentication system. If not provided previous identity will be used. "),
+			mcp.Description("New external identity, usually the login used in the authentication system. If not provided previous identity will be used."),
 		),
 		mcp.WithString("newExternalProvider",
-			mcp.Description("New external provider. Only authentication system installed are available. Use 'LDAP' identity provider for single server LDAP setup.User 'LDAP_{serverKey}' identity provider for multiple LDAP server setup. "),
+			mcp.Description("New external provider. Only authentication system installed are available. Use 'LDAP' identity provider for single server LDAP setup.User 'LDAP_{serverKey}' identity provider for multiple LDAP server setup."),
 			mcp.Required(),
 		),
 	)
@@ -462,13 +462,13 @@ func parseUsersUpdateIdentityProvider(request mcp.CallToolRequest) client.ApiUse
 
 func registerUsersUpdateLogin(s *server.MCPServer) {
 	tool := mcp.NewTool("users_update_login",
-		mcp.WithDescription("Update a user login. A login can be updated many times.<br/>Requires Administer System permission "),
+		mcp.WithDescription("Update a user login. A login can be updated many times.<br/>Requires Administer System permission"),
 		mcp.WithString("login",
-			mcp.Description("The current login (case-sensitive) "),
+			mcp.Description("The current login (case-sensitive)"),
 			mcp.Required(),
 		),
 		mcp.WithString("newLogin",
-			mcp.Description("The new login. It must not already exist. "),
+			mcp.Description("The new login. It must not already exist."),
 			mcp.Required(),
 		),
 	)

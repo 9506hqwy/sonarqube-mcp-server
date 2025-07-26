@@ -11,9 +11,9 @@ import (
 
 func registerProjectDumpExport(s *server.MCPServer) {
 	tool := mcp.NewTool("project_dump_export",
-		mcp.WithDescription("Triggers project dump so that the project can be imported to another SonarQube server (see api/project_dump/import, available in Enterprise Edition). Requires the 'Administer' permission. "),
+		mcp.WithDescription("Triggers project dump so that the project can be imported to another SonarQube server (see api/project_dump/import, available in Enterprise Edition). Requires the 'Administer' permission."),
 		mcp.WithString("key",
-			mcp.Description("null "),
+			mcp.Description("null"),
 			mcp.Required(),
 		),
 	)

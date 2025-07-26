@@ -11,16 +11,16 @@ import (
 
 func registerQualitygatesCopy(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_copy",
-		mcp.WithDescription("Copy a Quality Gate.<br>Either 'sourceName' or 'id' must be provided. Requires the 'Administer Quality Gates' permission. "),
+		mcp.WithDescription("Copy a Quality Gate.<br>Either 'sourceName' or 'id' must be provided. Requires the 'Administer Quality Gates' permission."),
 		mcp.WithString("id",
-			mcp.Description("The ID of the source quality gate. This parameter is deprecated. Use 'sourceName' instead. "),
+			mcp.Description("The ID of the source quality gate. This parameter is deprecated. Use 'sourceName' instead."),
 		),
 		mcp.WithString("name",
-			mcp.Description("The name of the quality gate to create "),
+			mcp.Description("The name of the quality gate to create"),
 			mcp.Required(),
 		),
 		mcp.WithString("sourceName",
-			mcp.Description("The name of the quality gate to copy "),
+			mcp.Description("The name of the quality gate to copy"),
 		),
 	)
 
@@ -60,9 +60,9 @@ func parseQualitygatesCopy(request mcp.CallToolRequest) client.ApiQualitygatesCo
 
 func registerQualitygatesCreate(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_create",
-		mcp.WithDescription("Create a Quality Gate.<br>Requires the 'Administer Quality Gates' permission. "),
+		mcp.WithDescription("Create a Quality Gate.<br>Requires the 'Administer Quality Gates' permission."),
 		mcp.WithString("name",
-			mcp.Description("The name of the quality gate to create "),
+			mcp.Description("The name of the quality gate to create"),
 			mcp.Required(),
 		),
 	)
@@ -93,23 +93,23 @@ func parseQualitygatesCreate(request mcp.CallToolRequest) client.ApiQualitygates
 
 func registerQualitygatesCreateCondition(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_create_condition",
-		mcp.WithDescription("Add a new condition to a quality gate.<br>Either 'gateId' or 'gateName' must be provided. Requires the 'Administer Quality Gates' permission. "),
+		mcp.WithDescription("Add a new condition to a quality gate.<br>Either 'gateId' or 'gateName' must be provided. Requires the 'Administer Quality Gates' permission."),
 		mcp.WithString("error",
-			mcp.Description("Condition error threshold "),
+			mcp.Description("Condition error threshold"),
 			mcp.Required(),
 		),
 		mcp.WithString("gateId",
-			mcp.Description("ID of the quality gate. This parameter is deprecated. Use 'gateName' instead. "),
+			mcp.Description("ID of the quality gate. This parameter is deprecated. Use 'gateName' instead."),
 		),
 		mcp.WithString("gateName",
-			mcp.Description("Name of the quality gate "),
+			mcp.Description("Name of the quality gate"),
 		),
 		mcp.WithString("metric",
-			mcp.Description("Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>alert_status</li><li>new_security_hotspots</li></ul> "),
+			mcp.Description("Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>new_security_hotspots</li><li>alert_status</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("op",
-			mcp.Description("Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul> "),
+			mcp.Description("Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>"),
 		),
 	)
 
@@ -159,9 +159,9 @@ func parseQualitygatesCreateCondition(request mcp.CallToolRequest) client.ApiQua
 
 func registerQualitygatesDeleteCondition(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_delete_condition",
-		mcp.WithDescription("Delete a condition from a quality gate.<br>Requires the 'Administer Quality Gates' permission. "),
+		mcp.WithDescription("Delete a condition from a quality gate.<br>Requires the 'Administer Quality Gates' permission."),
 		mcp.WithString("id",
-			mcp.Description("Condition UUID "),
+			mcp.Description("Condition UUID"),
 			mcp.Required(),
 		),
 	)
@@ -192,9 +192,9 @@ func parseQualitygatesDeleteCondition(request mcp.CallToolRequest) client.ApiQua
 
 func registerQualitygatesDeselect(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_deselect",
-		mcp.WithDescription("Remove the association of a project from a quality gate.<br>Requires one of the following permissions:<ul><li>'Administer Quality Gates'</li><li>'Administer' rights on the project</li></ul> "),
+		mcp.WithDescription("Remove the association of a project from a quality gate.<br>Requires one of the following permissions:<ul><li>'Administer Quality Gates'</li><li>'Administer' rights on the project</li></ul>"),
 		mcp.WithString("projectKey",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -225,12 +225,12 @@ func parseQualitygatesDeselect(request mcp.CallToolRequest) client.ApiQualitygat
 
 func registerQualitygatesDestroy(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_destroy",
-		mcp.WithDescription("Delete a Quality Gate.<br>Either 'id' or 'name' must be specified. Requires the 'Administer Quality Gates' permission. "),
+		mcp.WithDescription("Delete a Quality Gate.<br>Either 'id' or 'name' must be specified. Requires the 'Administer Quality Gates' permission."),
 		mcp.WithString("id",
-			mcp.Description("ID of the quality gate to delete. This parameter is deprecated. Use 'name' instead. "),
+			mcp.Description("ID of the quality gate to delete. This parameter is deprecated. Use 'name' instead."),
 		),
 		mcp.WithString("name",
-			mcp.Description("Name of the quality gate to delete "),
+			mcp.Description("Name of the quality gate to delete"),
 		),
 	)
 
@@ -265,9 +265,9 @@ func parseQualitygatesDestroy(request mcp.CallToolRequest) client.ApiQualitygate
 
 func registerQualitygatesGetByProject(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_get_by_project",
-		mcp.WithDescription("Get the quality gate of a project.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li></ul> "),
+		mcp.WithDescription("Get the quality gate of a project.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li></ul>"),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -298,7 +298,7 @@ func parseQualitygatesGetByProject(request mcp.CallToolRequest) client.ApiQualit
 
 func registerQualitygatesList(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_list",
-		mcp.WithDescription("Get a list of quality gates "),
+		mcp.WithDescription("Get a list of quality gates"),
 	)
 
 	s.AddTool(tool, qualitygatesListHandler)
@@ -315,21 +315,21 @@ func qualitygatesListHandler(ctx context.Context, request mcp.CallToolRequest) (
 
 func registerQualitygatesProjectStatus(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_project_status",
-		mcp.WithDescription("Get the quality gate status of a project or a Compute Engine task.<br />Either 'analysisId', 'projectId' or 'projectKey' must be provided <br />The different statuses returned are: OK, WARN, ERROR, NONE. The NONE status is returned when there is no quality gate associated with the analysis.<br />Returns an HTTP code 404 if the analysis associated with the task is not found or does not exist.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li><li>'Execute Analysis' on the specified project</li></ul> "),
+		mcp.WithDescription("Get the quality gate status of a project or a Compute Engine task.<br />Either 'analysisId', 'projectId' or 'projectKey' must be provided <br />The different statuses returned are: OK, WARN, ERROR, NONE. The NONE status is returned when there is no quality gate associated with the analysis.<br />Returns an HTTP code 404 if the analysis associated with the task is not found or does not exist.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li><li>'Execute Analysis' on the specified project</li></ul>"),
 		mcp.WithString("analysisId",
-			mcp.Description("Analysis id "),
+			mcp.Description("Analysis id"),
 		),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 		),
 		mcp.WithString("projectId",
-			mcp.Description("Project UUID. Doesn't work with branches or pull requests "),
+			mcp.Description("Project UUID. Doesn't work with branches or pull requests"),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 		mcp.WithString("pullRequest",
-			mcp.Description("Pull request id "),
+			mcp.Description("Pull request id"),
 		),
 	)
 
@@ -379,15 +379,15 @@ func parseQualitygatesProjectStatus(request mcp.CallToolRequest) client.ApiQuali
 
 func registerQualitygatesRename(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_rename",
-		mcp.WithDescription("Rename a Quality Gate.<br>Either 'id' or 'currentName' must be specified. Requires the 'Administer Quality Gates' permission. "),
+		mcp.WithDescription("Rename a Quality Gate.<br>Either 'id' or 'currentName' must be specified. Requires the 'Administer Quality Gates' permission."),
 		mcp.WithString("currentName",
-			mcp.Description("Current name of the quality gate "),
+			mcp.Description("Current name of the quality gate"),
 		),
 		mcp.WithString("id",
-			mcp.Description("ID of the quality gate to rename. This parameter is deprecated. Use 'currentName' instead. "),
+			mcp.Description("ID of the quality gate to rename. This parameter is deprecated. Use 'currentName' instead."),
 		),
 		mcp.WithString("name",
-			mcp.Description("New name of the quality gate "),
+			mcp.Description("New name of the quality gate"),
 			mcp.Required(),
 		),
 	)
@@ -428,24 +428,24 @@ func parseQualitygatesRename(request mcp.CallToolRequest) client.ApiQualitygates
 
 func registerQualitygatesSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_search",
-		mcp.WithDescription("Search for projects associated (or not) to a quality gate.<br/>Only authorized projects for the current user will be returned. "),
+		mcp.WithDescription("Search for projects associated (or not) to a quality gate.<br/>Only authorized projects for the current user will be returned."),
 		mcp.WithString("gateId",
-			mcp.Description("Quality Gate ID. This parameter is deprecated. Use 'gateName' instead. "),
+			mcp.Description("Quality Gate ID. This parameter is deprecated. Use 'gateName' instead."),
 		),
 		mcp.WithString("gateName",
-			mcp.Description("Quality Gate name "),
+			mcp.Description("Quality Gate name"),
 		),
 		mcp.WithString("page",
-			mcp.Description("Page number "),
+			mcp.Description("Page number"),
 		),
 		mcp.WithString("pageSize",
-			mcp.Description("Page size "),
+			mcp.Description("Page size"),
 		),
 		mcp.WithString("query",
-			mcp.Description("To search for projects containing this string. If this parameter is set, \"selected\" is set to \"all\". "),
+			mcp.Description("To search for projects containing this string. If this parameter is set, \"selected\" is set to \"all\"."),
 		),
 		mcp.WithString("selected",
-			mcp.Description("Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all). "),
+			mcp.Description("Depending on the value, show only selected items (selected=selected), deselected items (selected=deselected), or all items with their selection status (selected=all)."),
 		),
 	)
 
@@ -500,15 +500,15 @@ func parseQualitygatesSearch(request mcp.CallToolRequest) client.ApiQualitygates
 
 func registerQualitygatesSelect(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_select",
-		mcp.WithDescription("Associate a project to a quality gate.<br>Requires one of the following permissions:<ul> <li>'Administer Quality Gates'</li> <li>'Administer' right on the specified project</li></ul> "),
+		mcp.WithDescription("Associate a project to a quality gate.<br>Requires one of the following permissions:<ul> <li>'Administer Quality Gates'</li> <li>'Administer' right on the specified project</li></ul>"),
 		mcp.WithString("gateId",
-			mcp.Description("Quality gate ID. This parameter is deprecated. Use 'gateName' instead. "),
+			mcp.Description("Quality gate ID. This parameter is deprecated. Use 'gateName' instead."),
 		),
 		mcp.WithString("gateName",
-			mcp.Description("Name of the quality gate "),
+			mcp.Description("Name of the quality gate"),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -549,12 +549,12 @@ func parseQualitygatesSelect(request mcp.CallToolRequest) client.ApiQualitygates
 
 func registerQualitygatesSetAsDefault(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_set_as_default",
-		mcp.WithDescription("Set a quality gate as the default quality gate.<br>Either 'id' or 'name' must be specified. Requires the 'Administer Quality Gates' permission. "),
+		mcp.WithDescription("Set a quality gate as the default quality gate.<br>Either 'id' or 'name' must be specified. Requires the 'Administer Quality Gates' permission."),
 		mcp.WithString("id",
-			mcp.Description("ID of the quality gate to set as default. This parameter is deprecated. Use 'name' instead. "),
+			mcp.Description("ID of the quality gate to set as default. This parameter is deprecated. Use 'name' instead."),
 		),
 		mcp.WithString("name",
-			mcp.Description("Name of the quality gate to set as default "),
+			mcp.Description("Name of the quality gate to set as default"),
 		),
 	)
 
@@ -589,12 +589,12 @@ func parseQualitygatesSetAsDefault(request mcp.CallToolRequest) client.ApiQualit
 
 func registerQualitygatesShow(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_show",
-		mcp.WithDescription("Display the details of a quality gate "),
+		mcp.WithDescription("Display the details of a quality gate"),
 		mcp.WithString("id",
-			mcp.Description("ID of the quality gate. Either id or name must be set "),
+			mcp.Description("ID of the quality gate. Either id or name must be set"),
 		),
 		mcp.WithString("name",
-			mcp.Description("Name of the quality gate. Either id or name must be set "),
+			mcp.Description("Name of the quality gate. Either id or name must be set"),
 		),
 	)
 
@@ -629,21 +629,21 @@ func parseQualitygatesShow(request mcp.CallToolRequest) client.ApiQualitygatesSh
 
 func registerQualitygatesUpdateCondition(s *server.MCPServer) {
 	tool := mcp.NewTool("qualitygates_update_condition",
-		mcp.WithDescription("Update a condition attached to a quality gate.<br>Requires the 'Administer Quality Gates' permission. "),
+		mcp.WithDescription("Update a condition attached to a quality gate.<br>Requires the 'Administer Quality Gates' permission."),
 		mcp.WithString("error",
-			mcp.Description("Condition error threshold "),
+			mcp.Description("Condition error threshold"),
 			mcp.Required(),
 		),
 		mcp.WithString("id",
-			mcp.Description("Condition ID "),
+			mcp.Description("Condition ID"),
 			mcp.Required(),
 		),
 		mcp.WithString("metric",
-			mcp.Description("Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>alert_status</li><li>new_security_hotspots</li></ul> "),
+			mcp.Description("Condition metric.<br/> Only metric of the following types are allowed:<ul><li>INT</li><li>MILLISEC</li><li>RATING</li><li>WORK_DUR</li><li>FLOAT</li><li>PERCENT</li><li>LEVEL</li></ul>Following metrics are forbidden:<ul><li>security_hotspots</li><li>new_security_hotspots</li><li>alert_status</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("op",
-			mcp.Description("Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul> "),
+			mcp.Description("Condition operator:<br/><ul><li>LT = is lower than</li><li>GT = is greater than</li></ul>"),
 		),
 	)
 

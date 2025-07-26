@@ -11,13 +11,13 @@ import (
 
 func registerProjectBranchesDelete(s *server.MCPServer) {
 	tool := mcp.NewTool("project_branches_delete",
-		mcp.WithDescription("Delete a non-main branch of a project or application.<br/>Requires 'Administer' rights on the specified project or application. "),
+		mcp.WithDescription("Delete a non-main branch of a project or application.<br/>Requires 'Administer' rights on the specified project or application."),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 			mcp.Required(),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -53,9 +53,9 @@ func parseProjectBranchesDelete(request mcp.CallToolRequest) client.ApiProjectBr
 
 func registerProjectBranchesList(s *server.MCPServer) {
 	tool := mcp.NewTool("project_branches_list",
-		mcp.WithDescription("List the branches of a project or application.<br/>Requires 'Browse' or 'Execute analysis' rights on the specified project or application. "),
+		mcp.WithDescription("List the branches of a project or application.<br/>Requires 'Browse' or 'Execute analysis' rights on the specified project or application."),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -86,13 +86,13 @@ func parseProjectBranchesList(request mcp.CallToolRequest) client.ApiProjectBran
 
 func registerProjectBranchesRename(s *server.MCPServer) {
 	tool := mcp.NewTool("project_branches_rename",
-		mcp.WithDescription("Rename the main branch of a project or application.<br/>Requires 'Administer' permission on the specified project or application. "),
+		mcp.WithDescription("Rename the main branch of a project or application.<br/>Requires 'Administer' permission on the specified project or application."),
 		mcp.WithString("name",
-			mcp.Description("New name of the main branch "),
+			mcp.Description("New name of the main branch"),
 			mcp.Required(),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -128,17 +128,17 @@ func parseProjectBranchesRename(request mcp.CallToolRequest) client.ApiProjectBr
 
 func registerProjectBranchesSetAutomaticDeletionProtection(s *server.MCPServer) {
 	tool := mcp.NewTool("project_branches_set_automatic_deletion_protection",
-		mcp.WithDescription("Protect a specific branch from automatic deletion. Protection can't be disabled for the main branch.<br/>Requires 'Administer' permission on the specified project or application. "),
+		mcp.WithDescription("Protect a specific branch from automatic deletion. Protection can't be disabled for the main branch.<br/>Requires 'Administer' permission on the specified project or application."),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 			mcp.Required(),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 		mcp.WithString("value",
-			mcp.Description("Sets whether the branch should be protected from automatic deletion when it hasn't been analyzed for a set period of time. "),
+			mcp.Description("Sets whether the branch should be protected from automatic deletion when it hasn't been analyzed for a set period of time."),
 			mcp.Required(),
 		),
 	)

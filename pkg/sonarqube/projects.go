@@ -11,21 +11,21 @@ import (
 
 func registerProjectsBulkDelete(s *server.MCPServer) {
 	tool := mcp.NewTool("projects_bulk_delete",
-		mcp.WithDescription("Delete one or several projects.<br />Only the 1'000 first items in project filters are taken into account.<br />Requires 'Administer System' permission.<br />At least one parameter is required among analyzedBefore, projects and q "),
+		mcp.WithDescription("Delete one or several projects.<br />Only the 1'000 first items in project filters are taken into account.<br />Requires 'Administer System' permission.<br />At least one parameter is required among analyzedBefore, projects and q"),
 		mcp.WithString("analyzedBefore",
-			mcp.Description("Filter the projects for which last analysis of any branch is older than the given date (exclusive).<br> Either a date (server timezone) or datetime can be provided. "),
+			mcp.Description("Filter the projects for which last analysis of any branch is older than the given date (exclusive).<br> Either a date (server timezone) or datetime can be provided."),
 		),
 		mcp.WithString("onProvisionedOnly",
-			mcp.Description("Filter the projects that are provisioned "),
+			mcp.Description("Filter the projects that are provisioned"),
 		),
 		mcp.WithString("projects",
-			mcp.Description("Comma-separated list of project keys "),
+			mcp.Description("Comma-separated list of project keys"),
 		),
 		mcp.WithString("q",
-			mcp.Description("Limit to: <ul><li>component names that contain the supplied string</li><li>component keys that contain the supplied string</li></ul> "),
+			mcp.Description("Limit to: <ul><li>component names that contain the supplied string</li><li>component keys that contain the supplied string</li></ul>"),
 		),
 		mcp.WithString("qualifiers",
-			mcp.Description("Comma-separated list of component qualifiers. Filter the results with the specified qualifiers "),
+			mcp.Description("Comma-separated list of component qualifiers. Filter the results with the specified qualifiers"),
 		),
 	)
 
@@ -75,20 +75,20 @@ func parseProjectsBulkDelete(request mcp.CallToolRequest) client.ApiProjectsBulk
 
 func registerProjectsCreate(s *server.MCPServer) {
 	tool := mcp.NewTool("projects_create",
-		mcp.WithDescription("Create a project.<br/>Requires 'Create Projects' permission "),
+		mcp.WithDescription("Create a project.<br/>Requires 'Create Projects' permission"),
 		mcp.WithString("mainBranch",
-			mcp.Description("Key of the main branch of the project. If not provided, the default main branch key will be used. "),
+			mcp.Description("Key of the main branch of the project. If not provided, the default main branch key will be used."),
 		),
 		mcp.WithString("name",
-			mcp.Description("Name of the project. If name is longer than 500, it is abbreviated. "),
+			mcp.Description("Name of the project. If name is longer than 500, it is abbreviated."),
 			mcp.Required(),
 		),
 		mcp.WithString("project",
-			mcp.Description("Key of the project "),
+			mcp.Description("Key of the project"),
 			mcp.Required(),
 		),
 		mcp.WithString("visibility",
-			mcp.Description("Whether the created project should be visible to everyone, or only specific user/groups.<br/>If no visibility is specified, the default project visibility will be used. "),
+			mcp.Description("Whether the created project should be visible to everyone, or only specific user/groups.<br/>If no visibility is specified, the default project visibility will be used."),
 		),
 	)
 
@@ -133,9 +133,9 @@ func parseProjectsCreate(request mcp.CallToolRequest) client.ApiProjectsCreatePa
 
 func registerProjectsDelete(s *server.MCPServer) {
 	tool := mcp.NewTool("projects_delete",
-		mcp.WithDescription("Delete a project.<br> Requires 'Administer System' permission or 'Administer' permission on the project. "),
+		mcp.WithDescription("Delete a project.<br> Requires 'Administer System' permission or 'Administer' permission on the project."),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -166,27 +166,27 @@ func parseProjectsDelete(request mcp.CallToolRequest) client.ApiProjectsDeletePa
 
 func registerProjectsSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("projects_search",
-		mcp.WithDescription("Search for projects or views to administrate them.<br>Requires 'Administer System' permission "),
+		mcp.WithDescription("Search for projects or views to administrate them.<br>Requires 'Administer System' permission"),
 		mcp.WithString("analyzedBefore",
-			mcp.Description("Filter the projects for which the last analysis of all branches are older than the given date (exclusive).<br> Either a date (server timezone) or datetime can be provided. "),
+			mcp.Description("Filter the projects for which the last analysis of all branches are older than the given date (exclusive).<br> Either a date (server timezone) or datetime can be provided."),
 		),
 		mcp.WithString("onProvisionedOnly",
-			mcp.Description("Filter the projects that are provisioned "),
+			mcp.Description("Filter the projects that are provisioned"),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("projects",
-			mcp.Description("Comma-separated list of project keys "),
+			mcp.Description("Comma-separated list of project keys"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 500 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 500"),
 		),
 		mcp.WithString("q",
-			mcp.Description("Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that contain the supplied string</li></ul> "),
+			mcp.Description("Limit search to: <ul><li>component names that contain the supplied string</li><li>component keys that contain the supplied string</li></ul>"),
 		),
 		mcp.WithString("qualifiers",
-			mcp.Description("Comma-separated list of component qualifiers. Filter the results with the specified qualifiers "),
+			mcp.Description("Comma-separated list of component qualifiers. Filter the results with the specified qualifiers"),
 		),
 	)
 
@@ -246,13 +246,13 @@ func parseProjectsSearch(request mcp.CallToolRequest) client.ApiProjectsSearchPa
 
 func registerProjectsUpdateKey(s *server.MCPServer) {
 	tool := mcp.NewTool("projects_update_key",
-		mcp.WithDescription("Update a project all its sub-components keys.<br>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Update a project all its sub-components keys.<br>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("from",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 		mcp.WithString("to",
-			mcp.Description("New project key "),
+			mcp.Description("New project key"),
 			mcp.Required(),
 		),
 	)
@@ -288,13 +288,13 @@ func parseProjectsUpdateKey(request mcp.CallToolRequest) client.ApiProjectsUpdat
 
 func registerProjectsUpdateVisibility(s *server.MCPServer) {
 	tool := mcp.NewTool("projects_update_visibility",
-		mcp.WithDescription("Updates visibility of a project or view.<br>Requires 'Project administer' permission on the specified project or view "),
+		mcp.WithDescription("Updates visibility of a project or view.<br>Requires 'Project administer' permission on the specified project or view"),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 		mcp.WithString("visibility",
-			mcp.Description("New visibility "),
+			mcp.Description("New visibility"),
 			mcp.Required(),
 		),
 	)

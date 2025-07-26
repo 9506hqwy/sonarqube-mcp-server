@@ -11,20 +11,20 @@ import (
 
 func registerProjectBadgesMeasure(s *server.MCPServer) {
 	tool := mcp.NewTool("project_badges_measure",
-		mcp.WithDescription("Generate badge for project's measure as an SVG.<br/>Requires 'Browse' permission on the specified project. "),
+		mcp.WithDescription("Generate badge for project's measure as an SVG.<br/>Requires 'Browse' permission on the specified project."),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 		),
 		mcp.WithString("metric",
-			mcp.Description("Metric key "),
+			mcp.Description("Metric key"),
 			mcp.Required(),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project or application key "),
+			mcp.Description("Project or application key"),
 			mcp.Required(),
 		),
 		mcp.WithString("token",
-			mcp.Description("Project badge token "),
+			mcp.Description("Project badge token"),
 		),
 	)
 
@@ -69,16 +69,16 @@ func parseProjectBadgesMeasure(request mcp.CallToolRequest) client.ApiProjectBad
 
 func registerProjectBadgesQualityGate(s *server.MCPServer) {
 	tool := mcp.NewTool("project_badges_quality_gate",
-		mcp.WithDescription("Generate badge for project's quality gate as an SVG.<br/>Requires 'Browse' permission on the specified project. "),
+		mcp.WithDescription("Generate badge for project's quality gate as an SVG.<br/>Requires 'Browse' permission on the specified project."),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project or application key "),
+			mcp.Description("Project or application key"),
 			mcp.Required(),
 		),
 		mcp.WithString("token",
-			mcp.Description("Project badge token "),
+			mcp.Description("Project badge token"),
 		),
 	)
 
@@ -118,9 +118,9 @@ func parseProjectBadgesQualityGate(request mcp.CallToolRequest) client.ApiProjec
 
 func registerProjectBadgesRenewToken(s *server.MCPServer) {
 	tool := mcp.NewTool("project_badges_renew_token",
-		mcp.WithDescription("Creates new token replacing any existing token for project or application badge access for private projects and applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Administer' permission on the specified project or application. "),
+		mcp.WithDescription("Creates new token replacing any existing token for project or application badge access for private projects and applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Administer' permission on the specified project or application."),
 		mcp.WithString("project",
-			mcp.Description("Project or application key "),
+			mcp.Description("Project or application key"),
 			mcp.Required(),
 		),
 	)
@@ -151,9 +151,9 @@ func parseProjectBadgesRenewToken(request mcp.CallToolRequest) client.ApiProject
 
 func registerProjectBadgesToken(s *server.MCPServer) {
 	tool := mcp.NewTool("project_badges_token",
-		mcp.WithDescription("Retrieve a token to use for project or application badge access for private projects or applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Browse' permission on the specified project or application. "),
+		mcp.WithDescription("Retrieve a token to use for project or application badge access for private projects or applications.<br/>This token can be used to authenticate with api/project_badges/quality_gate and api/project_badges/measure endpoints.<br/>Requires 'Browse' permission on the specified project or application."),
 		mcp.WithString("project",
-			mcp.Description("Project or application key "),
+			mcp.Description("Project or application key"),
 			mcp.Required(),
 		),
 	)

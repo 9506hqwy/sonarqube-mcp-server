@@ -11,22 +11,22 @@ import (
 
 func registerUserTokensGenerate(s *server.MCPServer) {
 	tool := mcp.NewTool("user_tokens_generate",
-		mcp.WithDescription("Generate a user access token. <br />Please keep your tokens secret. They enable to authenticate and analyze projects.<br />It requires administration permissions to specify a 'login' and generate a token for another user. Otherwise, a token is generated for the current user. "),
+		mcp.WithDescription("Generate a user access token. <br />Please keep your tokens secret. They enable to authenticate and analyze projects.<br />It requires administration permissions to specify a 'login' and generate a token for another user. Otherwise, a token is generated for the current user."),
 		mcp.WithString("expirationDate",
-			mcp.Description("The expiration date of the token being generated, in ISO 8601 format (YYYY-MM-DD). If not set, default to no expiration. "),
+			mcp.Description("The expiration date of the token being generated, in ISO 8601 format (YYYY-MM-DD). If not set, default to no expiration."),
 		),
 		mcp.WithString("login",
-			mcp.Description("User login. If not set, the token is generated for the authenticated user. "),
+			mcp.Description("User login. If not set, the token is generated for the authenticated user."),
 		),
 		mcp.WithString("name",
-			mcp.Description("Token name "),
+			mcp.Description("Token name"),
 			mcp.Required(),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("The key of the only project that can be analyzed by the PROJECT_ANALYSIS_TOKEN being generated. "),
+			mcp.Description("The key of the only project that can be analyzed by the PROJECT_ANALYSIS_TOKEN being generated."),
 		),
 		mcp.WithString("type",
-			mcp.Description("Token Type. If this parameters is set to PROJECT_ANALYSIS_TOKEN, it is necessary to provide the projectKey parameter too. "),
+			mcp.Description("Token Type. If this parameters is set to PROJECT_ANALYSIS_TOKEN, it is necessary to provide the projectKey parameter too."),
 		),
 	)
 
@@ -76,12 +76,12 @@ func parseUserTokensGenerate(request mcp.CallToolRequest) client.ApiUserTokensGe
 
 func registerUserTokensRevoke(s *server.MCPServer) {
 	tool := mcp.NewTool("user_tokens_revoke",
-		mcp.WithDescription("Revoke a user access token. <br/>It requires administration permissions to specify a 'login' and revoke a token for another user. Otherwise, the token for the current user is revoked. "),
+		mcp.WithDescription("Revoke a user access token. <br/>It requires administration permissions to specify a 'login' and revoke a token for another user. Otherwise, the token for the current user is revoked."),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 		),
 		mcp.WithString("name",
-			mcp.Description("Token name "),
+			mcp.Description("Token name"),
 			mcp.Required(),
 		),
 	)
@@ -117,9 +117,9 @@ func parseUserTokensRevoke(request mcp.CallToolRequest) client.ApiUserTokensRevo
 
 func registerUserTokensSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("user_tokens_search",
-		mcp.WithDescription("List the access tokens of a user.<br>The login must exist and active.<br>Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user is using a token many times in less than one hour.<br> It requires administration permissions to specify a 'login' and list the tokens of another user. Otherwise, tokens for the current user are listed. <br> Authentication is required for this API endpoint "),
+		mcp.WithDescription("List the access tokens of a user.<br>The login must exist and active.<br>Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user is using a token many times in less than one hour.<br> It requires administration permissions to specify a 'login' and list the tokens of another user. Otherwise, tokens for the current user are listed. <br> Authentication is required for this API endpoint"),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 		),
 	)
 

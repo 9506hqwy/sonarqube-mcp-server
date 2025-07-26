@@ -11,9 +11,9 @@ import (
 
 func registerFavoritesAdd(s *server.MCPServer) {
 	tool := mcp.NewTool("favorites_add",
-		mcp.WithDescription("Add a component (project, file etc.) as favorite for the authenticated user.<br>Only 100 components by qualifier can be added as favorite.<br>Requires authentication and the following permission: 'Browse' on the project of the specified component. "),
+		mcp.WithDescription("Add a component (project, file etc.) as favorite for the authenticated user.<br>Only 100 components by qualifier can be added as favorite.<br>Requires authentication and the following permission: 'Browse' on the project of the specified component."),
 		mcp.WithString("component",
-			mcp.Description("Component key. Only components with qualifiers TRK, VW, SVW, APP are supported "),
+			mcp.Description("Component key. Only components with qualifiers TRK, VW, SVW, APP are supported"),
 			mcp.Required(),
 		),
 	)
@@ -44,9 +44,9 @@ func parseFavoritesAdd(request mcp.CallToolRequest) client.ApiFavoritesAddParams
 
 func registerFavoritesRemove(s *server.MCPServer) {
 	tool := mcp.NewTool("favorites_remove",
-		mcp.WithDescription("Remove a component (project, portfolio, application etc.) as favorite for the authenticated user.<br>Requires authentication. "),
+		mcp.WithDescription("Remove a component (project, portfolio, application etc.) as favorite for the authenticated user.<br>Requires authentication."),
 		mcp.WithString("component",
-			mcp.Description("Component key "),
+			mcp.Description("Component key"),
 			mcp.Required(),
 		),
 	)
@@ -77,12 +77,12 @@ func parseFavoritesRemove(request mcp.CallToolRequest) client.ApiFavoritesRemove
 
 func registerFavoritesSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("favorites_search",
-		mcp.WithDescription("Search for the authenticated user favorites.<br>Requires authentication. "),
+		mcp.WithDescription("Search for the authenticated user favorites.<br>Requires authentication."),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 500 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 500"),
 		),
 	)
 

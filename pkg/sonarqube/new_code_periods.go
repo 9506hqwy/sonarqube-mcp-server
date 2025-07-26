@@ -11,9 +11,9 @@ import (
 
 func registerNewCodePeriodsList(s *server.MCPServer) {
 	tool := mcp.NewTool("new_code_periods_list",
-		mcp.WithDescription("List the New Code Periods for all branches in a project.<br>Requires the permission to browse the project "),
+		mcp.WithDescription("List the New Code Periods for all branches in a project.<br>Requires the permission to browse the project"),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -44,19 +44,19 @@ func parseNewCodePeriodsList(request mcp.CallToolRequest) client.ApiNewCodePerio
 
 func registerNewCodePeriodsSet(s *server.MCPServer) {
 	tool := mcp.NewTool("new_code_periods_set",
-		mcp.WithDescription("Updates the setting for the New Code Period on different levels:<br><ul><li>Project key must be provided to update the value for a project</li><li>Both project and branch keys must be provided to update the value for a branch</li></ul>Requires one of the following permissions: <ul><li>'Administer System' to change the global setting</li><li>'Administer' rights on the specified project to change the project setting</li></ul> "),
+		mcp.WithDescription("Updates the setting for the New Code Period on different levels:<br><ul><li>Project key must be provided to update the value for a project</li><li>Both project and branch keys must be provided to update the value for a branch</li></ul>Requires one of the following permissions: <ul><li>'Administer System' to change the global setting</li><li>'Administer' rights on the specified project to change the project setting</li></ul>"),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 		mcp.WithString("type",
-			mcp.Description("Type<br/>New code periods of the following types are allowed:<ul><li>SPECIFIC_ANALYSIS - can be set at branch level only</li><li>PREVIOUS_VERSION - can be set at any level (global, project, branch)</li><li>NUMBER_OF_DAYS - can be set at any level (global, project, branch)</li><li>REFERENCE_BRANCH - can only be set for projects and branches</li></ul> "),
+			mcp.Description("Type<br/>New code periods of the following types are allowed:<ul><li>SPECIFIC_ANALYSIS - can be set at branch level only</li><li>PREVIOUS_VERSION - can be set at any level (global, project, branch)</li><li>NUMBER_OF_DAYS - can be set at any level (global, project, branch)</li><li>REFERENCE_BRANCH - can only be set for projects and branches</li></ul>"),
 			mcp.Required(),
 		),
 		mcp.WithString("value",
-			mcp.Description("Value<br/>For each type, a different value is expected:<ul><li>the uuid of an analysis, when type is SPECIFIC_ANALYSIS</li><li>no value, when type is PREVIOUS_VERSION</li><li>a number, when type is NUMBER_OF_DAYS</li><li>a string, when type is REFERENCE_BRANCH</li></ul> "),
+			mcp.Description("Value<br/>For each type, a different value is expected:<ul><li>the uuid of an analysis, when type is SPECIFIC_ANALYSIS</li><li>no value, when type is PREVIOUS_VERSION</li><li>a number, when type is NUMBER_OF_DAYS</li><li>a string, when type is REFERENCE_BRANCH</li></ul>"),
 		),
 	)
 
@@ -101,12 +101,12 @@ func parseNewCodePeriodsSet(request mcp.CallToolRequest) client.ApiNewCodePeriod
 
 func registerNewCodePeriodsShow(s *server.MCPServer) {
 	tool := mcp.NewTool("new_code_periods_show",
-		mcp.WithDescription("Shows a setting for the New Code Period.<br> If the component requested doesn't exist or if no new code period is set for it, a value is inherited from the project or from the global setting.Requires one of the following permissions if a component is specified: <ul><li>'Administer' rights on the specified component</li><li>'Execute analysis' rights on the specified component</li></ul> "),
+		mcp.WithDescription("Shows a setting for the New Code Period.<br> If the component requested doesn't exist or if no new code period is set for it, a value is inherited from the project or from the global setting.Requires one of the following permissions if a component is specified: <ul><li>'Administer' rights on the specified component</li><li>'Execute analysis' rights on the specified component</li></ul>"),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 	)
 
@@ -141,12 +141,12 @@ func parseNewCodePeriodsShow(request mcp.CallToolRequest) client.ApiNewCodePerio
 
 func registerNewCodePeriodsUnset(s *server.MCPServer) {
 	tool := mcp.NewTool("new_code_periods_unset",
-		mcp.WithDescription("Unset the New Code Period setting for a branch, project or global.<br>Requires one of the following permissions: <ul><li>'Administer System' to change the global setting</li><li>'Administer' rights for a specified component</li></ul> "),
+		mcp.WithDescription("Unset the New Code Period setting for a branch, project or global.<br>Requires one of the following permissions: <ul><li>'Administer System' to change the global setting</li><li>'Administer' rights for a specified component</li></ul>"),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 	)
 

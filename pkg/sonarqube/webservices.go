@@ -11,9 +11,9 @@ import (
 
 func registerWebservicesList(s *server.MCPServer) {
 	tool := mcp.NewTool("webservices_list",
-		mcp.WithDescription("List web services "),
+		mcp.WithDescription("List web services"),
 		mcp.WithString("include_internals",
-			mcp.Description("Include web services that are implemented for internal use only. Their forward-compatibility is not assured "),
+			mcp.Description("Include web services that are implemented for internal use only. Their forward-compatibility is not assured"),
 		),
 	)
 
@@ -43,13 +43,13 @@ func parseWebservicesList(request mcp.CallToolRequest) client.ApiWebservicesList
 
 func registerWebservicesResponseExample(s *server.MCPServer) {
 	tool := mcp.NewTool("webservices_response_example",
-		mcp.WithDescription("Display web service response example "),
+		mcp.WithDescription("Display web service response example"),
 		mcp.WithString("action",
-			mcp.Description("Action of the web service "),
+			mcp.Description("Action of the web service"),
 			mcp.Required(),
 		),
 		mcp.WithString("controller",
-			mcp.Description("Controller of the web service "),
+			mcp.Description("Controller of the web service"),
 			mcp.Required(),
 		),
 	)

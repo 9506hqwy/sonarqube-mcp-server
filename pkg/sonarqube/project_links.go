@@ -11,19 +11,19 @@ import (
 
 func registerProjectLinksCreate(s *server.MCPServer) {
 	tool := mcp.NewTool("project_links_create",
-		mcp.WithDescription("Create a new project link.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission. "),
+		mcp.WithDescription("Create a new project link.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
 		mcp.WithString("name",
-			mcp.Description("Link name "),
+			mcp.Description("Link name"),
 			mcp.Required(),
 		),
 		mcp.WithString("projectId",
-			mcp.Description("Project id "),
+			mcp.Description("Project id"),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 		mcp.WithString("url",
-			mcp.Description("Link url "),
+			mcp.Description("Link url"),
 			mcp.Required(),
 		),
 	)
@@ -69,9 +69,9 @@ func parseProjectLinksCreate(request mcp.CallToolRequest) client.ApiProjectLinks
 
 func registerProjectLinksDelete(s *server.MCPServer) {
 	tool := mcp.NewTool("project_links_delete",
-		mcp.WithDescription("Delete existing project link.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission. "),
+		mcp.WithDescription("Delete existing project link.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
 		mcp.WithString("id",
-			mcp.Description("Link id "),
+			mcp.Description("Link id"),
 			mcp.Required(),
 		),
 	)
@@ -102,12 +102,12 @@ func parseProjectLinksDelete(request mcp.CallToolRequest) client.ApiProjectLinks
 
 func registerProjectLinksSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("project_links_search",
-		mcp.WithDescription("List links of a project.<br>The 'projectId' or 'projectKey' must be provided.<br>Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li></ul> "),
+		mcp.WithDescription("List links of a project.<br>The 'projectId' or 'projectKey' must be provided.<br>Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li></ul>"),
 		mcp.WithString("projectId",
-			mcp.Description("Project Id "),
+			mcp.Description("Project Id"),
 		),
 		mcp.WithString("projectKey",
-			mcp.Description("Project Key "),
+			mcp.Description("Project Key"),
 		),
 	)
 

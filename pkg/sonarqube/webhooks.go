@@ -11,19 +11,19 @@ import (
 
 func registerWebhooksCreate(s *server.MCPServer) {
 	tool := mcp.NewTool("webhooks_create",
-		mcp.WithDescription("Create a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission. "),
+		mcp.WithDescription("Create a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
 		mcp.WithString("name",
-			mcp.Description("Name displayed in the administration console of webhooks "),
+			mcp.Description("Name displayed in the administration console of webhooks"),
 			mcp.Required(),
 		),
 		mcp.WithString("project",
-			mcp.Description("The key of the project that will own the webhook "),
+			mcp.Description("The key of the project that will own the webhook"),
 		),
 		mcp.WithString("secret",
-			mcp.Description("If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header "),
+			mcp.Description("If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header"),
 		),
 		mcp.WithString("url",
-			mcp.Description("Server endpoint that will receive the webhook payload, for example 'http://my_server/foo'. If HTTP Basic authentication is used, HTTPS is recommended to avoid man in the middle attacks. Example: 'https://myLogin:myPassword@my_server/foo' "),
+			mcp.Description("Server endpoint that will receive the webhook payload, for example 'http://my_server/foo'. If HTTP Basic authentication is used, HTTPS is recommended to avoid man in the middle attacks. Example: 'https://myLogin:myPassword@my_server/foo'"),
 			mcp.Required(),
 		),
 	)
@@ -69,9 +69,9 @@ func parseWebhooksCreate(request mcp.CallToolRequest) client.ApiWebhooksCreatePa
 
 func registerWebhooksDelete(s *server.MCPServer) {
 	tool := mcp.NewTool("webhooks_delete",
-		mcp.WithDescription("Delete a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission. "),
+		mcp.WithDescription("Delete a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
 		mcp.WithString("webhook",
-			mcp.Description("The key of the webhook to be deleted, auto-generated value can be obtained through api/webhooks/create or api/webhooks/list "),
+			mcp.Description("The key of the webhook to be deleted, auto-generated value can be obtained through api/webhooks/create or api/webhooks/list"),
 			mcp.Required(),
 		),
 	)
@@ -102,21 +102,21 @@ func parseWebhooksDelete(request mcp.CallToolRequest) client.ApiWebhooksDeletePa
 
 func registerWebhooksDeliveries(s *server.MCPServer) {
 	tool := mcp.NewTool("webhooks_deliveries",
-		mcp.WithDescription("Get the recent deliveries for a specified project or Compute Engine task.<br/>Require 'Administer' permission on the related project.<br/>Note that additional information are returned by api/webhooks/delivery. "),
+		mcp.WithDescription("Get the recent deliveries for a specified project or Compute Engine task.<br/>Require 'Administer' permission on the related project.<br/>Note that additional information are returned by api/webhooks/delivery."),
 		mcp.WithString("ceTaskId",
-			mcp.Description("Id of the Compute Engine task "),
+			mcp.Description("Id of the Compute Engine task"),
 		),
 		mcp.WithString("componentKey",
-			mcp.Description("Key of the project "),
+			mcp.Description("Key of the project"),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less than 500 "),
+			mcp.Description("Page size. Must be greater than 0 and less than 500"),
 		),
 		mcp.WithString("webhook",
-			mcp.Description("Key of the webhook that triggered those deliveries, auto-generated value that can be obtained through api/webhooks/create or api/webhooks/list "),
+			mcp.Description("Key of the webhook that triggered those deliveries, auto-generated value that can be obtained through api/webhooks/create or api/webhooks/list"),
 		),
 	)
 
@@ -166,9 +166,9 @@ func parseWebhooksDeliveries(request mcp.CallToolRequest) client.ApiWebhooksDeli
 
 func registerWebhooksDelivery(s *server.MCPServer) {
 	tool := mcp.NewTool("webhooks_delivery",
-		mcp.WithDescription("Get a webhook delivery by its id.<br/>Require 'Administer System' permission.<br/>Note that additional information are returned by api/webhooks/delivery. "),
+		mcp.WithDescription("Get a webhook delivery by its id.<br/>Require 'Administer System' permission.<br/>Note that additional information are returned by api/webhooks/delivery."),
 		mcp.WithString("deliveryId",
-			mcp.Description("Id of delivery "),
+			mcp.Description("Id of delivery"),
 			mcp.Required(),
 		),
 	)
@@ -199,9 +199,9 @@ func parseWebhooksDelivery(request mcp.CallToolRequest) client.ApiWebhooksDelive
 
 func registerWebhooksList(s *server.MCPServer) {
 	tool := mcp.NewTool("webhooks_list",
-		mcp.WithDescription("Search for global webhooks or project webhooks. Webhooks are ordered by name.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission. "),
+		mcp.WithDescription("Search for global webhooks or project webhooks. Webhooks are ordered by name.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 	)
 
@@ -231,20 +231,20 @@ func parseWebhooksList(request mcp.CallToolRequest) client.ApiWebhooksListParams
 
 func registerWebhooksUpdate(s *server.MCPServer) {
 	tool := mcp.NewTool("webhooks_update",
-		mcp.WithDescription("Update a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission. "),
+		mcp.WithDescription("Update a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
 		mcp.WithString("name",
-			mcp.Description("new name of the webhook "),
+			mcp.Description("new name of the webhook"),
 			mcp.Required(),
 		),
 		mcp.WithString("secret",
-			mcp.Description("If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header. If blank, any secret previously configured will be removed. If not set, the secret will remain unchanged. "),
+			mcp.Description("If provided, secret will be used as the key to generate the HMAC hex (lowercase) digest value in the 'X-Sonar-Webhook-HMAC-SHA256' header. If blank, any secret previously configured will be removed. If not set, the secret will remain unchanged."),
 		),
 		mcp.WithString("url",
-			mcp.Description("new url to be called by the webhook "),
+			mcp.Description("new url to be called by the webhook"),
 			mcp.Required(),
 		),
 		mcp.WithString("webhook",
-			mcp.Description("The key of the webhook to be updated, auto-generated value can be obtained through api/webhooks/create or api/webhooks/list "),
+			mcp.Description("The key of the webhook to be updated, auto-generated value can be obtained through api/webhooks/create or api/webhooks/list"),
 			mcp.Required(),
 		),
 	)

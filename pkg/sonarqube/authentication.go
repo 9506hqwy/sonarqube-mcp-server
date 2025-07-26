@@ -11,13 +11,13 @@ import (
 
 func registerAuthenticationLogin(s *server.MCPServer) {
 	tool := mcp.NewTool("authentication_login",
-		mcp.WithDescription("Authenticate a user. "),
+		mcp.WithDescription("Authenticate a user."),
 		mcp.WithString("login",
-			mcp.Description("Login of the user "),
+			mcp.Description("Login of the user"),
 			mcp.Required(),
 		),
 		mcp.WithString("password",
-			mcp.Description("Password of the user "),
+			mcp.Description("Password of the user"),
 			mcp.Required(),
 		),
 	)
@@ -53,7 +53,7 @@ func parseAuthenticationLogin(request mcp.CallToolRequest) client.ApiAuthenticat
 
 func registerAuthenticationLogout(s *server.MCPServer) {
 	tool := mcp.NewTool("authentication_logout",
-		mcp.WithDescription("Logout a user. "),
+		mcp.WithDescription("Logout a user."),
 	)
 
 	s.AddTool(tool, authenticationLogoutHandler)
@@ -70,7 +70,7 @@ func authenticationLogoutHandler(ctx context.Context, request mcp.CallToolReques
 
 func registerAuthenticationValidate(s *server.MCPServer) {
 	tool := mcp.NewTool("authentication_validate",
-		mcp.WithDescription("Check credentials. "),
+		mcp.WithDescription("Check credentials."),
 	)
 
 	s.AddTool(tool, authenticationValidateHandler)

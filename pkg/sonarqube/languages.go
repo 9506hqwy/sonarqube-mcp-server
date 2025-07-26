@@ -11,12 +11,12 @@ import (
 
 func registerLanguagesList(s *server.MCPServer) {
 	tool := mcp.NewTool("languages_list",
-		mcp.WithDescription("List supported programming languages "),
+		mcp.WithDescription("List supported programming languages"),
 		mcp.WithString("ps",
-			mcp.Description("The size of the list to return, 0 for all languages "),
+			mcp.Description("The size of the list to return, 0 for all languages"),
 		),
 		mcp.WithString("q",
-			mcp.Description("A pattern to match language keys/names against "),
+			mcp.Description("A pattern to match language keys/names against"),
 		),
 	)
 

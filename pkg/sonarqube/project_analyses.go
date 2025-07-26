@@ -11,16 +11,16 @@ import (
 
 func registerProjectAnalysesCreateEvent(s *server.MCPServer) {
 	tool := mcp.NewTool("project_analyses_create_event",
-		mcp.WithDescription("Create a project analysis event.<br>Only event of category 'VERSION' and 'OTHER' can be created.<br>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Create a project analysis event.<br>Only event of category 'VERSION' and 'OTHER' can be created.<br>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("analysis",
-			mcp.Description("Analysis key "),
+			mcp.Description("Analysis key"),
 			mcp.Required(),
 		),
 		mcp.WithString("category",
-			mcp.Description("Category "),
+			mcp.Description("Category"),
 		),
 		mcp.WithString("name",
-			mcp.Description("Name "),
+			mcp.Description("Name"),
 			mcp.Required(),
 		),
 	)
@@ -61,9 +61,9 @@ func parseProjectAnalysesCreateEvent(request mcp.CallToolRequest) client.ApiProj
 
 func registerProjectAnalysesDelete(s *server.MCPServer) {
 	tool := mcp.NewTool("project_analyses_delete",
-		mcp.WithDescription("Delete a project analysis.<br>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the project of the specified analysis</li></ul> "),
+		mcp.WithDescription("Delete a project analysis.<br>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the project of the specified analysis</li></ul>"),
 		mcp.WithString("analysis",
-			mcp.Description("Analysis key "),
+			mcp.Description("Analysis key"),
 			mcp.Required(),
 		),
 	)
@@ -94,9 +94,9 @@ func parseProjectAnalysesDelete(request mcp.CallToolRequest) client.ApiProjectAn
 
 func registerProjectAnalysesDeleteEvent(s *server.MCPServer) {
 	tool := mcp.NewTool("project_analyses_delete_event",
-		mcp.WithDescription("Delete a project analysis event.<br>Only event of category 'VERSION' and 'OTHER' can be deleted.<br>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Delete a project analysis event.<br>Only event of category 'VERSION' and 'OTHER' can be deleted.<br>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("event",
-			mcp.Description("Event key "),
+			mcp.Description("Event key"),
 			mcp.Required(),
 		),
 	)
@@ -127,25 +127,25 @@ func parseProjectAnalysesDeleteEvent(request mcp.CallToolRequest) client.ApiProj
 
 func registerProjectAnalysesSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("project_analyses_search",
-		mcp.WithDescription("Search a project analyses and attached events.<br>Requires the following permission: 'Browse' on the specified project. <br>For applications, it also requires 'Browse' permission on its child projects. "),
+		mcp.WithDescription("Search a project analyses and attached events.<br>Requires the following permission: 'Browse' on the specified project. <br>For applications, it also requires 'Browse' permission on its child projects."),
 		mcp.WithString("category",
-			mcp.Description("Event category. Filter analyses that have at least one event of the category specified. "),
+			mcp.Description("Event category. Filter analyses that have at least one event of the category specified."),
 		),
 		mcp.WithString("from",
-			mcp.Description("Filter analyses created after the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided "),
+			mcp.Description("Filter analyses created after the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided"),
 		),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 500 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 500"),
 		),
 		mcp.WithString("to",
-			mcp.Description("Filter analyses created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided "),
+			mcp.Description("Filter analyses created before the given date (inclusive). <br>Either a date (server timezone) or datetime can be provided"),
 		),
 	)
 
@@ -200,16 +200,16 @@ func parseProjectAnalysesSearch(request mcp.CallToolRequest) client.ApiProjectAn
 
 func registerProjectAnalysesSetBaseline(s *server.MCPServer) {
 	tool := mcp.NewTool("project_analyses_set_baseline",
-		mcp.WithDescription("Set an analysis as the baseline of the New Code Period on a project or a branch.<br/>This manually set baseline.<br/>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Set an analysis as the baseline of the New Code Period on a project or a branch.<br/>This manually set baseline.<br/>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("analysis",
-			mcp.Description("Analysis key "),
+			mcp.Description("Analysis key"),
 			mcp.Required(),
 		),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -250,12 +250,12 @@ func parseProjectAnalysesSetBaseline(request mcp.CallToolRequest) client.ApiProj
 
 func registerProjectAnalysesUnsetBaseline(s *server.MCPServer) {
 	tool := mcp.NewTool("project_analyses_unset_baseline",
-		mcp.WithDescription("Unset any manually-set New Code Period baseline on a project or a branch.<br/>Unsetting a manual baseline restores the use of the default new code period setting.<br/>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Unset any manually-set New Code Period baseline on a project or a branch.<br/>Unsetting a manual baseline restores the use of the default new code period setting.<br/>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("branch",
-			mcp.Description("Branch key "),
+			mcp.Description("Branch key"),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 	)
@@ -291,13 +291,13 @@ func parseProjectAnalysesUnsetBaseline(request mcp.CallToolRequest) client.ApiPr
 
 func registerProjectAnalysesUpdateEvent(s *server.MCPServer) {
 	tool := mcp.NewTool("project_analyses_update_event",
-		mcp.WithDescription("Update a project analysis event.<br>Only events of category 'VERSION' and 'OTHER' can be updated.<br>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul> "),
+		mcp.WithDescription("Update a project analysis event.<br>Only events of category 'VERSION' and 'OTHER' can be updated.<br>Requires one of the following permissions:<ul> <li>'Administer System'</li> <li>'Administer' rights on the specified project</li></ul>"),
 		mcp.WithString("event",
-			mcp.Description("Event key "),
+			mcp.Description("Event key"),
 			mcp.Required(),
 		),
 		mcp.WithString("name",
-			mcp.Description("New name "),
+			mcp.Description("New name"),
 			mcp.Required(),
 		),
 	)

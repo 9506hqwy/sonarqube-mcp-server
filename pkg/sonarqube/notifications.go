@@ -11,18 +11,18 @@ import (
 
 func registerNotificationsAdd(s *server.MCPServer) {
 	tool := mcp.NewTool("notifications_add",
-		mcp.WithDescription("Add a notification for the authenticated user.<br>Requires one of the following permissions:<ul> <li>Authentication if no login is provided. If a project is provided, requires the 'Browse' permission on the specified project.</li> <li>System administration if a login is provided. If a project is provided, requires the 'Browse' permission on the specified project.</li></ul> "),
+		mcp.WithDescription("Add a notification for the authenticated user.<br>Requires one of the following permissions:<ul> <li>Authentication if no login is provided. If a project is provided, requires the 'Browse' permission on the specified project.</li> <li>System administration if a login is provided. If a project is provided, requires the 'Browse' permission on the specified project.</li></ul>"),
 		mcp.WithString("channel",
-			mcp.Description("Channel through which the notification is sent. For example, notifications can be sent by email. "),
+			mcp.Description("Channel through which the notification is sent. For example, notifications can be sent by email."),
 		),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 		mcp.WithString("type",
-			mcp.Description("Notification type. Possible values are for:<ul> <li>Global notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, SQ-MyNewIssues</li> <li>Per project notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, NewFalsePositiveIssue, NewIssues, SQ-MyNewIssues</li></ul> "),
+			mcp.Description("Notification type. Possible values are for:<ul> <li>Global notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, SQ-MyNewIssues</li> <li>Per project notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, NewFalsePositiveIssue, NewIssues, SQ-MyNewIssues</li></ul>"),
 			mcp.Required(),
 		),
 	)
@@ -68,9 +68,9 @@ func parseNotificationsAdd(request mcp.CallToolRequest) client.ApiNotificationsA
 
 func registerNotificationsList(s *server.MCPServer) {
 	tool := mcp.NewTool("notifications_list",
-		mcp.WithDescription("List notifications of the authenticated user.<br>Requires one of the following permissions:<ul> <li>Authentication if no login is provided</li> <li>System administration if a login is provided</li></ul> "),
+		mcp.WithDescription("List notifications of the authenticated user.<br>Requires one of the following permissions:<ul> <li>Authentication if no login is provided</li> <li>System administration if a login is provided</li></ul>"),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 		),
 	)
 
@@ -100,18 +100,18 @@ func parseNotificationsList(request mcp.CallToolRequest) client.ApiNotifications
 
 func registerNotificationsRemove(s *server.MCPServer) {
 	tool := mcp.NewTool("notifications_remove",
-		mcp.WithDescription("Remove a notification for the authenticated user.<br>Requires one of the following permissions:<ul> <li>Authentication if no login is provided</li> <li>System administration if a login is provided</li></ul> "),
+		mcp.WithDescription("Remove a notification for the authenticated user.<br>Requires one of the following permissions:<ul> <li>Authentication if no login is provided</li> <li>System administration if a login is provided</li></ul>"),
 		mcp.WithString("channel",
-			mcp.Description("Channel through which the notification is sent. For example, notifications can be sent by email. "),
+			mcp.Description("Channel through which the notification is sent. For example, notifications can be sent by email."),
 		),
 		mcp.WithString("login",
-			mcp.Description("User login "),
+			mcp.Description("User login"),
 		),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 		),
 		mcp.WithString("type",
-			mcp.Description("Notification type. Possible values are for:<ul> <li>Global notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, SQ-MyNewIssues</li> <li>Per project notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, NewFalsePositiveIssue, NewIssues, SQ-MyNewIssues</li></ul> "),
+			mcp.Description("Notification type. Possible values are for:<ul> <li>Global notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, SQ-MyNewIssues</li> <li>Per project notifications: CeReportTaskFailure, ChangesOnMyIssue, NewAlerts, NewFalsePositiveIssue, NewIssues, SQ-MyNewIssues</li></ul>"),
 			mcp.Required(),
 		),
 	)

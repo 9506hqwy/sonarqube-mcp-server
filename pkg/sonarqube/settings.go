@@ -11,9 +11,9 @@ import (
 
 func registerSettingsListDefinitions(s *server.MCPServer) {
 	tool := mcp.NewTool("settings_list_definitions",
-		mcp.WithDescription("List settings definitions.<br>Requires 'Browse' permission when a component is specified<br/>To access licensed settings, authentication is required<br/>To access secured settings, one of the following permissions is required: <ul><li>'Execute Analysis'</li><li>'Administer System'</li><li>'Administer' rights on the specified component</li></ul> "),
+		mcp.WithDescription("List settings definitions.<br>Requires 'Browse' permission when a component is specified<br/>To access licensed settings, authentication is required<br/>To access secured settings, one of the following permissions is required: <ul><li>'Execute Analysis'</li><li>'Administer System'</li><li>'Administer' rights on the specified component</li></ul>"),
 		mcp.WithString("component",
-			mcp.Description("Component key "),
+			mcp.Description("Component key"),
 		),
 	)
 
@@ -43,12 +43,12 @@ func parseSettingsListDefinitions(request mcp.CallToolRequest) client.ApiSetting
 
 func registerSettingsReset(s *server.MCPServer) {
 	tool := mcp.NewTool("settings_reset",
-		mcp.WithDescription("Remove a setting value.<br>The settings defined in conf/sonar.properties are read-only and can't be changed.<br/>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified component</li></ul> "),
+		mcp.WithDescription("Remove a setting value.<br>The settings defined in conf/sonar.properties are read-only and can't be changed.<br/>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified component</li></ul>"),
 		mcp.WithString("component",
-			mcp.Description("Component key "),
+			mcp.Description("Component key"),
 		),
 		mcp.WithString("keys",
-			mcp.Description("Comma-separated list of keys "),
+			mcp.Description("Comma-separated list of keys"),
 			mcp.Required(),
 		),
 	)
@@ -84,22 +84,22 @@ func parseSettingsReset(request mcp.CallToolRequest) client.ApiSettingsResetPara
 
 func registerSettingsSet(s *server.MCPServer) {
 	tool := mcp.NewTool("settings_set",
-		mcp.WithDescription("Update a setting value.<br>Either 'value' or 'values' must be provided.<br> The settings defined in conf/sonar.properties are read-only and can't be changed.<br/>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified component</li></ul> "),
+		mcp.WithDescription("Update a setting value.<br>Either 'value' or 'values' must be provided.<br> The settings defined in conf/sonar.properties are read-only and can't be changed.<br/>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified component</li></ul>"),
 		mcp.WithString("component",
-			mcp.Description("Component key "),
+			mcp.Description("Component key"),
 		),
 		mcp.WithString("fieldValues",
-			mcp.Description("Setting field values. To set several values, the parameter must be called once for each value. "),
+			mcp.Description("Setting field values. To set several values, the parameter must be called once for each value."),
 		),
 		mcp.WithString("key",
-			mcp.Description("Setting key "),
+			mcp.Description("Setting key"),
 			mcp.Required(),
 		),
 		mcp.WithString("value",
-			mcp.Description("Setting value. To reset a value, please use the reset web service. "),
+			mcp.Description("Setting value. To reset a value, please use the reset web service."),
 		),
 		mcp.WithString("values",
-			mcp.Description("Setting multi value. To set several values, the parameter must be called once for each value. "),
+			mcp.Description("Setting multi value. To set several values, the parameter must be called once for each value."),
 		),
 	)
 
@@ -149,12 +149,12 @@ func parseSettingsSet(request mcp.CallToolRequest) client.ApiSettingsSetParams {
 
 func registerSettingsValues(s *server.MCPServer) {
 	tool := mcp.NewTool("settings_values",
-		mcp.WithDescription("List settings values.<br>If no value has been set for a setting, then the default value is returned.<br>The settings from conf/sonar.properties are excluded from results.<br>Requires 'Browse' or 'Execute Analysis' permission when a component is specified.<br/>Secured settings values are not returned by the endpoint.<br/> "),
+		mcp.WithDescription("List settings values.<br>If no value has been set for a setting, then the default value is returned.<br>The settings from conf/sonar.properties are excluded from results.<br>Requires 'Browse' or 'Execute Analysis' permission when a component is specified.<br/>Secured settings values are not returned by the endpoint.<br/>"),
 		mcp.WithString("component",
-			mcp.Description("Component key "),
+			mcp.Description("Component key"),
 		),
 		mcp.WithString("keys",
-			mcp.Description("List of setting keys "),
+			mcp.Description("List of setting keys"),
 		),
 	)
 

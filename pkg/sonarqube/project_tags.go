@@ -11,15 +11,15 @@ import (
 
 func registerProjectTagsSearch(s *server.MCPServer) {
 	tool := mcp.NewTool("project_tags_search",
-		mcp.WithDescription("Search tags "),
+		mcp.WithDescription("Search tags"),
 		mcp.WithString("p",
-			mcp.Description("1-based page number "),
+			mcp.Description("1-based page number"),
 		),
 		mcp.WithString("ps",
-			mcp.Description("Page size. Must be greater than 0 and less or equal than 100 "),
+			mcp.Description("Page size. Must be greater than 0 and less or equal than 100"),
 		),
 		mcp.WithString("q",
-			mcp.Description("Limit search to tags that contain the supplied string. "),
+			mcp.Description("Limit search to tags that contain the supplied string."),
 		),
 	)
 
@@ -59,13 +59,13 @@ func parseProjectTagsSearch(request mcp.CallToolRequest) client.ApiProjectTagsSe
 
 func registerProjectTagsSet(s *server.MCPServer) {
 	tool := mcp.NewTool("project_tags_set",
-		mcp.WithDescription("Set tags on a project.<br>Requires the following permission: 'Administer' rights on the specified project "),
+		mcp.WithDescription("Set tags on a project.<br>Requires the following permission: 'Administer' rights on the specified project"),
 		mcp.WithString("project",
-			mcp.Description("Project key "),
+			mcp.Description("Project key"),
 			mcp.Required(),
 		),
 		mcp.WithString("tags",
-			mcp.Description("Comma-separated list of tags "),
+			mcp.Description("Comma-separated list of tags"),
 			mcp.Required(),
 		),
 	)

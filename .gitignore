@@ -31,5 +31,5 @@ artifacts/
 # binary
 bin/
 
-# SonarScanner
-.scannerwork/
+# profile
+*.prof

@@ -313,7 +313,45 @@ If use user type token and SonarQube server 9.x or earlier, Specify token to `SO
 
 ## Testing
 
-TODO
+Check that this MCP server does correctly using [mcpcurl](https://github.com/github/github-mcp-server/tree/main/cmd/mcpcurl).
+
+List tools in this MCP server.
+
+```sh
+mcpcurl tools --pretty=false --stdio-server-cmd ./bin/sonarqube-mcp-server
+```
+
+Show tool's help.
+
+```sh
+mcpcurl tools --pretty=false --stdio-server-cmd ./bin/sonarqube-mcp-server <tool> --help
+```
+
+e.g. get server version.
+
+```sh
+mcpcurl tools \
+    --pretty=false \
+    --stdio-server-cmd "./bin/sonarqube-mcp-server --url=<URL> --token=<TOKEN>" \
+    server_version
+```
+
+```text
+{"jsonrpc":"2.0","id":9474,"result":{"content":[{"type":"text","text":"9.9.7.96285"}]}}
+```
+
+e.g. search projects.
+
+```sh
+mcpcurl tools \
+    --pretty=false \
+    --stdio-server-cmd "./bin/sonarqube-mcp-server --url=<URL> --token=<TOKEN>" \
+    projects_search --q test
+```
+
+```text
+{"jsonrpc":"2.0","id":2583,"result":{"content":[{"type":"text","text":"{\"paging\":{\"pageIndex\":1,\"pageSize\":100,\"total\":2},\"components\":[{\"key\":\"test_project_1\",\"name\":\"Test Project 1\",\"qualifier\":\"TRK\",\"visibility\":\"public\"},{\"key\":\"test_project_created\",\"name\":\"Test Project Created\",\"qualifier\":\"TRK\",\"visibility\":\"public\"}]}"}]}}
+```
 
 ## Notes
 

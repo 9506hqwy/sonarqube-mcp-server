@@ -9,7 +9,7 @@ tool (
 )
 
 require (
-	github.com/9506hqwy/sonar-client-go v0.0.0-20251108040707-0cce4338c432
+	github.com/9506hqwy/sonar-client-go v0.0.0-20251109045120-7ce0e4775f0e
 	github.com/mark3labs/mcp-go v0.43.0
 	github.com/spf13/cobra v1.10.1
 	github.com/spf13/viper v1.21.0
@@ -51,7 +51,7 @@ require (
 	golang.org/x/mod v0.29.0 // indirect
 	golang.org/x/net v0.46.0 // indirect
 	golang.org/x/sync v0.17.0 // indirect
-	golang.org/x/sys v0.37.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
 	golang.org/x/text v0.30.0 // indirect
 	golang.org/x/tools v0.38.0 // indirect
 	golang.org/x/tools/cmd/godoc v0.1.0-deprecated // indirect

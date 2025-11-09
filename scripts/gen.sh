@@ -75,6 +75,7 @@ function write-register-func() {
     DESCRIPTION=$(yq -r '.description' <<<"${DEFINITION}")
     TOOL_NAME=$(toolname "${OP_PATH}")
     API_NAME=$(capitalize "${TOOL_NAME}")
+    NUM_PARAMETER=$(yq -r '.parameters | length' <<<"${DEFINITION}")
 
     echo "| ${TOOL_NAME} | ${DESCRIPTION} |"
 
@@ -88,27 +89,19 @@ func register${API_NAME}(s *server.MCPServer) {
 EOF
 
     # parameters
-    yq '.parameters[] | . style="flow"' <<<"${DEFINITION}" | while read -r PARAMETER
-    do
-        NAME=$(yq -r '.name' <<<"${PARAMETER}")
-        DESCRIPTION=$(yq -r '.description' <<<"${PARAMETER}")
-        REQUIRED=""
-        if [[ $(yq -r '.required' <<<"${PARAMETER}") == "true" ]]; then
-            REQUIRED="mcp.Required(),"
-        fi
+    HANDER_NAME="${API_NAME,}Handler"
+    if [[ ${NUM_PARAMETER} -ne 0 ]]; then
+        HANDER_NAME="mcp.NewTypedToolHandler(${HANDER_NAME})"
         cat >> "${FILE_PATH}" <<EOF
-		mcp.WithString("${NAME}",
-			mcp.Description("${DESCRIPTION//\"/\\\"}"),
-			${REQUIRED}
-		),
+		mcp.WithInputSchema[client.Api${API_NAME}Params](),
 EOF
-    done
+    fi
 
     # complete
     cat >> "${FILE_PATH}" <<EOF
 	)
 
-	s.AddTool(tool, ${API_NAME,}Handler)
+	s.AddTool(tool, ${HANDER_NAME})
 }
 EOF
 }
@@ -121,7 +114,7 @@ function write-handler-func() {
     API_NAME=$(capitalize "${TOOL_NAME}")
     NUM_PARAMETER=$(yq -r '.parameters | length' <<<"${DEFINITION}")
 
-    PARSE_STMT="params := parse${API_NAME}(request)"
+    PARSE_STMT=", params client.Api${API_NAME}Params"
     PARAM_ARG="&params,"
     if [[ ${NUM_PARAMETER} -eq 0 ]]; then
         PARSE_STMT=""
@@ -131,68 +124,13 @@ function write-handler-func() {
     FILE_PATH=$(filename "${OP_PATH}")
     cat >> "${FILE_PATH}" <<EOF
 
-func ${API_NAME,}Handler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func ${API_NAME,}Handler(ctx context.Context, request mcp.CallToolRequest ${PARSE_STMT}) (*mcp.CallToolResult, error) {
 	c, err := newClient(ctx)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	${PARSE_STMT}
 	return toResult(c.Api${API_NAME}(ctx, ${PARAM_ARG} authorizationHeader))
-}
-EOF
-}
-
-function write-parser-func() {
-    OP_PATH="$1"
-    DEFINITION="$2"
-
-    NUM_PARAMETER=$(yq -r '.parameters | length' <<<"${DEFINITION}")
-    if [[ ${NUM_PARAMETER} -eq 0 ]]; then
-        return
-    fi
-
-    TOOL_NAME=$(toolname "${OP_PATH}")
-    API_NAME=$(capitalize "${TOOL_NAME}")
-
-    FILE_PATH=$(filename "${OP_PATH}")
-    # signature
-    cat >> "${FILE_PATH}" <<EOF
-
-func parse${API_NAME}(request mcp.CallToolRequest) client.Api${API_NAME}Params {
-	params := client.Api${API_NAME}Params{}
-EOF
-
-    # prameters
-    yq '.parameters[] | . style="flow"' <<<"${DEFINITION}" | while read -r PARAMETER
-    do
-        NAME=$(yq -r '.name' <<<"${PARAMETER}")
-        VAR_NAME=${NAME//-/}
-        VAR_NAME=${VAR_NAME//./}
-        if [[ "${VAR_NAME}" == 'type' ]]; then
-            VAR_NAME='_type'
-        fi
-        if [[ "${VAR_NAME}" == 'params' ]]; then
-            VAR_NAME='_params'
-        fi
-        REF_NAME="&${VAR_NAME}"
-        PARAM_NAME=$(capitalize "${VAR_NAME}")
-        if [[ $(yq -r '.required' <<<"${PARAMETER}") == "true" ]]; then
-            REF_NAME="${VAR_NAME}"
-        fi
-        cat >> "${FILE_PATH}" <<EOF
-
-	${VAR_NAME} := request.GetString("${NAME}", "")
-	if ${VAR_NAME} != "" {
-		params.${PARAM_NAME} = ${REF_NAME}
-	}
-EOF
-    done
-
-    # complete
-    cat >> "${FILE_PATH}" <<EOF
-
-	return params
 }
 EOF
 }
@@ -216,14 +154,12 @@ do
     if [[ "$OP_POST" != 'null' ]]; then
         write-register-func "${OP_PATH}" "${OP_POST}"
         write-handler-func "${OP_PATH}" "${OP_POST}"
-        write-parser-func "${OP_PATH}" "${OP_POST}"
     fi
 
     OP_GET=$(yq '.get' <<<"${OP}")
     if [[ "$OP_GET" != 'null' ]]; then
         write-register-func "${OP_PATH}" "${OP_GET}"
         write-handler-func "${OP_PATH}" "${OP_GET}"
-        write-parser-func "${OP_PATH}" "${OP_GET}"
     fi
 done
 

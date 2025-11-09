@@ -12,34 +12,19 @@ import (
 func registerSystemChangeLogLevel(s *server.MCPServer) {
 	tool := mcp.NewTool("system_change_log_level",
 		mcp.WithDescription("Temporarily changes level of logs. New level is not persistent and is lost when restarting server. Requires system administration permission."),
-		mcp.WithString("level",
-			mcp.Description("The new level. Be cautious: DEBUG, and even more TRACE, may have performance impacts."),
-			mcp.Required(),
-		),
+		mcp.WithInputSchema[client.ApiSystemChangeLogLevelParams](),
 	)
 
-	s.AddTool(tool, systemChangeLogLevelHandler)
+	s.AddTool(tool, mcp.NewTypedToolHandler(systemChangeLogLevelHandler))
 }
 
-func systemChangeLogLevelHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func systemChangeLogLevelHandler(ctx context.Context, request mcp.CallToolRequest, params client.ApiSystemChangeLogLevelParams) (*mcp.CallToolResult, error) {
 	c, err := newClient(ctx)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	params := parseSystemChangeLogLevel(request)
 	return toResult(c.ApiSystemChangeLogLevel(ctx, &params, authorizationHeader))
-}
-
-func parseSystemChangeLogLevel(request mcp.CallToolRequest) client.ApiSystemChangeLogLevelParams {
-	params := client.ApiSystemChangeLogLevelParams{}
-
-	level := request.GetString("level", "")
-	if level != "" {
-		params.Level = level
-	}
-
-	return params
 }
 
 func registerSystemDbMigrationStatus(s *server.MCPServer) {
@@ -96,33 +81,19 @@ func systemInfoHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.C
 func registerSystemLogs(s *server.MCPServer) {
 	tool := mcp.NewTool("system_logs",
 		mcp.WithDescription("Get system logs in plain-text format. Requires system administration permission."),
-		mcp.WithString("process",
-			mcp.Description("Process to get logs from"),
-		),
+		mcp.WithInputSchema[client.ApiSystemLogsParams](),
 	)
 
-	s.AddTool(tool, systemLogsHandler)
+	s.AddTool(tool, mcp.NewTypedToolHandler(systemLogsHandler))
 }
 
-func systemLogsHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func systemLogsHandler(ctx context.Context, request mcp.CallToolRequest, params client.ApiSystemLogsParams) (*mcp.CallToolResult, error) {
 	c, err := newClient(ctx)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	params := parseSystemLogs(request)
 	return toResult(c.ApiSystemLogs(ctx, &params, authorizationHeader))
-}
-
-func parseSystemLogs(request mcp.CallToolRequest) client.ApiSystemLogsParams {
-	params := client.ApiSystemLogsParams{}
-
-	process := request.GetString("process", "")
-	if process != "" {
-		params.Process = &process
-	}
-
-	return params
 }
 
 func registerSystemMigrateDb(s *server.MCPServer) {

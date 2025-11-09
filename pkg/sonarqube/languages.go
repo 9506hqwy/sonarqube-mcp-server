@@ -12,39 +12,17 @@ import (
 func registerLanguagesList(s *server.MCPServer) {
 	tool := mcp.NewTool("languages_list",
 		mcp.WithDescription("List supported programming languages"),
-		mcp.WithString("ps",
-			mcp.Description("The size of the list to return, 0 for all languages"),
-		),
-		mcp.WithString("q",
-			mcp.Description("A pattern to match language keys/names against"),
-		),
+		mcp.WithInputSchema[client.ApiLanguagesListParams](),
 	)
 
-	s.AddTool(tool, languagesListHandler)
+	s.AddTool(tool, mcp.NewTypedToolHandler(languagesListHandler))
 }
 
-func languagesListHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func languagesListHandler(ctx context.Context, request mcp.CallToolRequest, params client.ApiLanguagesListParams) (*mcp.CallToolResult, error) {
 	c, err := newClient(ctx)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	params := parseLanguagesList(request)
 	return toResult(c.ApiLanguagesList(ctx, &params, authorizationHeader))
-}
-
-func parseLanguagesList(request mcp.CallToolRequest) client.ApiLanguagesListParams {
-	params := client.ApiLanguagesListParams{}
-
-	ps := request.GetString("ps", "")
-	if ps != "" {
-		params.Ps = &ps
-	}
-
-	q := request.GetString("q", "")
-	if q != "" {
-		params.Q = &q
-	}
-
-	return params
 }

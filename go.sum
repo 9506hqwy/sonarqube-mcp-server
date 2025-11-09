@@ -1,6 +1,6 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
-github.com/9506hqwy/sonar-client-go v0.0.0-20250906040143-97d92f02e6db h1:ti8PzjTYvJnnxDZvcheoyOFhXmfnKnpSfjFMKI+SR9E=
-github.com/9506hqwy/sonar-client-go v0.0.0-20250906040143-97d92f02e6db/go.mod h1:QLLzgHwPqPYBFpiyihArRQ47ipEATAAksFCTl94akrU=
+github.com/9506hqwy/sonar-client-go v0.0.0-20251108040707-0cce4338c432 h1:kkvn1yFRSUmeK2AkXKIJ1q00/z/KuXb7dCw39qhYnd4=
+github.com/9506hqwy/sonar-client-go v0.0.0-20251108040707-0cce4338c432/go.mod h1:gsuHEgbywRiMzofW6hVCXa4iM0w6xAGx90I5SJLoNQk=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/toml v1.5.0 h1:W5quZX/G/csjUnuI8SUYlsHs9M38FC7znL0lIO+DvMg=
 github.com/BurntSushi/toml v1.5.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=

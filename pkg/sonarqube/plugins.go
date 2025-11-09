@@ -46,66 +46,37 @@ func pluginsCancelAllHandler(ctx context.Context, request mcp.CallToolRequest) (
 func registerPluginsInstall(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_install",
 		mcp.WithDescription("Installs the latest version of a plugin specified by its key.<br/>Plugin information is retrieved from Update Center.<br/>Fails if used on commercial editions or plugin risk consent has not been accepted.<br/>Requires user to be authenticated with Administer System permissions"),
-		mcp.WithString("key",
-			mcp.Description("The key identifying the plugin to install"),
-			mcp.Required(),
-		),
+		mcp.WithInputSchema[client.ApiPluginsInstallParams](),
 	)
 
-	s.AddTool(tool, pluginsInstallHandler)
+	s.AddTool(tool, mcp.NewTypedToolHandler(pluginsInstallHandler))
 }
 
-func pluginsInstallHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func pluginsInstallHandler(ctx context.Context, request mcp.CallToolRequest, params client.ApiPluginsInstallParams) (*mcp.CallToolResult, error) {
 	c, err := newClient(ctx)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	params := parsePluginsInstall(request)
 	return toResult(c.ApiPluginsInstall(ctx, &params, authorizationHeader))
-}
-
-func parsePluginsInstall(request mcp.CallToolRequest) client.ApiPluginsInstallParams {
-	params := client.ApiPluginsInstallParams{}
-
-	key := request.GetString("key", "")
-	if key != "" {
-		params.Key = key
-	}
-
-	return params
 }
 
 func registerPluginsInstalled(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_installed",
 		mcp.WithDescription("Get the list of all the plugins installed on the SonarQube instance, sorted by plugin name.<br/>Requires authentication."),
-		mcp.WithString("f",
-			mcp.Description("Comma-separated list of the additional fields to be returned in response. No additional field is returned by default. Possible values are:<ul><li>category - category as defined in the Update Center. A connection to the Update Center is needed</li></ul>"),
-		),
+		mcp.WithInputSchema[client.ApiPluginsInstalledParams](),
 	)
 
-	s.AddTool(tool, pluginsInstalledHandler)
+	s.AddTool(tool, mcp.NewTypedToolHandler(pluginsInstalledHandler))
 }
 
-func pluginsInstalledHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func pluginsInstalledHandler(ctx context.Context, request mcp.CallToolRequest, params client.ApiPluginsInstalledParams) (*mcp.CallToolResult, error) {
 	c, err := newClient(ctx)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	params := parsePluginsInstalled(request)
 	return toResult(c.ApiPluginsInstalled(ctx, &params, authorizationHeader))
-}
-
-func parsePluginsInstalled(request mcp.CallToolRequest) client.ApiPluginsInstalledParams {
-	params := client.ApiPluginsInstalledParams{}
-
-	f := request.GetString("f", "")
-	if f != "" {
-		params.F = &f
-	}
-
-	return params
 }
 
 func registerPluginsPending(s *server.MCPServer) {
@@ -128,67 +99,37 @@ func pluginsPendingHandler(ctx context.Context, request mcp.CallToolRequest) (*m
 func registerPluginsUninstall(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_uninstall",
 		mcp.WithDescription("Uninstalls the plugin specified by its key.<br/>Requires user to be authenticated with Administer System permissions."),
-		mcp.WithString("key",
-			mcp.Description("The key identifying the plugin to uninstall"),
-			mcp.Required(),
-		),
+		mcp.WithInputSchema[client.ApiPluginsUninstallParams](),
 	)
 
-	s.AddTool(tool, pluginsUninstallHandler)
+	s.AddTool(tool, mcp.NewTypedToolHandler(pluginsUninstallHandler))
 }
 
-func pluginsUninstallHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func pluginsUninstallHandler(ctx context.Context, request mcp.CallToolRequest, params client.ApiPluginsUninstallParams) (*mcp.CallToolResult, error) {
 	c, err := newClient(ctx)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	params := parsePluginsUninstall(request)
 	return toResult(c.ApiPluginsUninstall(ctx, &params, authorizationHeader))
-}
-
-func parsePluginsUninstall(request mcp.CallToolRequest) client.ApiPluginsUninstallParams {
-	params := client.ApiPluginsUninstallParams{}
-
-	key := request.GetString("key", "")
-	if key != "" {
-		params.Key = key
-	}
-
-	return params
 }
 
 func registerPluginsUpdate(s *server.MCPServer) {
 	tool := mcp.NewTool("plugins_update",
 		mcp.WithDescription("Updates a plugin specified by its key to the latest version compatible with the SonarQube instance.<br/>Plugin information is retrieved from Update Center.<br/>Requires user to be authenticated with Administer System permissions"),
-		mcp.WithString("key",
-			mcp.Description("The key identifying the plugin to update"),
-			mcp.Required(),
-		),
+		mcp.WithInputSchema[client.ApiPluginsUpdateParams](),
 	)
 
-	s.AddTool(tool, pluginsUpdateHandler)
+	s.AddTool(tool, mcp.NewTypedToolHandler(pluginsUpdateHandler))
 }
 
-func pluginsUpdateHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func pluginsUpdateHandler(ctx context.Context, request mcp.CallToolRequest, params client.ApiPluginsUpdateParams) (*mcp.CallToolResult, error) {
 	c, err := newClient(ctx)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	params := parsePluginsUpdate(request)
 	return toResult(c.ApiPluginsUpdate(ctx, &params, authorizationHeader))
-}
-
-func parsePluginsUpdate(request mcp.CallToolRequest) client.ApiPluginsUpdateParams {
-	params := client.ApiPluginsUpdateParams{}
-
-	key := request.GetString("key", "")
-	if key != "" {
-		params.Key = key
-	}
-
-	return params
 }
 
 func registerPluginsUpdates(s *server.MCPServer) {

@@ -12,32 +12,17 @@ import (
 func registerProjectDumpExport(s *server.MCPServer) {
 	tool := mcp.NewTool("project_dump_export",
 		mcp.WithDescription("Triggers project dump so that the project can be imported to another SonarQube server (see api/project_dump/import, available in Enterprise Edition). Requires the 'Administer' permission."),
-		mcp.WithString("key",
-			mcp.Description("null"),
-			mcp.Required(),
-		),
+		mcp.WithInputSchema[client.ApiProjectDumpExportParams](),
 	)
 
-	s.AddTool(tool, projectDumpExportHandler)
+	s.AddTool(tool, mcp.NewTypedToolHandler(projectDumpExportHandler))
 }
 
-func projectDumpExportHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func projectDumpExportHandler(ctx context.Context, request mcp.CallToolRequest, params client.ApiProjectDumpExportParams) (*mcp.CallToolResult, error) {
 	c, err := newClient(ctx)
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	params := parseProjectDumpExport(request)
 	return toResult(c.ApiProjectDumpExport(ctx, &params, authorizationHeader))
-}
-
-func parseProjectDumpExport(request mcp.CallToolRequest) client.ApiProjectDumpExportParams {
-	params := client.ApiProjectDumpExportParams{}
-
-	key := request.GetString("key", "")
-	if key != "" {
-		params.Key = key
-	}
-
-	return params
 }

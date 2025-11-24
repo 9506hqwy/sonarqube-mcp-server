@@ -10,7 +10,7 @@ tool (
 
 require (
 	github.com/9506hqwy/sonar-client-go v0.0.0-20251109045120-7ce0e4775f0e
-	github.com/mark3labs/mcp-go v0.43.0
+	github.com/mark3labs/mcp-go v0.43.1
 	github.com/spf13/cobra v1.10.1
 	github.com/spf13/viper v1.21.0
 )

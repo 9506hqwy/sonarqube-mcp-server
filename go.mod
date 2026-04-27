@@ -1,6 +1,6 @@
 module github.com/9506hqwy/sonarqube-mcp-server
 
-go 1.25.3
+go 1.25.5
 
 tool (
 	github.com/google/go-licenses/v2
@@ -10,7 +10,7 @@ tool (
 
 require (
 	github.com/9506hqwy/sonar-client-go v0.0.0-20251109045120-7ce0e4775f0e
-	github.com/mark3labs/mcp-go v0.48.0
+	github.com/mark3labs/mcp-go v0.49.0
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
 )

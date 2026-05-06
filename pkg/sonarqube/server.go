@@ -8,6 +8,7 @@ import (
 )
 
 func registerServerVersion(s *server.MCPServer) {
+
 	tool := mcp.NewTool("server_version",
 		mcp.WithDescription("Version of SonarQube in plain text"),
 	)

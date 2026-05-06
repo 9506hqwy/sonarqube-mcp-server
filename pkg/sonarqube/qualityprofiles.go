@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerQualityprofilesActivateRule(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesActivateRuleParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_activate_rule",
 		mcp.WithDescription("Activate a rule on a Quality Profile.<br> Requires one of the following permissions:<ul> <li>'Administer Quality Profiles'</li> <li>Edit right on the specified quality profile</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualityprofilesActivateRuleParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesActivateRuleHandler))
@@ -28,9 +41,20 @@ func qualityprofilesActivateRuleHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerQualityprofilesActivateRules(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesActivateRulesParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_activate_rules",
 		mcp.WithDescription("Bulk-activate rules on one quality profile.<br> Requires one of the following permissions:<ul> <li>'Administer Quality Profiles'</li> <li>Edit right on the specified quality profile</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualityprofilesActivateRulesParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesActivateRulesHandler))
@@ -46,9 +70,20 @@ func qualityprofilesActivateRulesHandler(ctx context.Context, request mcp.CallTo
 }
 
 func registerQualityprofilesAddProject(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesAddProjectParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_add_project",
 		mcp.WithDescription("Associate a project with a quality profile.<br> Requires one of the following permissions:<ul> <li>'Administer Quality Profiles'</li> <li>Edit right on the specified quality profile</li> <li>Administer right on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualityprofilesAddProjectParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesAddProjectHandler))
@@ -64,9 +99,20 @@ func qualityprofilesAddProjectHandler(ctx context.Context, request mcp.CallToolR
 }
 
 func registerQualityprofilesBackup(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesBackupParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_backup",
 		mcp.WithDescription("Backup a quality profile in XML form. The exported profile can be restored through api/qualityprofiles/restore."),
-		mcp.WithInputSchema[client.ApiQualityprofilesBackupParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesBackupHandler))
@@ -82,9 +128,20 @@ func qualityprofilesBackupHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesChangeParent(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesChangeParentParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_change_parent",
 		mcp.WithDescription("Change a quality profile's parent.<br>Requires one of the following permissions:<ul> <li>'Administer Quality Profiles'</li> <li>Edit right on the specified quality profile</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualityprofilesChangeParentParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesChangeParentHandler))
@@ -100,9 +157,20 @@ func qualityprofilesChangeParentHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerQualityprofilesChangelog(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesChangelogParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_changelog",
 		mcp.WithDescription("Get the history of changes on a quality profile: rule activation/deactivation, change in parameters/severity. Events are ordered by date in descending order (most recent first)."),
-		mcp.WithInputSchema[client.ApiQualityprofilesChangelogParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesChangelogHandler))
@@ -118,9 +186,20 @@ func qualityprofilesChangelogHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerQualityprofilesCopy(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesCopyParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_copy",
 		mcp.WithDescription("Copy a quality profile.<br> Requires to be logged in and the 'Administer Quality Profiles' permission."),
-		mcp.WithInputSchema[client.ApiQualityprofilesCopyParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesCopyHandler))
@@ -136,9 +215,20 @@ func qualityprofilesCopyHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerQualityprofilesCreate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesCreateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_create",
 		mcp.WithDescription("Create a quality profile.<br>Requires to be logged in and the 'Administer Quality Profiles' permission."),
-		mcp.WithInputSchema[client.ApiQualityprofilesCreateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesCreateHandler))
@@ -154,9 +244,20 @@ func qualityprofilesCreateHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesDeactivateRule(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesDeactivateRuleParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_deactivate_rule",
 		mcp.WithDescription("Deactivate a rule on a quality profile.<br> Requires one of the following permissions:<ul> <li>'Administer Quality Profiles'</li> <li>Edit right on the specified quality profile</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualityprofilesDeactivateRuleParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesDeactivateRuleHandler))
@@ -172,9 +273,20 @@ func qualityprofilesDeactivateRuleHandler(ctx context.Context, request mcp.CallT
 }
 
 func registerQualityprofilesDeactivateRules(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesDeactivateRulesParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_deactivate_rules",
 		mcp.WithDescription("Bulk deactivate rules on Quality profiles.<br>Requires one of the following permissions:<ul> <li>'Administer Quality Profiles'</li> <li>Edit right on the specified quality profile</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualityprofilesDeactivateRulesParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesDeactivateRulesHandler))
@@ -190,9 +302,20 @@ func qualityprofilesDeactivateRulesHandler(ctx context.Context, request mcp.Call
 }
 
 func registerQualityprofilesDelete(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesDeleteParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_delete",
 		mcp.WithDescription("Delete a quality profile and all its descendants. The default quality profile cannot be deleted.<br> Requires one of the following permissions:<ul> <li>'Administer Quality Profiles'</li> <li>Edit right on the specified quality profile</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualityprofilesDeleteParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesDeleteHandler))
@@ -208,9 +331,20 @@ func qualityprofilesDeleteHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesExport(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesExportParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_export",
 		mcp.WithDescription("Export a quality profile."),
-		mcp.WithInputSchema[client.ApiQualityprofilesExportParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesExportHandler))
@@ -226,6 +360,7 @@ func qualityprofilesExportHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesExporters(s *server.MCPServer) {
+
 	tool := mcp.NewTool("qualityprofiles_exporters",
 		mcp.WithDescription("Lists available profile export formats."),
 	)
@@ -243,6 +378,7 @@ func qualityprofilesExportersHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerQualityprofilesImporters(s *server.MCPServer) {
+
 	tool := mcp.NewTool("qualityprofiles_importers",
 		mcp.WithDescription("List supported importers."),
 	)
@@ -260,9 +396,20 @@ func qualityprofilesImportersHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerQualityprofilesInheritance(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesInheritanceParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_inheritance",
 		mcp.WithDescription("Show a quality profile's ancestors and children."),
-		mcp.WithInputSchema[client.ApiQualityprofilesInheritanceParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesInheritanceHandler))
@@ -278,9 +425,20 @@ func qualityprofilesInheritanceHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerQualityprofilesProjects(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesProjectsParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_projects",
 		mcp.WithDescription("List projects with their association status regarding a quality profile <br/>See api/qualityprofiles/search in order to get the Quality Profile Key"),
-		mcp.WithInputSchema[client.ApiQualityprofilesProjectsParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesProjectsHandler))
@@ -296,9 +454,20 @@ func qualityprofilesProjectsHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerQualityprofilesRemoveProject(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesRemoveProjectParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_remove_project",
 		mcp.WithDescription("Remove a project's association with a quality profile.<br> Requires one of the following permissions:<ul> <li>'Administer Quality Profiles'</li> <li>Edit right on the specified quality profile</li> <li>Administer right on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualityprofilesRemoveProjectParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesRemoveProjectHandler))
@@ -314,9 +483,20 @@ func qualityprofilesRemoveProjectHandler(ctx context.Context, request mcp.CallTo
 }
 
 func registerQualityprofilesRename(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesRenameParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_rename",
 		mcp.WithDescription("Rename a quality profile.<br> Requires one of the following permissions:<ul> <li>'Administer Quality Profiles'</li> <li>Edit right on the specified quality profile</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualityprofilesRenameParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesRenameHandler))
@@ -332,9 +512,20 @@ func qualityprofilesRenameHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesRestore(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesRestoreParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_restore",
 		mcp.WithDescription("Restore a quality profile using an XML file. The restored profile name is taken from the backup file, so if a profile with the same name and language already exists, it will be overwritten.<br> Requires to be logged in and the 'Administer Quality Profiles' permission."),
-		mcp.WithInputSchema[client.ApiQualityprofilesRestoreParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesRestoreHandler))
@@ -350,9 +541,20 @@ func qualityprofilesRestoreHandler(ctx context.Context, request mcp.CallToolRequ
 }
 
 func registerQualityprofilesSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_search",
 		mcp.WithDescription("Search quality profiles"),
-		mcp.WithInputSchema[client.ApiQualityprofilesSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesSearchHandler))
@@ -368,9 +570,20 @@ func qualityprofilesSearchHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesSetDefault(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesSetDefaultParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualityprofiles_set_default",
 		mcp.WithDescription("Select the default profile for a given language.<br> Requires to be logged in and the 'Administer Quality Profiles' permission."),
-		mcp.WithInputSchema[client.ApiQualityprofilesSetDefaultParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualityprofilesSetDefaultHandler))

@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerWebservicesList(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiWebservicesListParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("webservices_list",
 		mcp.WithDescription("List web services"),
-		mcp.WithInputSchema[client.ApiWebservicesListParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(webservicesListHandler))
@@ -28,9 +41,20 @@ func webservicesListHandler(ctx context.Context, request mcp.CallToolRequest, pa
 }
 
 func registerWebservicesResponseExample(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiWebservicesResponseExampleParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("webservices_response_example",
 		mcp.WithDescription("Display web service response example"),
-		mcp.WithInputSchema[client.ApiWebservicesResponseExampleParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(webservicesResponseExampleHandler))

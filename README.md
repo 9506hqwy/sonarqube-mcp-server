@@ -353,6 +353,12 @@ mcpcurl tools \
 {"jsonrpc":"2.0","id":2583,"result":{"content":[{"type":"text","text":"{\"paging\":{\"pageIndex\":1,\"pageSize\":100,\"total\":2},\"components\":[{\"key\":\"test_project_1\",\"name\":\"Test Project 1\",\"qualifier\":\"TRK\",\"visibility\":\"public\"},{\"key\":\"test_project_created\",\"name\":\"Test Project Created\",\"qualifier\":\"TRK\",\"visibility\":\"public\"}]}"}]}}
 ```
 
+Check schema.
+
+```sh
+mcpcurl schema --pretty=false --stdio-server-cmd ./bin/sonarqube-mcp-server
+```
+
 ## Notes
 
 * Check off unused tools at [tool icon] in GitHub Copilot Chat panel bacause vscode limits max 128 tools.

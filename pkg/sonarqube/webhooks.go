@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerWebhooksCreate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiWebhooksCreateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("webhooks_create",
 		mcp.WithDescription("Create a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
-		mcp.WithInputSchema[client.ApiWebhooksCreateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(webhooksCreateHandler))
@@ -28,9 +41,20 @@ func webhooksCreateHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerWebhooksDelete(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiWebhooksDeleteParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("webhooks_delete",
 		mcp.WithDescription("Delete a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
-		mcp.WithInputSchema[client.ApiWebhooksDeleteParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(webhooksDeleteHandler))
@@ -46,9 +70,20 @@ func webhooksDeleteHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerWebhooksDeliveries(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiWebhooksDeliveriesParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("webhooks_deliveries",
 		mcp.WithDescription("Get the recent deliveries for a specified project or Compute Engine task.<br/>Require 'Administer' permission on the related project.<br/>Note that additional information are returned by api/webhooks/delivery."),
-		mcp.WithInputSchema[client.ApiWebhooksDeliveriesParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(webhooksDeliveriesHandler))
@@ -64,9 +99,20 @@ func webhooksDeliveriesHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerWebhooksDelivery(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiWebhooksDeliveryParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("webhooks_delivery",
 		mcp.WithDescription("Get a webhook delivery by its id.<br/>Require 'Administer System' permission.<br/>Note that additional information are returned by api/webhooks/delivery."),
-		mcp.WithInputSchema[client.ApiWebhooksDeliveryParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(webhooksDeliveryHandler))
@@ -82,9 +128,20 @@ func webhooksDeliveryHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerWebhooksList(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiWebhooksListParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("webhooks_list",
 		mcp.WithDescription("Search for global webhooks or project webhooks. Webhooks are ordered by name.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
-		mcp.WithInputSchema[client.ApiWebhooksListParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(webhooksListHandler))
@@ -100,9 +157,20 @@ func webhooksListHandler(ctx context.Context, request mcp.CallToolRequest, param
 }
 
 func registerWebhooksUpdate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiWebhooksUpdateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("webhooks_update",
 		mcp.WithDescription("Update a Webhook.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
-		mcp.WithInputSchema[client.ApiWebhooksUpdateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(webhooksUpdateHandler))

@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerAlmSettingsCountBinding(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCountBindingParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_count_binding",
 		mcp.WithDescription("Count number of project bound to an DevOps Platform setting.<br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsCountBindingParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsCountBindingHandler))
@@ -28,9 +41,20 @@ func almSettingsCountBindingHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsCreateAzure(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateAzureParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_create_azure",
 		mcp.WithDescription("Create Azure instance Setting. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsCreateAzureParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsCreateAzureHandler))
@@ -46,9 +70,20 @@ func almSettingsCreateAzureHandler(ctx context.Context, request mcp.CallToolRequ
 }
 
 func registerAlmSettingsCreateBitbucket(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateBitbucketParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_create_bitbucket",
 		mcp.WithDescription("Create Bitbucket instance Setting. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsCreateBitbucketParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsCreateBitbucketHandler))
@@ -64,9 +99,20 @@ func almSettingsCreateBitbucketHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerAlmSettingsCreateBitbucketcloud(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateBitbucketcloudParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_create_bitbucketcloud",
 		mcp.WithDescription("Configure a new instance of Bitbucket Cloud. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsCreateBitbucketcloudParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsCreateBitbucketcloudHandler))
@@ -82,9 +128,20 @@ func almSettingsCreateBitbucketcloudHandler(ctx context.Context, request mcp.Cal
 }
 
 func registerAlmSettingsCreateGithub(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateGithubParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_create_github",
 		mcp.WithDescription("Create GitHub instance Setting. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsCreateGithubParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsCreateGithubHandler))
@@ -100,9 +157,20 @@ func almSettingsCreateGithubHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsCreateGitlab(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateGitlabParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_create_gitlab",
 		mcp.WithDescription("Create GitLab instance Setting. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsCreateGitlabParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsCreateGitlabHandler))
@@ -118,9 +186,20 @@ func almSettingsCreateGitlabHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsDelete(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsDeleteParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_delete",
 		mcp.WithDescription("Delete an DevOps Platform Setting.<br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsDeleteParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsDeleteHandler))
@@ -136,9 +215,20 @@ func almSettingsDeleteHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerAlmSettingsGetBinding(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsGetBindingParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_get_binding",
 		mcp.WithDescription("Get DevOps Platform binding of a given project.<br/>Requires the 'Administer' permission on the project"),
-		mcp.WithInputSchema[client.ApiAlmSettingsGetBindingParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsGetBindingHandler))
@@ -154,9 +244,20 @@ func almSettingsGetBindingHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerAlmSettingsList(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsListParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_list",
 		mcp.WithDescription("List DevOps Platform setting available for a given project, sorted by DevOps Platform key<br/>Requires the 'Administer project' permission if the 'project' parameter is provided, requires the 'Create Projects' permission otherwise."),
-		mcp.WithInputSchema[client.ApiAlmSettingsListParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsListHandler))
@@ -172,6 +273,7 @@ func almSettingsListHandler(ctx context.Context, request mcp.CallToolRequest, pa
 }
 
 func registerAlmSettingsListDefinitions(s *server.MCPServer) {
+
 	tool := mcp.NewTool("alm_settings_list_definitions",
 		mcp.WithDescription("List DevOps Platform Settings, sorted by created date.<br/>Requires the 'Administer System' permission"),
 	)
@@ -189,9 +291,20 @@ func almSettingsListDefinitionsHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerAlmSettingsUpdateAzure(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateAzureParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_update_azure",
 		mcp.WithDescription("Update Azure instance Setting. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsUpdateAzureParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsUpdateAzureHandler))
@@ -207,9 +320,20 @@ func almSettingsUpdateAzureHandler(ctx context.Context, request mcp.CallToolRequ
 }
 
 func registerAlmSettingsUpdateBitbucket(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateBitbucketParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_update_bitbucket",
 		mcp.WithDescription("Update Bitbucket instance Setting. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsUpdateBitbucketParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsUpdateBitbucketHandler))
@@ -225,9 +349,20 @@ func almSettingsUpdateBitbucketHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerAlmSettingsUpdateBitbucketcloud(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateBitbucketcloudParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_update_bitbucketcloud",
 		mcp.WithDescription("Update Bitbucket Cloud Setting. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsUpdateBitbucketcloudParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsUpdateBitbucketcloudHandler))
@@ -243,9 +378,20 @@ func almSettingsUpdateBitbucketcloudHandler(ctx context.Context, request mcp.Cal
 }
 
 func registerAlmSettingsUpdateGithub(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateGithubParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_update_github",
 		mcp.WithDescription("Update GitHub instance Setting. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsUpdateGithubParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsUpdateGithubHandler))
@@ -261,9 +407,20 @@ func almSettingsUpdateGithubHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsUpdateGitlab(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateGitlabParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_update_gitlab",
 		mcp.WithDescription("Update GitLab instance Setting. <br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsUpdateGitlabParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsUpdateGitlabHandler))
@@ -279,9 +436,20 @@ func almSettingsUpdateGitlabHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsValidate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsValidateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_settings_validate",
 		mcp.WithDescription("Validate an DevOps Platform Setting by checking connectivity and permissions<br/>Requires the 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiAlmSettingsValidateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almSettingsValidateHandler))

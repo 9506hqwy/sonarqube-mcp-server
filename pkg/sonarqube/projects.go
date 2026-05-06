@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerProjectsBulkDelete(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectsBulkDeleteParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("projects_bulk_delete",
 		mcp.WithDescription("Delete one or several projects.<br />Only the 1'000 first items in project filters are taken into account.<br />Requires 'Administer System' permission.<br />At least one parameter is required among analyzedBefore, projects and q"),
-		mcp.WithInputSchema[client.ApiProjectsBulkDeleteParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectsBulkDeleteHandler))
@@ -28,9 +41,20 @@ func projectsBulkDeleteHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerProjectsCreate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectsCreateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("projects_create",
 		mcp.WithDescription("Create a project.<br/>Requires 'Create Projects' permission"),
-		mcp.WithInputSchema[client.ApiProjectsCreateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectsCreateHandler))
@@ -46,9 +70,20 @@ func projectsCreateHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerProjectsDelete(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectsDeleteParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("projects_delete",
 		mcp.WithDescription("Delete a project.<br> Requires 'Administer System' permission or 'Administer' permission on the project."),
-		mcp.WithInputSchema[client.ApiProjectsDeleteParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectsDeleteHandler))
@@ -64,9 +99,20 @@ func projectsDeleteHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerProjectsSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectsSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("projects_search",
 		mcp.WithDescription("Search for projects or views to administrate them.<br>Requires 'Administer System' permission"),
-		mcp.WithInputSchema[client.ApiProjectsSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectsSearchHandler))
@@ -82,9 +128,20 @@ func projectsSearchHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerProjectsUpdateKey(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectsUpdateKeyParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("projects_update_key",
 		mcp.WithDescription("Update a project all its sub-components keys.<br>Requires one of the following permissions: <ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiProjectsUpdateKeyParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectsUpdateKeyHandler))
@@ -100,9 +157,20 @@ func projectsUpdateKeyHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerProjectsUpdateVisibility(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectsUpdateVisibilityParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("projects_update_visibility",
 		mcp.WithDescription("Updates visibility of a project or view.<br>Requires 'Project administer' permission on the specified project or view"),
-		mcp.WithInputSchema[client.ApiProjectsUpdateVisibilityParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectsUpdateVisibilityHandler))

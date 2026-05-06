@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerProjectTagsSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectTagsSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("project_tags_search",
 		mcp.WithDescription("Search tags"),
-		mcp.WithInputSchema[client.ApiProjectTagsSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectTagsSearchHandler))
@@ -28,9 +41,20 @@ func projectTagsSearchHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerProjectTagsSet(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectTagsSetParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("project_tags_set",
 		mcp.WithDescription("Set tags on a project.<br>Requires the following permission: 'Administer' rights on the specified project"),
-		mcp.WithInputSchema[client.ApiProjectTagsSetParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectTagsSetHandler))

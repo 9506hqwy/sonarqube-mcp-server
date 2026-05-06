@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerHotspotsSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiHotspotsSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("hotspots_search",
 		mcp.WithDescription("Search for Security Hotpots. <br>Requires the 'Browse' permission on the specified project(s). <br>For applications, it also requires 'Browse' permission on its child projects. <br>When issue indexation is in progress returns 503 service unavailable HTTP code."),
-		mcp.WithInputSchema[client.ApiHotspotsSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(hotspotsSearchHandler))
@@ -28,9 +41,20 @@ func hotspotsSearchHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerHotspotsShow(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiHotspotsShowParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("hotspots_show",
 		mcp.WithDescription("Provides the details of a Security Hotspot."),
-		mcp.WithInputSchema[client.ApiHotspotsShowParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(hotspotsShowHandler))

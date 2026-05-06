@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerRulesCreate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiRulesCreateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("rules_create",
 		mcp.WithDescription("Create a custom rule.<br>Requires the 'Administer Quality Profiles' permission"),
-		mcp.WithInputSchema[client.ApiRulesCreateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(rulesCreateHandler))
@@ -28,9 +41,20 @@ func rulesCreateHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerRulesDelete(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiRulesDeleteParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("rules_delete",
 		mcp.WithDescription("Delete custom rule.<br/>Requires the 'Administer Quality Profiles' permission"),
-		mcp.WithInputSchema[client.ApiRulesDeleteParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(rulesDeleteHandler))
@@ -46,9 +70,20 @@ func rulesDeleteHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerRulesRepositories(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiRulesRepositoriesParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("rules_repositories",
 		mcp.WithDescription("List available rule repositories"),
-		mcp.WithInputSchema[client.ApiRulesRepositoriesParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(rulesRepositoriesHandler))
@@ -64,9 +99,20 @@ func rulesRepositoriesHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerRulesSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiRulesSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("rules_search",
 		mcp.WithDescription("Search for a collection of relevant rules matching a specified query.<br/>"),
-		mcp.WithInputSchema[client.ApiRulesSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(rulesSearchHandler))
@@ -82,9 +128,20 @@ func rulesSearchHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerRulesShow(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiRulesShowParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("rules_show",
 		mcp.WithDescription("Get detailed information about a rule<br>"),
-		mcp.WithInputSchema[client.ApiRulesShowParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(rulesShowHandler))
@@ -100,9 +157,20 @@ func rulesShowHandler(ctx context.Context, request mcp.CallToolRequest, params c
 }
 
 func registerRulesTags(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiRulesTagsParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("rules_tags",
 		mcp.WithDescription("List rule tags"),
-		mcp.WithInputSchema[client.ApiRulesTagsParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(rulesTagsHandler))
@@ -118,9 +186,20 @@ func rulesTagsHandler(ctx context.Context, request mcp.CallToolRequest, params c
 }
 
 func registerRulesUpdate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiRulesUpdateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("rules_update",
 		mcp.WithDescription("Update an existing rule.<br>Requires the 'Administer Quality Profiles' permission"),
-		mcp.WithInputSchema[client.ApiRulesUpdateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(rulesUpdateHandler))

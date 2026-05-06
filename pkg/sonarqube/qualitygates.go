@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerQualitygatesCopy(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesCopyParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_copy",
 		mcp.WithDescription("Copy a Quality Gate.<br>Either 'sourceName' or 'id' must be provided. Requires the 'Administer Quality Gates' permission."),
-		mcp.WithInputSchema[client.ApiQualitygatesCopyParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesCopyHandler))
@@ -28,9 +41,20 @@ func qualitygatesCopyHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerQualitygatesCreate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesCreateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_create",
 		mcp.WithDescription("Create a Quality Gate.<br>Requires the 'Administer Quality Gates' permission."),
-		mcp.WithInputSchema[client.ApiQualitygatesCreateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesCreateHandler))
@@ -46,9 +70,20 @@ func qualitygatesCreateHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerQualitygatesCreateCondition(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesCreateConditionParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_create_condition",
 		mcp.WithDescription("Add a new condition to a quality gate.<br>Either 'gateId' or 'gateName' must be provided. Requires the 'Administer Quality Gates' permission."),
-		mcp.WithInputSchema[client.ApiQualitygatesCreateConditionParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesCreateConditionHandler))
@@ -64,9 +99,20 @@ func qualitygatesCreateConditionHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerQualitygatesDeleteCondition(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesDeleteConditionParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_delete_condition",
 		mcp.WithDescription("Delete a condition from a quality gate.<br>Requires the 'Administer Quality Gates' permission."),
-		mcp.WithInputSchema[client.ApiQualitygatesDeleteConditionParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesDeleteConditionHandler))
@@ -82,9 +128,20 @@ func qualitygatesDeleteConditionHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerQualitygatesDeselect(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesDeselectParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_deselect",
 		mcp.WithDescription("Remove the association of a project from a quality gate.<br>Requires one of the following permissions:<ul><li>'Administer Quality Gates'</li><li>'Administer' rights on the project</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualitygatesDeselectParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesDeselectHandler))
@@ -100,9 +157,20 @@ func qualitygatesDeselectHandler(ctx context.Context, request mcp.CallToolReques
 }
 
 func registerQualitygatesDestroy(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesDestroyParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_destroy",
 		mcp.WithDescription("Delete a Quality Gate.<br>Either 'id' or 'name' must be specified. Requires the 'Administer Quality Gates' permission."),
-		mcp.WithInputSchema[client.ApiQualitygatesDestroyParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesDestroyHandler))
@@ -118,9 +186,20 @@ func qualitygatesDestroyHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerQualitygatesGetByProject(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesGetByProjectParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_get_by_project",
 		mcp.WithDescription("Get the quality gate of a project.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualitygatesGetByProjectParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesGetByProjectHandler))
@@ -136,6 +215,7 @@ func qualitygatesGetByProjectHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerQualitygatesList(s *server.MCPServer) {
+
 	tool := mcp.NewTool("qualitygates_list",
 		mcp.WithDescription("Get a list of quality gates"),
 	)
@@ -153,9 +233,20 @@ func qualitygatesListHandler(ctx context.Context, request mcp.CallToolRequest) (
 }
 
 func registerQualitygatesProjectStatus(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesProjectStatusParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_project_status",
 		mcp.WithDescription("Get the quality gate status of a project or a Compute Engine task.<br />Either 'analysisId', 'projectId' or 'projectKey' must be provided <br />The different statuses returned are: OK, WARN, ERROR, NONE. The NONE status is returned when there is no quality gate associated with the analysis.<br />Returns an HTTP code 404 if the analysis associated with the task is not found or does not exist.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li><li>'Execute Analysis' on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualitygatesProjectStatusParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesProjectStatusHandler))
@@ -171,9 +262,20 @@ func qualitygatesProjectStatusHandler(ctx context.Context, request mcp.CallToolR
 }
 
 func registerQualitygatesRename(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesRenameParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_rename",
 		mcp.WithDescription("Rename a Quality Gate.<br>Either 'id' or 'currentName' must be specified. Requires the 'Administer Quality Gates' permission."),
-		mcp.WithInputSchema[client.ApiQualitygatesRenameParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesRenameHandler))
@@ -189,9 +291,20 @@ func qualitygatesRenameHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerQualitygatesSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_search",
 		mcp.WithDescription("Search for projects associated (or not) to a quality gate.<br/>Only authorized projects for the current user will be returned."),
-		mcp.WithInputSchema[client.ApiQualitygatesSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesSearchHandler))
@@ -207,9 +320,20 @@ func qualitygatesSearchHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerQualitygatesSelect(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesSelectParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_select",
 		mcp.WithDescription("Associate a project to a quality gate.<br>Requires one of the following permissions:<ul> <li>'Administer Quality Gates'</li> <li>'Administer' right on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiQualitygatesSelectParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesSelectHandler))
@@ -225,9 +349,20 @@ func qualitygatesSelectHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerQualitygatesSetAsDefault(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesSetAsDefaultParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_set_as_default",
 		mcp.WithDescription("Set a quality gate as the default quality gate.<br>Either 'id' or 'name' must be specified. Requires the 'Administer Quality Gates' permission."),
-		mcp.WithInputSchema[client.ApiQualitygatesSetAsDefaultParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesSetAsDefaultHandler))
@@ -243,9 +378,20 @@ func qualitygatesSetAsDefaultHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerQualitygatesShow(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesShowParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_show",
 		mcp.WithDescription("Display the details of a quality gate"),
-		mcp.WithInputSchema[client.ApiQualitygatesShowParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesShowHandler))
@@ -261,9 +407,20 @@ func qualitygatesShowHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerQualitygatesUpdateCondition(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesUpdateConditionParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("qualitygates_update_condition",
 		mcp.WithDescription("Update a condition attached to a quality gate.<br>Requires the 'Administer Quality Gates' permission."),
-		mcp.WithInputSchema[client.ApiQualitygatesUpdateConditionParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(qualitygatesUpdateConditionHandler))

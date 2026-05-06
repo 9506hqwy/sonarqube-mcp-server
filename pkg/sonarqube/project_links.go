@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerProjectLinksCreate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectLinksCreateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("project_links_create",
 		mcp.WithDescription("Create a new project link.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
-		mcp.WithInputSchema[client.ApiProjectLinksCreateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectLinksCreateHandler))
@@ -28,9 +41,20 @@ func projectLinksCreateHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerProjectLinksDelete(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectLinksDeleteParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("project_links_delete",
 		mcp.WithDescription("Delete existing project link.<br>Requires 'Administer' permission on the specified project, or global 'Administer' permission."),
-		mcp.WithInputSchema[client.ApiProjectLinksDeleteParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectLinksDeleteHandler))
@@ -46,9 +70,20 @@ func projectLinksDeleteHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerProjectLinksSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectLinksSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("project_links_search",
 		mcp.WithDescription("List links of a project.<br>The 'projectId' or 'projectKey' must be provided.<br>Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li><li>'Browse' on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiProjectLinksSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectLinksSearchHandler))

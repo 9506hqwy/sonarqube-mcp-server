@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerCeActivity(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiCeActivityParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("ce_activity",
 		mcp.WithDescription("Search for tasks.<br> Either componentId or component can be provided, but not both.<br> Requires the system administration permission, or project administration permission if componentId or component is set."),
-		mcp.WithInputSchema[client.ApiCeActivityParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(ceActivityHandler))
@@ -28,9 +41,20 @@ func ceActivityHandler(ctx context.Context, request mcp.CallToolRequest, params 
 }
 
 func registerCeActivityStatus(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiCeActivityStatusParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("ce_activity_status",
 		mcp.WithDescription("Returns CE activity related metrics.<br>Requires 'Administer System' permission or 'Administer' rights on the specified project."),
-		mcp.WithInputSchema[client.ApiCeActivityStatusParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(ceActivityStatusHandler))
@@ -46,9 +70,20 @@ func ceActivityStatusHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerCeComponent(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiCeComponentParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("ce_component",
 		mcp.WithDescription("Get the pending tasks, in-progress tasks and the last executed task of a given component (usually a project).<br>Requires the following permission: 'Browse' on the specified component."),
-		mcp.WithInputSchema[client.ApiCeComponentParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(ceComponentHandler))
@@ -64,9 +99,20 @@ func ceComponentHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerCeTask(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiCeTaskParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("ce_task",
 		mcp.WithDescription("Give Compute Engine task details such as type, status, duration and associated component.<br />Requires 'Administer System' or 'Execute Analysis' permission.<br/>Since 6.1, field \"logs\" is deprecated and its value is always false."),
-		mcp.WithInputSchema[client.ApiCeTaskParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(ceTaskHandler))

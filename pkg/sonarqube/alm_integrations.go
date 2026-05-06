@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerAlmIntegrationsImportGitlabProject(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsImportGitlabProjectParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_integrations_import_gitlab_project",
 		mcp.WithDescription("Import a GitLab project to SonarQube, creating a new project and configuring MR decoration<br/>Requires the 'Create Projects' permission"),
-		mcp.WithInputSchema[client.ApiAlmIntegrationsImportGitlabProjectParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almIntegrationsImportGitlabProjectHandler))
@@ -28,9 +41,20 @@ func almIntegrationsImportGitlabProjectHandler(ctx context.Context, request mcp.
 }
 
 func registerAlmIntegrationsListAzureProjects(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsListAzureProjectsParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_integrations_list_azure_projects",
 		mcp.WithDescription("List Azure projects<br/>Requires the 'Create Projects' permission"),
-		mcp.WithInputSchema[client.ApiAlmIntegrationsListAzureProjectsParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almIntegrationsListAzureProjectsHandler))
@@ -46,9 +70,20 @@ func almIntegrationsListAzureProjectsHandler(ctx context.Context, request mcp.Ca
 }
 
 func registerAlmIntegrationsListBitbucketserverProjects(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsListBitbucketserverProjectsParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_integrations_list_bitbucketserver_projects",
 		mcp.WithDescription("List the Bitbucket Server projects<br/>Requires the 'Create Projects' permission"),
-		mcp.WithInputSchema[client.ApiAlmIntegrationsListBitbucketserverProjectsParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almIntegrationsListBitbucketserverProjectsHandler))
@@ -64,9 +99,20 @@ func almIntegrationsListBitbucketserverProjectsHandler(ctx context.Context, requ
 }
 
 func registerAlmIntegrationsSearchAzureRepos(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSearchAzureReposParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_integrations_search_azure_repos",
 		mcp.WithDescription("Search the Azure repositories<br/>Requires the 'Create Projects' permission"),
-		mcp.WithInputSchema[client.ApiAlmIntegrationsSearchAzureReposParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almIntegrationsSearchAzureReposHandler))
@@ -82,9 +128,20 @@ func almIntegrationsSearchAzureReposHandler(ctx context.Context, request mcp.Cal
 }
 
 func registerAlmIntegrationsSearchBitbucketcloudRepos(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSearchBitbucketcloudReposParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_integrations_search_bitbucketcloud_repos",
 		mcp.WithDescription("Search the Bitbucket Cloud repositories<br/>Requires the 'Create Projects' permission"),
-		mcp.WithInputSchema[client.ApiAlmIntegrationsSearchBitbucketcloudReposParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almIntegrationsSearchBitbucketcloudReposHandler))
@@ -100,9 +157,20 @@ func almIntegrationsSearchBitbucketcloudReposHandler(ctx context.Context, reques
 }
 
 func registerAlmIntegrationsSearchBitbucketserverRepos(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSearchBitbucketserverReposParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_integrations_search_bitbucketserver_repos",
 		mcp.WithDescription("Search the Bitbucket Server repositories with REPO_ADMIN access<br/>Requires the 'Create Projects' permission"),
-		mcp.WithInputSchema[client.ApiAlmIntegrationsSearchBitbucketserverReposParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almIntegrationsSearchBitbucketserverReposHandler))
@@ -118,9 +186,20 @@ func almIntegrationsSearchBitbucketserverReposHandler(ctx context.Context, reque
 }
 
 func registerAlmIntegrationsSearchGitlabRepos(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSearchGitlabReposParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_integrations_search_gitlab_repos",
 		mcp.WithDescription("Search the GitLab projects.<br/>Requires the 'Create Projects' permission"),
-		mcp.WithInputSchema[client.ApiAlmIntegrationsSearchGitlabReposParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almIntegrationsSearchGitlabReposHandler))
@@ -136,9 +215,20 @@ func almIntegrationsSearchGitlabReposHandler(ctx context.Context, request mcp.Ca
 }
 
 func registerAlmIntegrationsSetPat(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSetPatParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("alm_integrations_set_pat",
 		mcp.WithDescription("Set a Personal Access Token for the given DevOps Platform setting<br/>Only valid for Azure DevOps, Bitbucket Server, GitLab and Bitbucket Cloud Setting<br/>Requires the 'Create Projects' permission"),
-		mcp.WithInputSchema[client.ApiAlmIntegrationsSetPatParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(almIntegrationsSetPatHandler))

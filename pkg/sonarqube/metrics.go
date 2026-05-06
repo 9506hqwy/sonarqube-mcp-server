@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerMetricsSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiMetricsSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("metrics_search",
 		mcp.WithDescription("Search for metrics"),
-		mcp.WithInputSchema[client.ApiMetricsSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(metricsSearchHandler))
@@ -28,6 +41,7 @@ func metricsSearchHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerMetricsTypes(s *server.MCPServer) {
+
 	tool := mcp.NewTool("metrics_types",
 		mcp.WithDescription("List all available metric types."),
 	)

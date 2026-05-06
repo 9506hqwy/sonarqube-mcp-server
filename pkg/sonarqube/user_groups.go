@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerUserGroupsAddUser(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsAddUserParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("user_groups_add_user",
 		mcp.WithDescription("Add a user to a group.<br />'id' or 'name' must be provided.<br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiUserGroupsAddUserParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(userGroupsAddUserHandler))
@@ -28,9 +41,20 @@ func userGroupsAddUserHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerUserGroupsCreate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsCreateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("user_groups_create",
 		mcp.WithDescription("Create a group.<br>Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiUserGroupsCreateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(userGroupsCreateHandler))
@@ -46,9 +70,20 @@ func userGroupsCreateHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerUserGroupsDelete(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsDeleteParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("user_groups_delete",
 		mcp.WithDescription("Delete a group. The default groups cannot be deleted.<br/>'id' or 'name' must be provided.<br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiUserGroupsDeleteParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(userGroupsDeleteHandler))
@@ -64,9 +99,20 @@ func userGroupsDeleteHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerUserGroupsRemoveUser(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsRemoveUserParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("user_groups_remove_user",
 		mcp.WithDescription("Remove a user from a group.<br />'id' or 'name' must be provided.<br>Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiUserGroupsRemoveUserParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(userGroupsRemoveUserHandler))
@@ -82,9 +128,20 @@ func userGroupsRemoveUserHandler(ctx context.Context, request mcp.CallToolReques
 }
 
 func registerUserGroupsSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("user_groups_search",
 		mcp.WithDescription("Search for user groups.<br>Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiUserGroupsSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(userGroupsSearchHandler))
@@ -100,9 +157,20 @@ func userGroupsSearchHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerUserGroupsUpdate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsUpdateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("user_groups_update",
 		mcp.WithDescription("Update a group.<br>Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiUserGroupsUpdateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(userGroupsUpdateHandler))
@@ -118,9 +186,20 @@ func userGroupsUpdateHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerUserGroupsUsers(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsUsersParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("user_groups_users",
 		mcp.WithDescription("Search for users with membership information with respect to a group.<br>Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiUserGroupsUsersParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(userGroupsUsersHandler))

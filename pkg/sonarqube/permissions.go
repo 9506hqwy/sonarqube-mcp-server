@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerPermissionsAddGroup(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddGroupParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_add_group",
 		mcp.WithDescription("Add a permission to a group.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> The group name or group id must be provided. <br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiPermissionsAddGroupParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsAddGroupHandler))
@@ -28,9 +41,20 @@ func permissionsAddGroupHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerPermissionsAddGroupToTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddGroupToTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_add_group_to_template",
 		mcp.WithDescription("Add a group to a permission template.<br /> The group id or group name must be provided. <br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsAddGroupToTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsAddGroupToTemplateHandler))
@@ -46,9 +70,20 @@ func permissionsAddGroupToTemplateHandler(ctx context.Context, request mcp.CallT
 }
 
 func registerPermissionsAddProjectCreatorToTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddProjectCreatorToTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_add_project_creator_to_template",
 		mcp.WithDescription("Add a project creator to a permission template.<br>Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsAddProjectCreatorToTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsAddProjectCreatorToTemplateHandler))
@@ -64,9 +99,20 @@ func permissionsAddProjectCreatorToTemplateHandler(ctx context.Context, request 
 }
 
 func registerPermissionsAddUser(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddUserParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_add_user",
 		mcp.WithDescription("Add permission to a user.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiPermissionsAddUserParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsAddUserHandler))
@@ -82,9 +128,20 @@ func permissionsAddUserHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerPermissionsAddUserToTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddUserToTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_add_user_to_template",
 		mcp.WithDescription("Add a user to a permission template.<br /> Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsAddUserToTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsAddUserToTemplateHandler))
@@ -100,9 +157,20 @@ func permissionsAddUserToTemplateHandler(ctx context.Context, request mcp.CallTo
 }
 
 func registerPermissionsApplyTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsApplyTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_apply_template",
 		mcp.WithDescription("Apply a permission template to one project.<br>The project id or project key must be provided.<br>The template id or name must be provided.<br>Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsApplyTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsApplyTemplateHandler))
@@ -118,9 +186,20 @@ func permissionsApplyTemplateHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerPermissionsBulkApplyTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsBulkApplyTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_bulk_apply_template",
 		mcp.WithDescription("Apply a permission template to several projects.<br />The template id or name must be provided.<br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsBulkApplyTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsBulkApplyTemplateHandler))
@@ -136,9 +215,20 @@ func permissionsBulkApplyTemplateHandler(ctx context.Context, request mcp.CallTo
 }
 
 func registerPermissionsCreateTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsCreateTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_create_template",
 		mcp.WithDescription("Create a permission template.<br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsCreateTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsCreateTemplateHandler))
@@ -154,9 +244,20 @@ func permissionsCreateTemplateHandler(ctx context.Context, request mcp.CallToolR
 }
 
 func registerPermissionsDeleteTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsDeleteTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_delete_template",
 		mcp.WithDescription("Delete a permission template.<br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsDeleteTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsDeleteTemplateHandler))
@@ -172,9 +273,20 @@ func permissionsDeleteTemplateHandler(ctx context.Context, request mcp.CallToolR
 }
 
 func registerPermissionsRemoveGroup(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveGroupParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_remove_group",
 		mcp.WithDescription("Remove a permission from a group.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> The group id or group name must be provided, not both.<br />Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiPermissionsRemoveGroupParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsRemoveGroupHandler))
@@ -190,9 +302,20 @@ func permissionsRemoveGroupHandler(ctx context.Context, request mcp.CallToolRequ
 }
 
 func registerPermissionsRemoveGroupFromTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveGroupFromTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_remove_group_from_template",
 		mcp.WithDescription("Remove a group from a permission template.<br /> The group id or group name must be provided. <br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsRemoveGroupFromTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsRemoveGroupFromTemplateHandler))
@@ -208,9 +331,20 @@ func permissionsRemoveGroupFromTemplateHandler(ctx context.Context, request mcp.
 }
 
 func registerPermissionsRemoveProjectCreatorFromTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveProjectCreatorFromTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_remove_project_creator_from_template",
 		mcp.WithDescription("Remove a project creator from a permission template.<br>Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsRemoveProjectCreatorFromTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsRemoveProjectCreatorFromTemplateHandler))
@@ -226,9 +360,20 @@ func permissionsRemoveProjectCreatorFromTemplateHandler(ctx context.Context, req
 }
 
 func registerPermissionsRemoveUser(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveUserParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_remove_user",
 		mcp.WithDescription("Remove permission from a user.<br /> This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> Requires one of the following permissions:<ul><li>'Administer System'</li><li>'Administer' rights on the specified project</li></ul>"),
-		mcp.WithInputSchema[client.ApiPermissionsRemoveUserParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsRemoveUserHandler))
@@ -244,9 +389,20 @@ func permissionsRemoveUserHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerPermissionsRemoveUserFromTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveUserFromTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_remove_user_from_template",
 		mcp.WithDescription("Remove a user from a permission template.<br /> Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsRemoveUserFromTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsRemoveUserFromTemplateHandler))
@@ -262,9 +418,20 @@ func permissionsRemoveUserFromTemplateHandler(ctx context.Context, request mcp.C
 }
 
 func registerPermissionsSearchTemplates(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsSearchTemplatesParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_search_templates",
 		mcp.WithDescription("List permission templates.<br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsSearchTemplatesParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsSearchTemplatesHandler))
@@ -280,9 +447,20 @@ func permissionsSearchTemplatesHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerPermissionsSetDefaultTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsSetDefaultTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_set_default_template",
 		mcp.WithDescription("Set a permission template as default.<br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsSetDefaultTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsSetDefaultTemplateHandler))
@@ -298,9 +476,20 @@ func permissionsSetDefaultTemplateHandler(ctx context.Context, request mcp.CallT
 }
 
 func registerPermissionsUpdateTemplate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiPermissionsUpdateTemplateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("permissions_update_template",
 		mcp.WithDescription("Update a permission template.<br />Requires the following permission: 'Administer System'."),
-		mcp.WithInputSchema[client.ApiPermissionsUpdateTemplateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(permissionsUpdateTemplateHandler))

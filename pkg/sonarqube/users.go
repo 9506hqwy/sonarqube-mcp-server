@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerUsersAnonymize(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUsersAnonymizeParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("users_anonymize",
 		mcp.WithDescription("Anonymize a deactivated user. Requires Administer System permission"),
-		mcp.WithInputSchema[client.ApiUsersAnonymizeParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(usersAnonymizeHandler))
@@ -28,9 +41,20 @@ func usersAnonymizeHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerUsersChangePassword(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUsersChangePasswordParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("users_change_password",
 		mcp.WithDescription("Update a user's password. Authenticated users can change their own password, provided that the account is not linked to an external authentication system. Administer System permission is required to change another user's password."),
-		mcp.WithInputSchema[client.ApiUsersChangePasswordParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(usersChangePasswordHandler))
@@ -46,9 +70,20 @@ func usersChangePasswordHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerUsersCreate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUsersCreateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("users_create",
 		mcp.WithDescription("Create a user.<br/>If a deactivated user account exists with the given login, it will be reactivated.<br/>Requires Administer System permission"),
-		mcp.WithInputSchema[client.ApiUsersCreateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(usersCreateHandler))
@@ -64,9 +99,20 @@ func usersCreateHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerUsersDeactivate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUsersDeactivateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("users_deactivate",
 		mcp.WithDescription("Deactivate a user. Requires Administer System permission"),
-		mcp.WithInputSchema[client.ApiUsersDeactivateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(usersDeactivateHandler))
@@ -82,6 +128,7 @@ func usersDeactivateHandler(ctx context.Context, request mcp.CallToolRequest, pa
 }
 
 func registerUsersDismissSonarlintAd(s *server.MCPServer) {
+
 	tool := mcp.NewTool("users_dismiss_sonarlint_ad",
 		mcp.WithDescription("Dismiss SonarLint advertisement. Deprecated since 9.6, replaced api/users/dismiss_notice"),
 	)
@@ -99,9 +146,20 @@ func usersDismissSonarlintAdHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerUsersGroups(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUsersGroupsParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("users_groups",
 		mcp.WithDescription("Lists the groups a user belongs to. <br/>Requires Administer System permission."),
-		mcp.WithInputSchema[client.ApiUsersGroupsParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(usersGroupsHandler))
@@ -117,9 +175,20 @@ func usersGroupsHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerUsersSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUsersSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("users_search",
 		mcp.WithDescription("Get a list of users. By default, only active users are returned.<br/>The following fields are only returned when user has Administer System permission or for logged-in in user :<ul> <li>'email'</li> <li>'externalIdentity'</li> <li>'externalProvider'</li> <li>'groups'</li> <li>'lastConnectionDate'</li> <li>'tokensCount'</li></ul>Field 'lastConnectionDate' is only updated every hour, so it may not be accurate, for instance when a user authenticates many times in less than one hour."),
-		mcp.WithInputSchema[client.ApiUsersSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(usersSearchHandler))
@@ -135,9 +204,20 @@ func usersSearchHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerUsersUpdate(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUsersUpdateParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("users_update",
 		mcp.WithDescription("Update a user.<br/>Requires Administer System permission"),
-		mcp.WithInputSchema[client.ApiUsersUpdateParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(usersUpdateHandler))
@@ -153,9 +233,20 @@ func usersUpdateHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerUsersUpdateIdentityProvider(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUsersUpdateIdentityProviderParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("users_update_identity_provider",
 		mcp.WithDescription("Update identity provider information. <br/>It's only possible to migrate to an installed identity provider. Be careful that as soon as this information has been updated for a user, the user will only be able to authenticate on the new identity provider. It is not possible to migrate external user to local one.<br/>Requires Administer System permission."),
-		mcp.WithInputSchema[client.ApiUsersUpdateIdentityProviderParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(usersUpdateIdentityProviderHandler))
@@ -171,9 +262,20 @@ func usersUpdateIdentityProviderHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerUsersUpdateLogin(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiUsersUpdateLoginParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("users_update_login",
 		mcp.WithDescription("Update a user login. A login can be updated many times.<br/>Requires Administer System permission"),
-		mcp.WithInputSchema[client.ApiUsersUpdateLoginParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(usersUpdateLoginHandler))

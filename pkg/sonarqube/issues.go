@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerIssuesAddComment(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesAddCommentParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_add_comment",
 		mcp.WithDescription("Add a comment.<br/>Requires authentication and the following permission: 'Browse' on the project of the specified issue."),
-		mcp.WithInputSchema[client.ApiIssuesAddCommentParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesAddCommentHandler))
@@ -28,9 +41,20 @@ func issuesAddCommentHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerIssuesAssign(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesAssignParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_assign",
 		mcp.WithDescription("Assign/Unassign an issue. Requires authentication and Browse permission on project"),
-		mcp.WithInputSchema[client.ApiIssuesAssignParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesAssignHandler))
@@ -46,9 +70,20 @@ func issuesAssignHandler(ctx context.Context, request mcp.CallToolRequest, param
 }
 
 func registerIssuesAuthors(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesAuthorsParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_authors",
 		mcp.WithDescription("Search SCM accounts which match a given query.<br/>Requires authentication.<br/>When issue indexation is in progress returns 503 service unavailable HTTP code."),
-		mcp.WithInputSchema[client.ApiIssuesAuthorsParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesAuthorsHandler))
@@ -64,9 +99,20 @@ func issuesAuthorsHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerIssuesBulkChange(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesBulkChangeParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_bulk_change",
 		mcp.WithDescription("Bulk change on issues. Up to 500 issues can be updated. <br/>Requires authentication."),
-		mcp.WithInputSchema[client.ApiIssuesBulkChangeParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesBulkChangeHandler))
@@ -82,9 +128,20 @@ func issuesBulkChangeHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerIssuesChangelog(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesChangelogParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_changelog",
 		mcp.WithDescription("Display changelog of an issue.<br/>Requires the 'Browse' permission on the project of the specified issue."),
-		mcp.WithInputSchema[client.ApiIssuesChangelogParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesChangelogHandler))
@@ -100,9 +157,20 @@ func issuesChangelogHandler(ctx context.Context, request mcp.CallToolRequest, pa
 }
 
 func registerIssuesDeleteComment(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesDeleteCommentParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_delete_comment",
 		mcp.WithDescription("Delete a comment.<br/>Requires authentication and the following permission: 'Browse' on the project of the specified issue."),
-		mcp.WithInputSchema[client.ApiIssuesDeleteCommentParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesDeleteCommentHandler))
@@ -118,9 +186,20 @@ func issuesDeleteCommentHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerIssuesDoTransition(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesDoTransitionParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_do_transition",
 		mcp.WithDescription("Do workflow transition on an issue. Requires authentication and Browse permission on project.<br/>The transitions 'wontfix' and 'falsepositive' require the permission 'Administer Issues'.<br/>The transitions involving security hotspots require the permission 'Administer Security Hotspot'."),
-		mcp.WithInputSchema[client.ApiIssuesDoTransitionParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesDoTransitionHandler))
@@ -136,9 +215,20 @@ func issuesDoTransitionHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerIssuesEditComment(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesEditCommentParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_edit_comment",
 		mcp.WithDescription("Edit a comment.<br/>Requires authentication and the following permission: 'Browse' on the project of the specified issue."),
-		mcp.WithInputSchema[client.ApiIssuesEditCommentParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesEditCommentHandler))
@@ -154,9 +244,20 @@ func issuesEditCommentHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerIssuesReindex(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesReindexParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_reindex",
 		mcp.WithDescription("Reindex issues for a project.<br> Require 'Administer System' permission."),
-		mcp.WithInputSchema[client.ApiIssuesReindexParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesReindexHandler))
@@ -172,9 +273,20 @@ func issuesReindexHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerIssuesSearch(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesSearchParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_search",
 		mcp.WithDescription("Search for issues.<br>Requires the 'Browse' permission on the specified project(s). <br>For applications, it also requires 'Browse' permission on its child projects.<br/>When issue indexation is in progress returns 503 service unavailable HTTP code."),
-		mcp.WithInputSchema[client.ApiIssuesSearchParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesSearchHandler))
@@ -190,9 +302,20 @@ func issuesSearchHandler(ctx context.Context, request mcp.CallToolRequest, param
 }
 
 func registerIssuesSetSeverity(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesSetSeverityParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_set_severity",
 		mcp.WithDescription("Change severity.<br/>Requires the following permissions:<ul> <li>'Authentication'</li> <li>'Browse' rights on project of the specified issue</li> <li>'Administer Issues' rights on project of the specified issue</li></ul>"),
-		mcp.WithInputSchema[client.ApiIssuesSetSeverityParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesSetSeverityHandler))
@@ -208,9 +331,20 @@ func issuesSetSeverityHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerIssuesSetTags(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesSetTagsParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_set_tags",
 		mcp.WithDescription("Set tags on an issue. <br/>Requires authentication and Browse permission on project"),
-		mcp.WithInputSchema[client.ApiIssuesSetTagsParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesSetTagsHandler))
@@ -226,9 +360,20 @@ func issuesSetTagsHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerIssuesSetType(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesSetTypeParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_set_type",
 		mcp.WithDescription("Change type of issue, for instance from 'code smell' to 'bug'.<br/>Requires the following permissions:<ul> <li>'Authentication'</li> <li>'Browse' rights on project of the specified issue</li> <li>'Administer Issues' rights on project of the specified issue</li></ul>"),
-		mcp.WithInputSchema[client.ApiIssuesSetTypeParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesSetTypeHandler))
@@ -244,9 +389,20 @@ func issuesSetTypeHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerIssuesTags(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiIssuesTagsParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("issues_tags",
 		mcp.WithDescription("List tags matching a given query"),
-		mcp.WithInputSchema[client.ApiIssuesTagsParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(issuesTagsHandler))

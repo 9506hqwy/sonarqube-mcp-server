@@ -59,7 +59,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -84,6 +86,22 @@ function write-register-func() {
     cat >> "${FILE_PATH}" <<EOF
 
 func register${API_NAME}(s *server.MCPServer) {
+EOF
+
+    if [[ ${NUM_PARAMETER} -ne 0 ]]; then
+        cat >> "${FILE_PATH}" <<EOF
+	schemaObj := jsonschema.Reflect(&client.Api${API_NAME}Params{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+EOF
+    fi
+
+    cat >> "${FILE_PATH}" <<EOF
+
 	tool := mcp.NewTool("${TOOL_NAME}",
 		mcp.WithDescription("${DESCRIPTION//\"/\\\"}"),
 EOF
@@ -93,7 +111,10 @@ EOF
     if [[ ${NUM_PARAMETER} -ne 0 ]]; then
         HANDER_NAME="mcp.NewTypedToolHandler(${HANDER_NAME})"
         cat >> "${FILE_PATH}" <<EOF
-		mcp.WithInputSchema[client.Api${API_NAME}Params](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 EOF
     fi
 

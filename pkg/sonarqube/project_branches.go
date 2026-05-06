@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerProjectBranchesDelete(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectBranchesDeleteParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("project_branches_delete",
 		mcp.WithDescription("Delete a non-main branch of a project or application.<br/>Requires 'Administer' rights on the specified project or application."),
-		mcp.WithInputSchema[client.ApiProjectBranchesDeleteParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectBranchesDeleteHandler))
@@ -28,9 +41,20 @@ func projectBranchesDeleteHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerProjectBranchesList(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectBranchesListParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("project_branches_list",
 		mcp.WithDescription("List the branches of a project or application.<br/>Requires 'Browse' or 'Execute analysis' rights on the specified project or application."),
-		mcp.WithInputSchema[client.ApiProjectBranchesListParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectBranchesListHandler))
@@ -46,9 +70,20 @@ func projectBranchesListHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerProjectBranchesRename(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectBranchesRenameParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("project_branches_rename",
 		mcp.WithDescription("Rename the main branch of a project or application.<br/>Requires 'Administer' permission on the specified project or application."),
-		mcp.WithInputSchema[client.ApiProjectBranchesRenameParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectBranchesRenameHandler))
@@ -64,9 +99,20 @@ func projectBranchesRenameHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerProjectBranchesSetAutomaticDeletionProtection(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiProjectBranchesSetAutomaticDeletionProtectionParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("project_branches_set_automatic_deletion_protection",
 		mcp.WithDescription("Protect a specific branch from automatic deletion. Protection can't be disabled for the main branch.<br/>Requires 'Administer' permission on the specified project or application."),
-		mcp.WithInputSchema[client.ApiProjectBranchesSetAutomaticDeletionProtectionParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(projectBranchesSetAutomaticDeletionProtectionHandler))

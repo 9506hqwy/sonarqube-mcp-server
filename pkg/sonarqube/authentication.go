@@ -2,7 +2,9 @@ package sonarqube
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/invopop/jsonschema"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -10,9 +12,20 @@ import (
 )
 
 func registerAuthenticationLogin(s *server.MCPServer) {
+	schemaObj := jsonschema.Reflect(&client.ApiAuthenticationLoginParams{})
+	mcpSchema, err := json.Marshal(schemaObj)
+	if err != nil {
+		return
+	}
+
+	rawSchema := json.RawMessage(mcpSchema)
+
 	tool := mcp.NewTool("authentication_login",
 		mcp.WithDescription("Authenticate a user."),
-		mcp.WithInputSchema[client.ApiAuthenticationLoginParams](),
+		mcp.WithRawInputSchema(rawSchema),
+		func(tool *mcp.Tool) {
+			tool.InputSchema.Type = ""
+		},
 	)
 
 	s.AddTool(tool, mcp.NewTypedToolHandler(authenticationLoginHandler))
@@ -28,6 +41,7 @@ func authenticationLoginHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerAuthenticationLogout(s *server.MCPServer) {
+
 	tool := mcp.NewTool("authentication_logout",
 		mcp.WithDescription("Logout a user."),
 	)
@@ -45,6 +59,7 @@ func authenticationLogoutHandler(ctx context.Context, request mcp.CallToolReques
 }
 
 func registerAuthenticationValidate(s *server.MCPServer) {
+
 	tool := mcp.NewTool("authentication_validate",
 		mcp.WithDescription("Check credentials."),
 	)

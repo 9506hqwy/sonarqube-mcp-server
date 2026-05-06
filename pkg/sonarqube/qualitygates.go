@@ -12,7 +12,9 @@ import (
 )
 
 func registerQualitygatesCopy(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesCopyParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesCopyParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func qualitygatesCopyHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerQualitygatesCreate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesCreateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesCreateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func qualitygatesCreateHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerQualitygatesCreateCondition(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesCreateConditionParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesCreateConditionParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func qualitygatesCreateConditionHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerQualitygatesDeleteCondition(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesDeleteConditionParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesDeleteConditionParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func qualitygatesDeleteConditionHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerQualitygatesDeselect(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesDeselectParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesDeselectParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func qualitygatesDeselectHandler(ctx context.Context, request mcp.CallToolReques
 }
 
 func registerQualitygatesDestroy(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesDestroyParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesDestroyParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -186,7 +198,9 @@ func qualitygatesDestroyHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerQualitygatesGetByProject(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesGetByProjectParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesGetByProjectParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -233,7 +247,9 @@ func qualitygatesListHandler(ctx context.Context, request mcp.CallToolRequest) (
 }
 
 func registerQualitygatesProjectStatus(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesProjectStatusParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesProjectStatusParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -262,7 +278,9 @@ func qualitygatesProjectStatusHandler(ctx context.Context, request mcp.CallToolR
 }
 
 func registerQualitygatesRename(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesRenameParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesRenameParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -291,7 +309,9 @@ func qualitygatesRenameHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerQualitygatesSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -320,7 +340,9 @@ func qualitygatesSearchHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerQualitygatesSelect(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesSelectParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesSelectParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -349,7 +371,9 @@ func qualitygatesSelectHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerQualitygatesSetAsDefault(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesSetAsDefaultParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesSetAsDefaultParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -378,7 +402,9 @@ func qualitygatesSetAsDefaultHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerQualitygatesShow(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesShowParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesShowParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -407,7 +433,9 @@ func qualitygatesShowHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerQualitygatesUpdateCondition(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualitygatesUpdateConditionParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualitygatesUpdateConditionParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

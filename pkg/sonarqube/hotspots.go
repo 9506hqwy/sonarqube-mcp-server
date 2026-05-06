@@ -12,7 +12,9 @@ import (
 )
 
 func registerHotspotsSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiHotspotsSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiHotspotsSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func hotspotsSearchHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerHotspotsShow(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiHotspotsShowParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiHotspotsShowParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

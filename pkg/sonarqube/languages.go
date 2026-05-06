@@ -12,7 +12,9 @@ import (
 )
 
 func registerLanguagesList(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiLanguagesListParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiLanguagesListParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

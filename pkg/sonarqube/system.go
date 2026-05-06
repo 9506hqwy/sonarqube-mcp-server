@@ -12,7 +12,9 @@ import (
 )
 
 func registerSystemChangeLogLevel(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiSystemChangeLogLevelParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiSystemChangeLogLevelParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -95,7 +97,9 @@ func systemInfoHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.C
 }
 
 func registerSystemLogs(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiSystemLogsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiSystemLogsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

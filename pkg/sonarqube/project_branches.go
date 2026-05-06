@@ -12,7 +12,9 @@ import (
 )
 
 func registerProjectBranchesDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectBranchesDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectBranchesDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func projectBranchesDeleteHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerProjectBranchesList(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectBranchesListParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectBranchesListParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func projectBranchesListHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerProjectBranchesRename(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectBranchesRenameParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectBranchesRenameParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func projectBranchesRenameHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerProjectBranchesSetAutomaticDeletionProtection(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectBranchesSetAutomaticDeletionProtectionParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectBranchesSetAutomaticDeletionProtectionParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

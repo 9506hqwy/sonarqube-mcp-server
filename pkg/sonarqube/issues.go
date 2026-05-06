@@ -12,7 +12,9 @@ import (
 )
 
 func registerIssuesAddComment(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesAddCommentParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesAddCommentParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func issuesAddCommentHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerIssuesAssign(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesAssignParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesAssignParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func issuesAssignHandler(ctx context.Context, request mcp.CallToolRequest, param
 }
 
 func registerIssuesAuthors(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesAuthorsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesAuthorsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func issuesAuthorsHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerIssuesBulkChange(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesBulkChangeParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesBulkChangeParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func issuesBulkChangeHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerIssuesChangelog(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesChangelogParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesChangelogParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func issuesChangelogHandler(ctx context.Context, request mcp.CallToolRequest, pa
 }
 
 func registerIssuesDeleteComment(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesDeleteCommentParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesDeleteCommentParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -186,7 +198,9 @@ func issuesDeleteCommentHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerIssuesDoTransition(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesDoTransitionParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesDoTransitionParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -215,7 +229,9 @@ func issuesDoTransitionHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerIssuesEditComment(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesEditCommentParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesEditCommentParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -244,7 +260,9 @@ func issuesEditCommentHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerIssuesReindex(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesReindexParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesReindexParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -273,7 +291,9 @@ func issuesReindexHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerIssuesSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -302,7 +322,9 @@ func issuesSearchHandler(ctx context.Context, request mcp.CallToolRequest, param
 }
 
 func registerIssuesSetSeverity(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesSetSeverityParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesSetSeverityParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -331,7 +353,9 @@ func issuesSetSeverityHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerIssuesSetTags(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesSetTagsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesSetTagsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -360,7 +384,9 @@ func issuesSetTagsHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerIssuesSetType(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesSetTypeParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesSetTypeParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -389,7 +415,9 @@ func issuesSetTypeHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerIssuesTags(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiIssuesTagsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiIssuesTagsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

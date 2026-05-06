@@ -12,7 +12,9 @@ import (
 )
 
 func registerUserTokensGenerate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserTokensGenerateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserTokensGenerateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func userTokensGenerateHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerUserTokensRevoke(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserTokensRevokeParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserTokensRevokeParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func userTokensRevokeHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerUserTokensSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserTokensSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserTokensSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

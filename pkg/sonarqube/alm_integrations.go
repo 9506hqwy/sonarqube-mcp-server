@@ -12,7 +12,9 @@ import (
 )
 
 func registerAlmIntegrationsImportGitlabProject(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsImportGitlabProjectParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmIntegrationsImportGitlabProjectParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func almIntegrationsImportGitlabProjectHandler(ctx context.Context, request mcp.
 }
 
 func registerAlmIntegrationsListAzureProjects(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsListAzureProjectsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmIntegrationsListAzureProjectsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func almIntegrationsListAzureProjectsHandler(ctx context.Context, request mcp.Ca
 }
 
 func registerAlmIntegrationsListBitbucketserverProjects(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsListBitbucketserverProjectsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmIntegrationsListBitbucketserverProjectsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func almIntegrationsListBitbucketserverProjectsHandler(ctx context.Context, requ
 }
 
 func registerAlmIntegrationsSearchAzureRepos(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSearchAzureReposParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmIntegrationsSearchAzureReposParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func almIntegrationsSearchAzureReposHandler(ctx context.Context, request mcp.Cal
 }
 
 func registerAlmIntegrationsSearchBitbucketcloudRepos(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSearchBitbucketcloudReposParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmIntegrationsSearchBitbucketcloudReposParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func almIntegrationsSearchBitbucketcloudReposHandler(ctx context.Context, reques
 }
 
 func registerAlmIntegrationsSearchBitbucketserverRepos(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSearchBitbucketserverReposParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmIntegrationsSearchBitbucketserverReposParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -186,7 +198,9 @@ func almIntegrationsSearchBitbucketserverReposHandler(ctx context.Context, reque
 }
 
 func registerAlmIntegrationsSearchGitlabRepos(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSearchGitlabReposParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmIntegrationsSearchGitlabReposParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -215,7 +229,9 @@ func almIntegrationsSearchGitlabReposHandler(ctx context.Context, request mcp.Ca
 }
 
 func registerAlmIntegrationsSetPat(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmIntegrationsSetPatParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmIntegrationsSetPatParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

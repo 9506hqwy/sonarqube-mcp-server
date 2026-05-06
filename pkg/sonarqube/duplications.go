@@ -12,7 +12,9 @@ import (
 )
 
 func registerDuplicationsShow(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiDuplicationsShowParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiDuplicationsShowParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

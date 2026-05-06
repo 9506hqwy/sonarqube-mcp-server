@@ -12,7 +12,9 @@ import (
 )
 
 func registerProjectAnalysesCreateEvent(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectAnalysesCreateEventParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectAnalysesCreateEventParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func projectAnalysesCreateEventHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerProjectAnalysesDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectAnalysesDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectAnalysesDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func projectAnalysesDeleteHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerProjectAnalysesDeleteEvent(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectAnalysesDeleteEventParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectAnalysesDeleteEventParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func projectAnalysesDeleteEventHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerProjectAnalysesSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectAnalysesSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectAnalysesSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func projectAnalysesSearchHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerProjectAnalysesSetBaseline(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectAnalysesSetBaselineParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectAnalysesSetBaselineParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func projectAnalysesSetBaselineHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerProjectAnalysesUnsetBaseline(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectAnalysesUnsetBaselineParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectAnalysesUnsetBaselineParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -186,7 +198,9 @@ func projectAnalysesUnsetBaselineHandler(ctx context.Context, request mcp.CallTo
 }
 
 func registerProjectAnalysesUpdateEvent(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectAnalysesUpdateEventParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectAnalysesUpdateEventParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

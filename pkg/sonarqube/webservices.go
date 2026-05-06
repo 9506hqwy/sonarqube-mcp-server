@@ -12,7 +12,9 @@ import (
 )
 
 func registerWebservicesList(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiWebservicesListParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiWebservicesListParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func webservicesListHandler(ctx context.Context, request mcp.CallToolRequest, pa
 }
 
 func registerWebservicesResponseExample(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiWebservicesResponseExampleParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiWebservicesResponseExampleParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

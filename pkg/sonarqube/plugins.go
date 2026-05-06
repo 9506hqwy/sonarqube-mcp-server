@@ -48,7 +48,9 @@ func pluginsCancelAllHandler(ctx context.Context, request mcp.CallToolRequest) (
 }
 
 func registerPluginsInstall(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPluginsInstallParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPluginsInstallParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -77,7 +79,9 @@ func pluginsInstallHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerPluginsInstalled(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPluginsInstalledParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPluginsInstalledParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -124,7 +128,9 @@ func pluginsPendingHandler(ctx context.Context, request mcp.CallToolRequest) (*m
 }
 
 func registerPluginsUninstall(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPluginsUninstallParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPluginsUninstallParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -153,7 +159,9 @@ func pluginsUninstallHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerPluginsUpdate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPluginsUpdateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPluginsUpdateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

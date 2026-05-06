@@ -12,7 +12,9 @@ import (
 )
 
 func registerMeasuresComponent(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiMeasuresComponentParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiMeasuresComponentParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func measuresComponentHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerMeasuresComponentTree(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiMeasuresComponentTreeParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiMeasuresComponentTreeParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func measuresComponentTreeHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerMeasuresSearchHistory(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiMeasuresSearchHistoryParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiMeasuresSearchHistoryParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

@@ -12,7 +12,9 @@ import (
 )
 
 func registerUserGroupsAddUser(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsAddUserParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserGroupsAddUserParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func userGroupsAddUserHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerUserGroupsCreate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsCreateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserGroupsCreateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func userGroupsCreateHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerUserGroupsDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserGroupsDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func userGroupsDeleteHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerUserGroupsRemoveUser(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsRemoveUserParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserGroupsRemoveUserParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func userGroupsRemoveUserHandler(ctx context.Context, request mcp.CallToolReques
 }
 
 func registerUserGroupsSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserGroupsSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func userGroupsSearchHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerUserGroupsUpdate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsUpdateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserGroupsUpdateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -186,7 +198,9 @@ func userGroupsUpdateHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerUserGroupsUsers(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUserGroupsUsersParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUserGroupsUsersParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

@@ -12,7 +12,9 @@ import (
 )
 
 func registerComponentsSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiComponentsSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiComponentsSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func componentsSearchHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerComponentsShow(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiComponentsShowParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiComponentsShowParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func componentsShowHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerComponentsTree(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiComponentsTreeParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiComponentsTreeParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

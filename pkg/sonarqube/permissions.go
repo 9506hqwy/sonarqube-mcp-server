@@ -12,7 +12,9 @@ import (
 )
 
 func registerPermissionsAddGroup(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddGroupParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsAddGroupParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func permissionsAddGroupHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerPermissionsAddGroupToTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddGroupToTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsAddGroupToTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func permissionsAddGroupToTemplateHandler(ctx context.Context, request mcp.CallT
 }
 
 func registerPermissionsAddProjectCreatorToTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddProjectCreatorToTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsAddProjectCreatorToTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func permissionsAddProjectCreatorToTemplateHandler(ctx context.Context, request 
 }
 
 func registerPermissionsAddUser(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddUserParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsAddUserParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func permissionsAddUserHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerPermissionsAddUserToTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsAddUserToTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsAddUserToTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func permissionsAddUserToTemplateHandler(ctx context.Context, request mcp.CallTo
 }
 
 func registerPermissionsApplyTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsApplyTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsApplyTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -186,7 +198,9 @@ func permissionsApplyTemplateHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerPermissionsBulkApplyTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsBulkApplyTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsBulkApplyTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -215,7 +229,9 @@ func permissionsBulkApplyTemplateHandler(ctx context.Context, request mcp.CallTo
 }
 
 func registerPermissionsCreateTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsCreateTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsCreateTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -244,7 +260,9 @@ func permissionsCreateTemplateHandler(ctx context.Context, request mcp.CallToolR
 }
 
 func registerPermissionsDeleteTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsDeleteTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsDeleteTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -273,7 +291,9 @@ func permissionsDeleteTemplateHandler(ctx context.Context, request mcp.CallToolR
 }
 
 func registerPermissionsRemoveGroup(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveGroupParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsRemoveGroupParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -302,7 +322,9 @@ func permissionsRemoveGroupHandler(ctx context.Context, request mcp.CallToolRequ
 }
 
 func registerPermissionsRemoveGroupFromTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveGroupFromTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsRemoveGroupFromTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -331,7 +353,9 @@ func permissionsRemoveGroupFromTemplateHandler(ctx context.Context, request mcp.
 }
 
 func registerPermissionsRemoveProjectCreatorFromTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveProjectCreatorFromTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsRemoveProjectCreatorFromTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -360,7 +384,9 @@ func permissionsRemoveProjectCreatorFromTemplateHandler(ctx context.Context, req
 }
 
 func registerPermissionsRemoveUser(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveUserParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsRemoveUserParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -389,7 +415,9 @@ func permissionsRemoveUserHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerPermissionsRemoveUserFromTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsRemoveUserFromTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsRemoveUserFromTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -418,7 +446,9 @@ func permissionsRemoveUserFromTemplateHandler(ctx context.Context, request mcp.C
 }
 
 func registerPermissionsSearchTemplates(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsSearchTemplatesParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsSearchTemplatesParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -447,7 +477,9 @@ func permissionsSearchTemplatesHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerPermissionsSetDefaultTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsSetDefaultTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsSetDefaultTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -476,7 +508,9 @@ func permissionsSetDefaultTemplateHandler(ctx context.Context, request mcp.CallT
 }
 
 func registerPermissionsUpdateTemplate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiPermissionsUpdateTemplateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiPermissionsUpdateTemplateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

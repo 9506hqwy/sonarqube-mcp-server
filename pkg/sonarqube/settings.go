@@ -12,7 +12,9 @@ import (
 )
 
 func registerSettingsListDefinitions(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiSettingsListDefinitionsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiSettingsListDefinitionsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func settingsListDefinitionsHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerSettingsReset(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiSettingsResetParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiSettingsResetParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func settingsResetHandler(ctx context.Context, request mcp.CallToolRequest, para
 }
 
 func registerSettingsSet(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiSettingsSetParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiSettingsSetParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func settingsSetHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerSettingsValues(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiSettingsValuesParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiSettingsValuesParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

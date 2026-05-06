@@ -12,7 +12,9 @@ import (
 )
 
 func registerProjectBadgesMeasure(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectBadgesMeasureParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectBadgesMeasureParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func projectBadgesMeasureHandler(ctx context.Context, request mcp.CallToolReques
 }
 
 func registerProjectBadgesQualityGate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectBadgesQualityGateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectBadgesQualityGateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func projectBadgesQualityGateHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerProjectBadgesRenewToken(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectBadgesRenewTokenParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectBadgesRenewTokenParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func projectBadgesRenewTokenHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerProjectBadgesToken(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectBadgesTokenParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectBadgesTokenParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

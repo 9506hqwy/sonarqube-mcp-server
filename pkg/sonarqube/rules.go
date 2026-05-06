@@ -12,7 +12,9 @@ import (
 )
 
 func registerRulesCreate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiRulesCreateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiRulesCreateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func rulesCreateHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerRulesDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiRulesDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiRulesDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func rulesDeleteHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerRulesRepositories(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiRulesRepositoriesParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiRulesRepositoriesParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func rulesRepositoriesHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerRulesSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiRulesSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiRulesSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func rulesSearchHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerRulesShow(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiRulesShowParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiRulesShowParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func rulesShowHandler(ctx context.Context, request mcp.CallToolRequest, params c
 }
 
 func registerRulesTags(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiRulesTagsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiRulesTagsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -186,7 +198,9 @@ func rulesTagsHandler(ctx context.Context, request mcp.CallToolRequest, params c
 }
 
 func registerRulesUpdate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiRulesUpdateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiRulesUpdateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

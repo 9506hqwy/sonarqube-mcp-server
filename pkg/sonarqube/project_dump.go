@@ -12,7 +12,9 @@ import (
 )
 
 func registerProjectDumpExport(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectDumpExportParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectDumpExportParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

@@ -12,7 +12,9 @@ import (
 )
 
 func registerAuthenticationLogin(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAuthenticationLoginParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAuthenticationLoginParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

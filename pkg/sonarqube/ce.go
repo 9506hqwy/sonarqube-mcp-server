@@ -12,7 +12,9 @@ import (
 )
 
 func registerCeActivity(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiCeActivityParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiCeActivityParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func ceActivityHandler(ctx context.Context, request mcp.CallToolRequest, params 
 }
 
 func registerCeActivityStatus(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiCeActivityStatusParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiCeActivityStatusParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func ceActivityStatusHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerCeComponent(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiCeComponentParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiCeComponentParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func ceComponentHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerCeTask(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiCeTaskParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiCeTaskParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

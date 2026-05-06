@@ -12,7 +12,9 @@ import (
 )
 
 func registerAnalysisCacheGet(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAnalysisCacheGetParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAnalysisCacheGetParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

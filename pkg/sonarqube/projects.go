@@ -12,7 +12,9 @@ import (
 )
 
 func registerProjectsBulkDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectsBulkDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectsBulkDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func projectsBulkDeleteHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerProjectsCreate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectsCreateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectsCreateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func projectsCreateHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerProjectsDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectsDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectsDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func projectsDeleteHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerProjectsSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectsSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectsSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func projectsSearchHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerProjectsUpdateKey(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectsUpdateKeyParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectsUpdateKeyParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func projectsUpdateKeyHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerProjectsUpdateVisibility(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectsUpdateVisibilityParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectsUpdateVisibilityParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

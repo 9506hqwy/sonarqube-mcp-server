@@ -12,7 +12,9 @@ import (
 )
 
 func registerUsersAnonymize(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUsersAnonymizeParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUsersAnonymizeParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func usersAnonymizeHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerUsersChangePassword(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUsersChangePasswordParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUsersChangePasswordParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func usersChangePasswordHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerUsersCreate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUsersCreateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUsersCreateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func usersCreateHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerUsersDeactivate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUsersDeactivateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUsersDeactivateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -146,7 +154,9 @@ func usersDismissSonarlintAdHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerUsersGroups(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUsersGroupsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUsersGroupsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -175,7 +185,9 @@ func usersGroupsHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerUsersSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUsersSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUsersSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -204,7 +216,9 @@ func usersSearchHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerUsersUpdate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUsersUpdateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUsersUpdateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -233,7 +247,9 @@ func usersUpdateHandler(ctx context.Context, request mcp.CallToolRequest, params
 }
 
 func registerUsersUpdateIdentityProvider(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUsersUpdateIdentityProviderParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUsersUpdateIdentityProviderParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -262,7 +278,9 @@ func usersUpdateIdentityProviderHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerUsersUpdateLogin(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiUsersUpdateLoginParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiUsersUpdateLoginParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

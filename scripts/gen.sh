@@ -90,7 +90,9 @@ EOF
 
     if [[ ${NUM_PARAMETER} -ne 0 ]]; then
         cat >> "${FILE_PATH}" <<EOF
-	schemaObj := jsonschema.Reflect(&client.Api${API_NAME}Params{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.Api${API_NAME}Params{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

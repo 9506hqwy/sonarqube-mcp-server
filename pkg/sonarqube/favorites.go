@@ -12,7 +12,9 @@ import (
 )
 
 func registerFavoritesAdd(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiFavoritesAddParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiFavoritesAddParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func favoritesAddHandler(ctx context.Context, request mcp.CallToolRequest, param
 }
 
 func registerFavoritesRemove(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiFavoritesRemoveParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiFavoritesRemoveParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func favoritesRemoveHandler(ctx context.Context, request mcp.CallToolRequest, pa
 }
 
 func registerFavoritesSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiFavoritesSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiFavoritesSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

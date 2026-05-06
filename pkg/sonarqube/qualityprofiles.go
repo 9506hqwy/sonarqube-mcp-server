@@ -12,7 +12,9 @@ import (
 )
 
 func registerQualityprofilesActivateRule(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesActivateRuleParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesActivateRuleParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func qualityprofilesActivateRuleHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerQualityprofilesActivateRules(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesActivateRulesParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesActivateRulesParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func qualityprofilesActivateRulesHandler(ctx context.Context, request mcp.CallTo
 }
 
 func registerQualityprofilesAddProject(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesAddProjectParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesAddProjectParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func qualityprofilesAddProjectHandler(ctx context.Context, request mcp.CallToolR
 }
 
 func registerQualityprofilesBackup(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesBackupParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesBackupParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func qualityprofilesBackupHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesChangeParent(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesChangeParentParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesChangeParentParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func qualityprofilesChangeParentHandler(ctx context.Context, request mcp.CallToo
 }
 
 func registerQualityprofilesChangelog(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesChangelogParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesChangelogParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -186,7 +198,9 @@ func qualityprofilesChangelogHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerQualityprofilesCopy(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesCopyParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesCopyParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -215,7 +229,9 @@ func qualityprofilesCopyHandler(ctx context.Context, request mcp.CallToolRequest
 }
 
 func registerQualityprofilesCreate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesCreateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesCreateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -244,7 +260,9 @@ func qualityprofilesCreateHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesDeactivateRule(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesDeactivateRuleParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesDeactivateRuleParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -273,7 +291,9 @@ func qualityprofilesDeactivateRuleHandler(ctx context.Context, request mcp.CallT
 }
 
 func registerQualityprofilesDeactivateRules(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesDeactivateRulesParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesDeactivateRulesParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -302,7 +322,9 @@ func qualityprofilesDeactivateRulesHandler(ctx context.Context, request mcp.Call
 }
 
 func registerQualityprofilesDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -331,7 +353,9 @@ func qualityprofilesDeleteHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesExport(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesExportParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesExportParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -396,7 +420,9 @@ func qualityprofilesImportersHandler(ctx context.Context, request mcp.CallToolRe
 }
 
 func registerQualityprofilesInheritance(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesInheritanceParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesInheritanceParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -425,7 +451,9 @@ func qualityprofilesInheritanceHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerQualityprofilesProjects(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesProjectsParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesProjectsParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -454,7 +482,9 @@ func qualityprofilesProjectsHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerQualityprofilesRemoveProject(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesRemoveProjectParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesRemoveProjectParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -483,7 +513,9 @@ func qualityprofilesRemoveProjectHandler(ctx context.Context, request mcp.CallTo
 }
 
 func registerQualityprofilesRename(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesRenameParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesRenameParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -512,7 +544,9 @@ func qualityprofilesRenameHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesRestore(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesRestoreParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesRestoreParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -541,7 +575,9 @@ func qualityprofilesRestoreHandler(ctx context.Context, request mcp.CallToolRequ
 }
 
 func registerQualityprofilesSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -570,7 +606,9 @@ func qualityprofilesSearchHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerQualityprofilesSetDefault(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiQualityprofilesSetDefaultParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiQualityprofilesSetDefaultParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

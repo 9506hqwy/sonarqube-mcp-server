@@ -12,7 +12,9 @@ import (
 )
 
 func registerAlmSettingsCountBinding(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCountBindingParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsCountBindingParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func almSettingsCountBindingHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsCreateAzure(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateAzureParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsCreateAzureParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func almSettingsCreateAzureHandler(ctx context.Context, request mcp.CallToolRequ
 }
 
 func registerAlmSettingsCreateBitbucket(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateBitbucketParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsCreateBitbucketParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func almSettingsCreateBitbucketHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerAlmSettingsCreateBitbucketcloud(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateBitbucketcloudParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsCreateBitbucketcloudParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func almSettingsCreateBitbucketcloudHandler(ctx context.Context, request mcp.Cal
 }
 
 func registerAlmSettingsCreateGithub(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateGithubParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsCreateGithubParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func almSettingsCreateGithubHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsCreateGitlab(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsCreateGitlabParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsCreateGitlabParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -186,7 +198,9 @@ func almSettingsCreateGitlabHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -215,7 +229,9 @@ func almSettingsDeleteHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerAlmSettingsGetBinding(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsGetBindingParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsGetBindingParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -244,7 +260,9 @@ func almSettingsGetBindingHandler(ctx context.Context, request mcp.CallToolReque
 }
 
 func registerAlmSettingsList(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsListParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsListParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -291,7 +309,9 @@ func almSettingsListDefinitionsHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerAlmSettingsUpdateAzure(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateAzureParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsUpdateAzureParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -320,7 +340,9 @@ func almSettingsUpdateAzureHandler(ctx context.Context, request mcp.CallToolRequ
 }
 
 func registerAlmSettingsUpdateBitbucket(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateBitbucketParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsUpdateBitbucketParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -349,7 +371,9 @@ func almSettingsUpdateBitbucketHandler(ctx context.Context, request mcp.CallTool
 }
 
 func registerAlmSettingsUpdateBitbucketcloud(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateBitbucketcloudParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsUpdateBitbucketcloudParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -378,7 +402,9 @@ func almSettingsUpdateBitbucketcloudHandler(ctx context.Context, request mcp.Cal
 }
 
 func registerAlmSettingsUpdateGithub(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateGithubParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsUpdateGithubParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -407,7 +433,9 @@ func almSettingsUpdateGithubHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsUpdateGitlab(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsUpdateGitlabParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsUpdateGitlabParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -436,7 +464,9 @@ func almSettingsUpdateGitlabHandler(ctx context.Context, request mcp.CallToolReq
 }
 
 func registerAlmSettingsValidate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiAlmSettingsValidateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiAlmSettingsValidateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

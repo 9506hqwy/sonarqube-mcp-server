@@ -359,6 +359,12 @@ Check schema.
 mcpcurl schema --pretty=false --stdio-server-cmd ./bin/sonarqube-mcp-server
 ```
 
+Check that this MCP server does correctly using [@modelcontextprotocol/inspector](https://github.com/modelcontextprotocol/inspector).
+
+```sh
+npx @modelcontextprotocol/inspector ./bin/sonarqube-mcp-server --url=<URL> --token=<TOKEN>
+```
+
 ## Notes
 
 * Check off unused tools at [tool icon] in GitHub Copilot Chat panel bacause vscode limits max 128 tools.

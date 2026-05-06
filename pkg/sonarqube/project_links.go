@@ -12,7 +12,9 @@ import (
 )
 
 func registerProjectLinksCreate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectLinksCreateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectLinksCreateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func projectLinksCreateHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerProjectLinksDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectLinksDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectLinksDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func projectLinksDeleteHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerProjectLinksSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectLinksSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectLinksSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

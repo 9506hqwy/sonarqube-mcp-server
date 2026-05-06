@@ -12,7 +12,9 @@ import (
 )
 
 func registerNotificationsAdd(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiNotificationsAddParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiNotificationsAddParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func notificationsAddHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerNotificationsList(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiNotificationsListParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiNotificationsListParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func notificationsListHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerNotificationsRemove(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiNotificationsRemoveParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiNotificationsRemoveParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

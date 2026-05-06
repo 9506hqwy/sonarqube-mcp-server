@@ -12,7 +12,9 @@ import (
 )
 
 func registerWebhooksCreate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiWebhooksCreateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiWebhooksCreateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func webhooksCreateHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerWebhooksDelete(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiWebhooksDeleteParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiWebhooksDeleteParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func webhooksDeleteHandler(ctx context.Context, request mcp.CallToolRequest, par
 }
 
 func registerWebhooksDeliveries(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiWebhooksDeliveriesParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiWebhooksDeliveriesParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func webhooksDeliveriesHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerWebhooksDelivery(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiWebhooksDeliveryParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiWebhooksDeliveryParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -128,7 +136,9 @@ func webhooksDeliveryHandler(ctx context.Context, request mcp.CallToolRequest, p
 }
 
 func registerWebhooksList(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiWebhooksListParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiWebhooksListParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -157,7 +167,9 @@ func webhooksListHandler(ctx context.Context, request mcp.CallToolRequest, param
 }
 
 func registerWebhooksUpdate(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiWebhooksUpdateParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiWebhooksUpdateParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

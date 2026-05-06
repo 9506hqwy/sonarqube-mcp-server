@@ -12,7 +12,9 @@ import (
 )
 
 func registerProjectTagsSearch(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectTagsSearchParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectTagsSearchParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func projectTagsSearchHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerProjectTagsSet(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiProjectTagsSetParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiProjectTagsSetParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

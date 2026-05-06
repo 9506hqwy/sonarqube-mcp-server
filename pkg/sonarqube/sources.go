@@ -12,7 +12,9 @@ import (
 )
 
 func registerSourcesRaw(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiSourcesRawParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiSourcesRawParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func sourcesRawHandler(ctx context.Context, request mcp.CallToolRequest, params 
 }
 
 func registerSourcesScm(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiSourcesScmParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiSourcesScmParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func sourcesScmHandler(ctx context.Context, request mcp.CallToolRequest, params 
 }
 
 func registerSourcesShow(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiSourcesShowParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiSourcesShowParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

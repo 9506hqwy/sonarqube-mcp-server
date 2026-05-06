@@ -12,7 +12,9 @@ import (
 )
 
 func registerNewCodePeriodsList(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiNewCodePeriodsListParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiNewCodePeriodsListParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -41,7 +43,9 @@ func newCodePeriodsListHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerNewCodePeriodsSet(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiNewCodePeriodsSetParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiNewCodePeriodsSetParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -70,7 +74,9 @@ func newCodePeriodsSetHandler(ctx context.Context, request mcp.CallToolRequest, 
 }
 
 func registerNewCodePeriodsShow(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiNewCodePeriodsShowParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiNewCodePeriodsShowParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return
@@ -99,7 +105,9 @@ func newCodePeriodsShowHandler(ctx context.Context, request mcp.CallToolRequest,
 }
 
 func registerNewCodePeriodsUnset(s *server.MCPServer) {
-	schemaObj := jsonschema.Reflect(&client.ApiNewCodePeriodsUnsetParams{})
+	r := &jsonschema.Reflector{}
+	r.DoNotReference = true
+	schemaObj := r.Reflect(&client.ApiNewCodePeriodsUnsetParams{})
 	mcpSchema, err := json.Marshal(schemaObj)
 	if err != nil {
 		return

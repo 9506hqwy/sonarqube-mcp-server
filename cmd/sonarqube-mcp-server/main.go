@@ -17,19 +17,21 @@ var version = "<version>"
 var commit = "<commit>"
 
 func fromArgument(ctx context.Context) context.Context {
-	ctx = context.WithValue(ctx, sonarqube.UrlKey{}, viper.GetString("url"))
+	ctx = context.WithValue(ctx, sonarqube.URLKey{}, viper.GetString("url"))
 	ctx = context.WithValue(ctx, sonarqube.UserKey{}, viper.GetString("user"))
 	ctx = context.WithValue(ctx, sonarqube.PasswordKey{}, viper.GetString("password"))
 	ctx = context.WithValue(ctx, sonarqube.UserTokenKey{}, viper.GetString("token"))
 	return ctx
 }
 
+//revive:disable:deep-exit
+
 var rootCmd = &cobra.Command{
 	Use:     "sonarqube-mcp-server",
 	Short:   "SonarQube MCP Server",
 	Long:    "SonarQube MCP Server",
 	Version: fmt.Sprintf("%s\nCommit: %s", version, commit),
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		s := server.NewMCPServer(
 			"SonarQube MCP Server",
 			"0.1.0",
@@ -45,6 +47,8 @@ var rootCmd = &cobra.Command{
 		}
 	},
 }
+
+//revive:enable:deep-exit
 
 func init() {
 	cobra.OnInitialize(initConfig)

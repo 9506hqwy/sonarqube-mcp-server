@@ -2,6 +2,7 @@ package sonarqube
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -10,7 +11,7 @@ import (
 	"github.com/mark3labs/mcp-go/mcp"
 )
 
-type UrlKey struct{}
+type URLKey struct{}
 type UserKey struct{}
 type UserTokenKey struct{}
 type PasswordKey struct{}
@@ -26,12 +27,12 @@ func authorizationHeader(ctx context.Context, req *http.Request) error {
 func basicAuth(ctx context.Context, req *http.Request) error {
 	user, ok := ctx.Value(UserKey{}).(string)
 	if !ok || user == "" {
-		return fmt.Errorf("missing user")
+		return errors.New("missing user")
 	}
 
 	password, ok := ctx.Value(PasswordKey{}).(string)
 	if !ok {
-		return fmt.Errorf("missing password")
+		return errors.New("missing password")
 	}
 
 	req.SetBasicAuth(user, password)
@@ -41,7 +42,7 @@ func basicAuth(ctx context.Context, req *http.Request) error {
 func bearerAuth(ctx context.Context, req *http.Request) error {
 	token, ok := ctx.Value(UserTokenKey{}).(string)
 	if !ok || token == "" {
-		return fmt.Errorf("missing token")
+		return errors.New("missing token")
 	}
 
 	req.Header.Set("Authorization", "Bearer "+token)
@@ -51,9 +52,9 @@ func bearerAuth(ctx context.Context, req *http.Request) error {
 func newClient(ctx context.Context) (*client.ClientWithResponses, error) {
 	hc := http.Client{}
 
-	url, ok := ctx.Value(UrlKey{}).(string)
+	url, ok := ctx.Value(URLKey{}).(string)
 	if !ok || url == "" {
-		return nil, fmt.Errorf("missing url")
+		return nil, errors.New("missing url")
 	}
 
 	return client.NewClientWithResponses(url, client.WithHTTPClient(&hc))

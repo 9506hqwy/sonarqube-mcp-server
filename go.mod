@@ -13,7 +13,7 @@ tool (
 require (
 	github.com/9506hqwy/sonar-client-go v0.0.0-20261116142036-478a4816eeba
 	github.com/invopop/jsonschema v0.14.0
-	github.com/mark3labs/mcp-go v1.5.0
+	github.com/mark3labs/mcp-go v1.6.0
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
 )
